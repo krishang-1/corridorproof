@@ -10,7 +10,7 @@ Start in a fresh data directory. Keep the local mode label visible. Say “synth
 
 **2:00–2:30 — Evidence.** Click Verify signatures and then Test altered evidence. “This copy was altered, so verification fails. The original journal stays unchanged.” Explain that the verifier also reconstructs case state. Export JSON, point to the independent CLI verifier.
 
-**2:30–3:00 — Governance and next gate.** “A database can implement this workflow. Drunix is useful when independent partners require joint governance instead of one operator's unilateral edit authority. Our Go contract and certificate-bound gateway are supplied separately. The live network is unverified on this machine. We next need a corridor partner to compare coordination effort against its existing workflow.”
+**2:30–3:00 — Governance and next gate.** “A database can implement this workflow. Drunix is useful when independent partners require joint governance instead of one operator's unilateral edit authority. Our separate certificate-bound CLI passed five scenarios with 46 VALID transactions on the local Drunix network. Show submission/drunix-live-evidence.json: transaction IDs, blocks and matching cross-organization reads. This browser demo remains local, and payment execution is synthetic. We next need a corridor partner to compare coordination effort against its existing workflow.”
 
 Backup: CP-003 definitive rejection, dual approval, Sender mock refund, joint closure. Never claim the mock refund moved money.
 

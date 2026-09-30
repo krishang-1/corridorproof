@@ -13,16 +13,16 @@ flowchart LR
   CORE --> PORT[Ledger port]
   PORT --> LOCAL[Local signed SQLite journal\nDemo fallback]
   PORT -. Planned dashboard integration .-> GW[Go Fabric Gateway CLI adapter]
-  GW -.-> CC[Go chaincode on Drunix]
-  CC -.-> O1[Org1 committing and lite peers]
-  CC -.-> O2[Org2 committing and lite peers]
+  GW --> CC[Go chaincode on Drunix]
+  CC --> O1[Org1 committing and lite peers]
+  CC --> O2[Org2 committing and lite peers]
   API --> WORKER[Controlled synthetic evidence commands]
   WORKER --> EVIDENCE[Attributed status evidence]
   EVIDENCE --> CORE
   LOCAL --> EXPORT[Evidence export and verification]
 ```
 
-The diagram distinguishes the executable local fallback from the live integration path. The Go gateway is a standalone certificate-bound CLI adapter; the dashboard is currently local-only and does not switch to live mode. README/health/UI disclose the actual mode. A local journal is not a distributed network. Two local role keys do not constitute independent institutions.
+The diagram distinguishes the executable local fallback from the live integration path. The standalone certificate-bound Go CLI and chaincode passed five scenarios with 46 VALID commits on the local Drunix test network; both organizations read matching case state. The dashboard is currently local-only and does not switch to live mode. README/health/UI disclose the actual mode. A local journal is not a distributed network. Two local role keys do not constitute independent institutions. Generated test-network certificates likewise do not establish real institutional ownership.
 
 ## Stack
 

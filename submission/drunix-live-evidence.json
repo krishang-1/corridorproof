@@ -1,0 +1,2104 @@
+{
+  "mode": "LIVE_DRUNIX_TEST_NETWORK",
+  "syntheticQuotes": true,
+  "paymentRails": "SIMULATED",
+  "startedAt": "2026-09-30T08:00:06Z",
+  "transactions": [
+    {
+      "role": "SENDER",
+      "function": "CreateCase",
+      "arguments": [
+        "CP-LIVE-1790755206-1",
+        "timeout"
+      ],
+      "receipt": {
+        "blockNumber": 6,
+        "successful": true,
+        "transactionId": "6750458a298c56b5274a3e1da9d47a1aa254887e7b801d2a358ee144a0cca7bb",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "id": "CP-LIVE-1790755206-1",
+        "scenario": "timeout",
+        "version": 0,
+        "status": "PAYOUT_PENDING",
+        "payout": "UNKNOWN",
+        "observedMinor": 0,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-CP-LIVE-1790755206-1",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+        "votes": [],
+        "closure": [],
+        "resolution": null,
+        "history": []
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-1",
+        "{\"requestId\":\"live-1790755206-0-0\",\"expectedVersion\":0,\"action\":\"OBSERVE_TIMEOUT\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 7,
+        "successful": true,
+        "transactionId": "ce6d95d2b51cf0f4fe8a904d7a87fb0c5e7254ccb55a8844a4be609a72364599",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-1",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "RECONCILING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "ce6d95d2b51cf0f4fe8a904d7a87fb0c5e7254ccb55a8844a4be609a72364599"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-1",
+        "{\"requestId\":\"live-1790755206-0-1\",\"expectedVersion\":1,\"action\":\"APPROVE_REFUND\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 8,
+        "successful": true,
+        "transactionId": "49e65d677ba2a927c18d3aed7c9514690a22ef7c79b0d98f09bc8da97ab62a64",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "UNKNOWN_OR_UNSAFE",
+        "message": "Timeout is insufficient for refund",
+        "state": {
+          "id": "CP-LIVE-1790755206-1",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "RECONCILING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "49e65d677ba2a927c18d3aed7c9514690a22ef7c79b0d98f09bc8da97ab62a64"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-1",
+        "{\"requestId\":\"live-1790755206-0-2\",\"expectedVersion\":1,\"action\":\"OBSERVE_CREDIT\",\"payload\":{\"amountMinor\":620000}}"
+      ],
+      "receipt": {
+        "blockNumber": 9,
+        "successful": true,
+        "transactionId": "b1b55a66c40524c490f79f384927f0e86844448b1a37965f8b5bb20d44acf930",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-1",
+          "scenario": "timeout",
+          "version": 2,
+          "status": "CREDITED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "b1b55a66c40524c490f79f384927f0e86844448b1a37965f8b5bb20d44acf930"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-1",
+        "{\"requestId\":\"live-1790755206-0-3\",\"expectedVersion\":2,\"action\":\"ACK_CLOSE\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 10,
+        "successful": true,
+        "transactionId": "4b5213b9a25b179f3483dabc223616b7a97467bc81675716ec9aa8d02f05bb4a",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-1",
+          "scenario": "timeout",
+          "version": 3,
+          "status": "CREDITED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [
+            "SENDER"
+          ],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "4b5213b9a25b179f3483dabc223616b7a97467bc81675716ec9aa8d02f05bb4a"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-1",
+        "{\"requestId\":\"live-1790755206-0-4\",\"expectedVersion\":3,\"action\":\"ACK_CLOSE\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 11,
+        "successful": true,
+        "transactionId": "b41ef4fc32775e7127ffcc8d31d7865afcb975abc98152a30dce32b29f004527",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-1",
+          "scenario": "timeout",
+          "version": 4,
+          "status": "CLOSED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "b41ef4fc32775e7127ffcc8d31d7865afcb975abc98152a30dce32b29f004527"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-1",
+        "{\"requestId\":\"live-1790755206-0-5\",\"expectedVersion\":4,\"action\":\"OBSERVE_REJECTION\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 12,
+        "successful": true,
+        "transactionId": "26592c4e8b8d458efd7af40c8f548412a9b8f5d2e0279242cac4af6f4a98db37",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "CASE_CLOSED",
+        "message": "Closed case is immutable",
+        "state": {
+          "id": "CP-LIVE-1790755206-1",
+          "scenario": "timeout",
+          "version": 4,
+          "status": "CLOSED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "26592c4e8b8d458efd7af40c8f548412a9b8f5d2e0279242cac4af6f4a98db37"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-1",
+        "{\"requestId\":\"live-1790755206-0-5\",\"expectedVersion\":4,\"action\":\"OBSERVE_REJECTION\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 13,
+        "successful": true,
+        "transactionId": "ee05de5ff62b75bf3f020e724b9df6d8526acba06b7b079ea8395a7747300130",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "CASE_CLOSED",
+        "state": {
+          "id": "CP-LIVE-1790755206-1",
+          "quote": {
+            "quoteId": "Q-CP-LIVE-1790755206-1",
+            "feeMinor": 300,
+            "synthetic": true,
+            "sourceMinor": 10000,
+            "recipientMinor": 620000,
+            "sourceCurrency": "SGD",
+            "destinationCurrency": "INR"
+          },
+          "votes": [],
+          "payout": "CREDITED",
+          "status": "CLOSED",
+          "closure": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "history": [],
+          "version": 4,
+          "scenario": "timeout",
+          "resolution": null,
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "observedMinor": 620000
+        },
+        "message": "Closed case is immutable",
+        "transactionId": "26592c4e8b8d458efd7af40c8f548412a9b8f5d2e0279242cac4af6f4a98db37"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-1",
+        "{\"requestId\":\"live-1790755206-stale-0\",\"expectedVersion\":3,\"action\":\"OBSERVE_TIMEOUT\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 14,
+        "successful": true,
+        "transactionId": "9b1bb767df1ff75ead4908ae8530652965cab3c6bee12a62d1403f4f7d5397dd",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "STALE_VERSION",
+        "message": "Refresh case before acting",
+        "state": {
+          "id": "CP-LIVE-1790755206-1",
+          "scenario": "timeout",
+          "version": 4,
+          "status": "CLOSED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "9b1bb767df1ff75ead4908ae8530652965cab3c6bee12a62d1403f4f7d5397dd"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "CreateCase",
+      "arguments": [
+        "CP-LIVE-1790755206-2",
+        "shortfall"
+      ],
+      "receipt": {
+        "blockNumber": 15,
+        "successful": true,
+        "transactionId": "7471775048d420dd988d6ca6e60007193134116fdedb55cd459bdafc487c09b2",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "id": "CP-LIVE-1790755206-2",
+        "scenario": "shortfall",
+        "version": 0,
+        "status": "PAYOUT_PENDING",
+        "payout": "UNKNOWN",
+        "observedMinor": 0,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-CP-LIVE-1790755206-2",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+        "votes": [],
+        "closure": [],
+        "resolution": null,
+        "history": []
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-2",
+        "{\"requestId\":\"live-1790755206-1-0\",\"expectedVersion\":0,\"action\":\"OBSERVE_CREDIT\",\"payload\":{\"amountMinor\":608000}}"
+      ],
+      "receipt": {
+        "blockNumber": 16,
+        "successful": true,
+        "transactionId": "96c6e8e120f2b0bef6e932d9177bdbf393814d8b84ac598463bc10d28fa20233",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-2",
+          "scenario": "shortfall",
+          "version": 1,
+          "status": "SHORTFALL",
+          "payout": "CREDITED",
+          "observedMinor": 608000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "96c6e8e120f2b0bef6e932d9177bdbf393814d8b84ac598463bc10d28fa20233"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-2",
+        "{\"requestId\":\"live-1790755206-1-1\",\"expectedVersion\":1,\"action\":\"EXECUTE_CORRECTION\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 17,
+        "successful": true,
+        "transactionId": "414864ed38892c880858c346eaa7bfc3e9db61723ccacbf786577fa5af42078d",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "NOT_APPROVED",
+        "message": "Both approvals required",
+        "state": {
+          "id": "CP-LIVE-1790755206-2",
+          "scenario": "shortfall",
+          "version": 1,
+          "status": "SHORTFALL",
+          "payout": "CREDITED",
+          "observedMinor": 608000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "414864ed38892c880858c346eaa7bfc3e9db61723ccacbf786577fa5af42078d"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-2",
+        "{\"requestId\":\"live-1790755206-1-2\",\"expectedVersion\":1,\"action\":\"APPROVE_CORRECTION\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 18,
+        "successful": true,
+        "transactionId": "0adfcfab509536bb458780cbe000afd2ee8cc94884573fdc3c7eedcfacdcdd6e",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-2",
+          "scenario": "shortfall",
+          "version": 2,
+          "status": "SHORTFALL",
+          "payout": "CREDITED",
+          "observedMinor": 608000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER"
+          ],
+          "closure": [],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "0adfcfab509536bb458780cbe000afd2ee8cc94884573fdc3c7eedcfacdcdd6e"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-2",
+        "{\"requestId\":\"live-1790755206-1-3\",\"expectedVersion\":2,\"action\":\"APPROVE_CORRECTION\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 19,
+        "successful": true,
+        "transactionId": "14483feaf2d184698d9946c912f240e6b577db7fa676a0317bcf9e557733e59c",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "DUPLICATE_VOTE",
+        "message": "Already approved",
+        "state": {
+          "id": "CP-LIVE-1790755206-2",
+          "scenario": "shortfall",
+          "version": 2,
+          "status": "SHORTFALL",
+          "payout": "CREDITED",
+          "observedMinor": 608000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER"
+          ],
+          "closure": [],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "14483feaf2d184698d9946c912f240e6b577db7fa676a0317bcf9e557733e59c"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-2",
+        "{\"requestId\":\"live-1790755206-1-4\",\"expectedVersion\":2,\"action\":\"APPROVE_CORRECTION\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 20,
+        "successful": true,
+        "transactionId": "7df97bfbfa1f82f2bf6a143d91ab3238034d57e9481eda7f5f55ad1d90c7fa83",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-2",
+          "scenario": "shortfall",
+          "version": 3,
+          "status": "CORRECTION_APPROVED",
+          "payout": "CREDITED",
+          "observedMinor": 608000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "7df97bfbfa1f82f2bf6a143d91ab3238034d57e9481eda7f5f55ad1d90c7fa83"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-2",
+        "{\"requestId\":\"live-1790755206-1-5\",\"expectedVersion\":3,\"action\":\"EXECUTE_CORRECTION\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 21,
+        "successful": true,
+        "transactionId": "04decec4ff805a590bd34718d38b847c5dc098b0a7067018b07bd4a569578647",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "ROLE_DENIED",
+        "message": "Receiver evidence required",
+        "state": {
+          "id": "CP-LIVE-1790755206-2",
+          "scenario": "shortfall",
+          "version": 3,
+          "status": "CORRECTION_APPROVED",
+          "payout": "CREDITED",
+          "observedMinor": 608000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "04decec4ff805a590bd34718d38b847c5dc098b0a7067018b07bd4a569578647"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-2",
+        "{\"requestId\":\"live-1790755206-1-6\",\"expectedVersion\":3,\"action\":\"EXECUTE_CORRECTION\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 22,
+        "successful": true,
+        "transactionId": "141c9d4f1fbf7da440d4e785572ceaaee92bdf068603dc4a419bc68b06ac3922",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-2",
+          "scenario": "shortfall",
+          "version": 4,
+          "status": "CREDITED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "141c9d4f1fbf7da440d4e785572ceaaee92bdf068603dc4a419bc68b06ac3922"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-2",
+        "{\"requestId\":\"live-1790755206-close-SENDER\",\"expectedVersion\":4,\"action\":\"ACK_CLOSE\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 23,
+        "successful": true,
+        "transactionId": "d94197e1505a4f51da0390242c076cefc392f6a0a926ad34864f4f2c5fb31199",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-2",
+          "scenario": "shortfall",
+          "version": 5,
+          "status": "CREDITED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [
+            "SENDER"
+          ],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "d94197e1505a4f51da0390242c076cefc392f6a0a926ad34864f4f2c5fb31199"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-2",
+        "{\"requestId\":\"live-1790755206-close-RECEIVER\",\"expectedVersion\":5,\"action\":\"ACK_CLOSE\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 24,
+        "successful": true,
+        "transactionId": "12aa4c795cfd8fa735a5496b45fe72094bd79643561ca46fa88b89b17c9e5263",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-2",
+          "scenario": "shortfall",
+          "version": 6,
+          "status": "CLOSED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "12aa4c795cfd8fa735a5496b45fe72094bd79643561ca46fa88b89b17c9e5263"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-2",
+        "{\"requestId\":\"live-1790755206-1-6\",\"expectedVersion\":3,\"action\":\"EXECUTE_CORRECTION\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 25,
+        "successful": true,
+        "transactionId": "5b58a38b94f4f6acda8315f3b49013f11f967021f0b3f50b52ced81d5533c2b8",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-2",
+          "quote": {
+            "quoteId": "Q-CP-LIVE-1790755206-2",
+            "feeMinor": 300,
+            "synthetic": true,
+            "sourceMinor": 10000,
+            "recipientMinor": 620000,
+            "sourceCurrency": "SGD",
+            "destinationCurrency": "INR"
+          },
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "payout": "CREDITED",
+          "status": "CREDITED",
+          "closure": [],
+          "history": [],
+          "version": 4,
+          "scenario": "shortfall",
+          "resolution": "CORRECTION",
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "observedMinor": 620000
+        },
+        "transactionId": "141c9d4f1fbf7da440d4e785572ceaaee92bdf068603dc4a419bc68b06ac3922"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-2",
+        "{\"requestId\":\"live-1790755206-stale-1\",\"expectedVersion\":5,\"action\":\"OBSERVE_TIMEOUT\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 26,
+        "successful": true,
+        "transactionId": "af272a972e15cbb0ecf9e34077ab562914fea1fa3f397b9e044a38d3499ac45f",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "STALE_VERSION",
+        "message": "Refresh case before acting",
+        "state": {
+          "id": "CP-LIVE-1790755206-2",
+          "scenario": "shortfall",
+          "version": 6,
+          "status": "CLOSED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "af272a972e15cbb0ecf9e34077ab562914fea1fa3f397b9e044a38d3499ac45f"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "CreateCase",
+      "arguments": [
+        "CP-LIVE-1790755206-3",
+        "rejection"
+      ],
+      "receipt": {
+        "blockNumber": 27,
+        "successful": true,
+        "transactionId": "8a57639b654ffe3684a6be21429e34f675b50806670af447c88a488f66e963cf",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "id": "CP-LIVE-1790755206-3",
+        "scenario": "rejection",
+        "version": 0,
+        "status": "PAYOUT_PENDING",
+        "payout": "UNKNOWN",
+        "observedMinor": 0,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-CP-LIVE-1790755206-3",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+        "votes": [],
+        "closure": [],
+        "resolution": null,
+        "history": []
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-3",
+        "{\"requestId\":\"live-1790755206-2-0\",\"expectedVersion\":0,\"action\":\"OBSERVE_REJECTION\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 28,
+        "successful": true,
+        "transactionId": "43ef87839809d92ad8fb0ea69907840e3890cc479dee538c48a50ac8064d1fde",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "ROLE_DENIED",
+        "message": "Receiver evidence required",
+        "state": {
+          "id": "CP-LIVE-1790755206-3",
+          "scenario": "rejection",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "43ef87839809d92ad8fb0ea69907840e3890cc479dee538c48a50ac8064d1fde"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-3",
+        "{\"requestId\":\"live-1790755206-2-1\",\"expectedVersion\":0,\"action\":\"OBSERVE_REJECTION\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 29,
+        "successful": true,
+        "transactionId": "054f226ab81abcd8e4de9a4d54dd4d766b75104975bb528572de244ef81e200c",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-3",
+          "scenario": "rejection",
+          "version": 1,
+          "status": "REFUND_REVIEW",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "054f226ab81abcd8e4de9a4d54dd4d766b75104975bb528572de244ef81e200c"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-3",
+        "{\"requestId\":\"live-1790755206-2-2\",\"expectedVersion\":1,\"action\":\"EXECUTE_REFUND\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 30,
+        "successful": true,
+        "transactionId": "11e9f2bf57c81ac3176a741496921d5527588b005c85146de76f7097322e72df",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "NOT_APPROVED",
+        "message": "Both approvals required",
+        "state": {
+          "id": "CP-LIVE-1790755206-3",
+          "scenario": "rejection",
+          "version": 1,
+          "status": "REFUND_REVIEW",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "11e9f2bf57c81ac3176a741496921d5527588b005c85146de76f7097322e72df"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-3",
+        "{\"requestId\":\"live-1790755206-2-3\",\"expectedVersion\":1,\"action\":\"APPROVE_REFUND\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 31,
+        "successful": true,
+        "transactionId": "55033898a90e947f16988ccf3345ac4f64d4dfbad384c263c1fe52316e5462fb",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-3",
+          "scenario": "rejection",
+          "version": 2,
+          "status": "REFUND_REVIEW",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER"
+          ],
+          "closure": [],
+          "resolution": "REFUND",
+          "history": []
+        },
+        "transactionId": "55033898a90e947f16988ccf3345ac4f64d4dfbad384c263c1fe52316e5462fb"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-3",
+        "{\"requestId\":\"live-1790755206-2-4\",\"expectedVersion\":2,\"action\":\"APPROVE_REFUND\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 32,
+        "successful": true,
+        "transactionId": "583753cfc34f867f8393aabc6811fff870646e11dde716d1bcbe59c84a07ac61",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-3",
+          "scenario": "rejection",
+          "version": 3,
+          "status": "REFUND_APPROVED",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [],
+          "resolution": "REFUND",
+          "history": []
+        },
+        "transactionId": "583753cfc34f867f8393aabc6811fff870646e11dde716d1bcbe59c84a07ac61"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-3",
+        "{\"requestId\":\"live-1790755206-2-5\",\"expectedVersion\":3,\"action\":\"EXECUTE_REFUND\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 33,
+        "successful": true,
+        "transactionId": "17ee6c6f35182715cb79ec098c238a30a51290881e8dcfefd15339afd318e1ef",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "ROLE_DENIED",
+        "message": "Sender records refund",
+        "state": {
+          "id": "CP-LIVE-1790755206-3",
+          "scenario": "rejection",
+          "version": 3,
+          "status": "REFUND_APPROVED",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [],
+          "resolution": "REFUND",
+          "history": []
+        },
+        "transactionId": "17ee6c6f35182715cb79ec098c238a30a51290881e8dcfefd15339afd318e1ef"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-3",
+        "{\"requestId\":\"live-1790755206-2-6\",\"expectedVersion\":3,\"action\":\"EXECUTE_REFUND\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 34,
+        "successful": true,
+        "transactionId": "a16e7af7e1c4424b16e95b887a7d4c10c5a0556473729c91d88a891b34ccefb5",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-3",
+          "scenario": "rejection",
+          "version": 4,
+          "status": "REFUNDED",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [],
+          "resolution": "REFUND",
+          "history": []
+        },
+        "transactionId": "a16e7af7e1c4424b16e95b887a7d4c10c5a0556473729c91d88a891b34ccefb5"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-3",
+        "{\"requestId\":\"live-1790755206-2-7\",\"expectedVersion\":4,\"action\":\"ACK_CLOSE\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 35,
+        "successful": true,
+        "transactionId": "f8915a54704121d5d83519db466d2fc92245dd224d7735b899d74c0b5bd5d2b1",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-3",
+          "scenario": "rejection",
+          "version": 5,
+          "status": "REFUNDED",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [
+            "RECEIVER"
+          ],
+          "resolution": "REFUND",
+          "history": []
+        },
+        "transactionId": "f8915a54704121d5d83519db466d2fc92245dd224d7735b899d74c0b5bd5d2b1"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-3",
+        "{\"requestId\":\"live-1790755206-2-8\",\"expectedVersion\":5,\"action\":\"ACK_CLOSE\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 36,
+        "successful": true,
+        "transactionId": "9ff7100550a732d98c242f628f9aaab95f7d9ddd6247130baf464103cb3df9d9",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-3",
+          "scenario": "rejection",
+          "version": 6,
+          "status": "CLOSED",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [
+            "RECEIVER",
+            "SENDER"
+          ],
+          "resolution": "REFUND",
+          "history": []
+        },
+        "transactionId": "9ff7100550a732d98c242f628f9aaab95f7d9ddd6247130baf464103cb3df9d9"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-3",
+        "{\"requestId\":\"live-1790755206-2-8\",\"expectedVersion\":5,\"action\":\"ACK_CLOSE\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 37,
+        "successful": true,
+        "transactionId": "c76cfc00be5a966ca67dc0283a3ed7671cf74673e574cbbe7e643df5b705fde8",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-3",
+          "quote": {
+            "quoteId": "Q-CP-LIVE-1790755206-3",
+            "feeMinor": 300,
+            "synthetic": true,
+            "sourceMinor": 10000,
+            "recipientMinor": 620000,
+            "sourceCurrency": "SGD",
+            "destinationCurrency": "INR"
+          },
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "payout": "REJECTED",
+          "status": "CLOSED",
+          "closure": [
+            "RECEIVER",
+            "SENDER"
+          ],
+          "history": [],
+          "version": 6,
+          "scenario": "rejection",
+          "resolution": "REFUND",
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "observedMinor": 0
+        },
+        "transactionId": "9ff7100550a732d98c242f628f9aaab95f7d9ddd6247130baf464103cb3df9d9"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-3",
+        "{\"requestId\":\"live-1790755206-stale-2\",\"expectedVersion\":5,\"action\":\"OBSERVE_TIMEOUT\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 38,
+        "successful": true,
+        "transactionId": "325ae5a3a220fa97223c5f522330b33c0162ef246e1e6c877266cd10f58c85e1",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "STALE_VERSION",
+        "message": "Refresh case before acting",
+        "state": {
+          "id": "CP-LIVE-1790755206-3",
+          "scenario": "rejection",
+          "version": 6,
+          "status": "CLOSED",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [
+            "RECEIVER",
+            "SENDER"
+          ],
+          "resolution": "REFUND",
+          "history": []
+        },
+        "transactionId": "325ae5a3a220fa97223c5f522330b33c0162ef246e1e6c877266cd10f58c85e1"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "CreateCase",
+      "arguments": [
+        "CP-LIVE-1790755206-4",
+        "timeout"
+      ],
+      "receipt": {
+        "blockNumber": 39,
+        "successful": true,
+        "transactionId": "096774bd79cf5fac13955778639cf14c2bb7b594c49ce8c741b0db4430937315",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "id": "CP-LIVE-1790755206-4",
+        "scenario": "timeout",
+        "version": 0,
+        "status": "PAYOUT_PENDING",
+        "payout": "UNKNOWN",
+        "observedMinor": 0,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-CP-LIVE-1790755206-4",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+        "votes": [],
+        "closure": [],
+        "resolution": null,
+        "history": []
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-4",
+        "{\"requestId\":\"live-1790755206-3-0\",\"expectedVersion\":0,\"action\":\"OBSERVE_BLOCK\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 40,
+        "successful": true,
+        "transactionId": "bef7d0a3b8705cfa5056711fbcb119f5a1ab559b7251873229c52680cc9965cb",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-4",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "MANUAL_REVIEW",
+          "payout": "BLOCKED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-4",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "bef7d0a3b8705cfa5056711fbcb119f5a1ab559b7251873229c52680cc9965cb"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-4",
+        "{\"requestId\":\"live-1790755206-3-1\",\"expectedVersion\":1,\"action\":\"APPROVE_REFUND\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 41,
+        "successful": true,
+        "transactionId": "f38952e4fe6674c97fe95c690bbd99c71b6cc31e34d4bf887eb15ff5b83f9364",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "UNKNOWN_OR_UNSAFE",
+        "message": "Timeout is insufficient for refund",
+        "state": {
+          "id": "CP-LIVE-1790755206-4",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "MANUAL_REVIEW",
+          "payout": "BLOCKED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-4",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "f38952e4fe6674c97fe95c690bbd99c71b6cc31e34d4bf887eb15ff5b83f9364"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-4",
+        "{\"requestId\":\"live-1790755206-3-2\",\"expectedVersion\":1,\"action\":\"ACK_CLOSE\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 42,
+        "successful": true,
+        "transactionId": "50402ce225d7cd8721c64a8893ab83cd1a051ec3957c8c75d304dd0016ecdf05",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "UNRESOLVED",
+        "message": "Completed outcome evidence required",
+        "state": {
+          "id": "CP-LIVE-1790755206-4",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "MANUAL_REVIEW",
+          "payout": "BLOCKED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-4",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "50402ce225d7cd8721c64a8893ab83cd1a051ec3957c8c75d304dd0016ecdf05"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-4",
+        "{\"requestId\":\"live-1790755206-3-2\",\"expectedVersion\":1,\"action\":\"ACK_CLOSE\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 43,
+        "successful": true,
+        "transactionId": "84d4633e791124f1f5c75b3f557633750dad68bfbce94733646e46a2440071ea",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "UNRESOLVED",
+        "state": {
+          "id": "CP-LIVE-1790755206-4",
+          "quote": {
+            "quoteId": "Q-CP-LIVE-1790755206-4",
+            "feeMinor": 300,
+            "synthetic": true,
+            "sourceMinor": 10000,
+            "recipientMinor": 620000,
+            "sourceCurrency": "SGD",
+            "destinationCurrency": "INR"
+          },
+          "votes": [],
+          "payout": "BLOCKED",
+          "status": "MANUAL_REVIEW",
+          "closure": [],
+          "history": [],
+          "version": 1,
+          "scenario": "timeout",
+          "resolution": null,
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "observedMinor": 0
+        },
+        "message": "Completed outcome evidence required",
+        "transactionId": "50402ce225d7cd8721c64a8893ab83cd1a051ec3957c8c75d304dd0016ecdf05"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-4",
+        "{\"requestId\":\"live-1790755206-stale-3\",\"expectedVersion\":0,\"action\":\"OBSERVE_TIMEOUT\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 44,
+        "successful": true,
+        "transactionId": "f69b135911fffd29c114994dd1ffa9148c0c99d539f960d5e2c1ea901855a724",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "STALE_VERSION",
+        "message": "Refresh case before acting",
+        "state": {
+          "id": "CP-LIVE-1790755206-4",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "MANUAL_REVIEW",
+          "payout": "BLOCKED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-4",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "f69b135911fffd29c114994dd1ffa9148c0c99d539f960d5e2c1ea901855a724"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "CreateCase",
+      "arguments": [
+        "CP-LIVE-1790755206-5",
+        "timeout"
+      ],
+      "receipt": {
+        "blockNumber": 45,
+        "successful": true,
+        "transactionId": "80319261702825de8523d1fc7b44d23cee914a3dae823c14040ec2b7f09fd9f2",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "id": "CP-LIVE-1790755206-5",
+        "scenario": "timeout",
+        "version": 0,
+        "status": "PAYOUT_PENDING",
+        "payout": "UNKNOWN",
+        "observedMinor": 0,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-CP-LIVE-1790755206-5",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+        "votes": [],
+        "closure": [],
+        "resolution": null,
+        "history": []
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-5",
+        "{\"requestId\":\"live-1790755206-4-0\",\"expectedVersion\":0,\"action\":\"OBSERVE_CREDIT\",\"payload\":{\"amountMinor\":1.5}}"
+      ],
+      "receipt": {
+        "blockNumber": 46,
+        "successful": true,
+        "transactionId": "cf112f3e6254ece716a25dad69d67a08ecf970d433344b595ca388fe2d4e9ec6",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "INVALID_AMOUNT",
+        "message": "Amount outside allowed integer range",
+        "state": {
+          "id": "CP-LIVE-1790755206-5",
+          "scenario": "timeout",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-5",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "cf112f3e6254ece716a25dad69d67a08ecf970d433344b595ca388fe2d4e9ec6"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-5",
+        "{\"requestId\":\"live-1790755206-4-1\",\"expectedVersion\":0,\"action\":\"OBSERVE_CREDIT\",\"payload\":{\"amountMinor\":620001}}"
+      ],
+      "receipt": {
+        "blockNumber": 47,
+        "successful": true,
+        "transactionId": "ab7714f4b6d0c1ca6ae0594d7f43bcd45a148f6ceef4f45e70e865aa67e6232c",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "INVALID_AMOUNT",
+        "message": "Amount outside allowed integer range",
+        "state": {
+          "id": "CP-LIVE-1790755206-5",
+          "scenario": "timeout",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-5",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "ab7714f4b6d0c1ca6ae0594d7f43bcd45a148f6ceef4f45e70e865aa67e6232c"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-5",
+        "{\"requestId\":\"live-1790755206-4-2\",\"expectedVersion\":0,\"action\":\"OBSERVE_CREDIT\",\"payload\":{\"amountMinor\":620000}}"
+      ],
+      "receipt": {
+        "blockNumber": 48,
+        "successful": true,
+        "transactionId": "82835ea76929b876af9bf62afdea1fabade504cd9e6243df0f08b19028f639d9",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-LIVE-1790755206-5",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "CREDITED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-5",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "82835ea76929b876af9bf62afdea1fabade504cd9e6243df0f08b19028f639d9"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-5",
+        "{\"requestId\":\"live-1790755206-4-3\",\"expectedVersion\":1,\"action\":\"OBSERVE_REJECTION\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 49,
+        "successful": true,
+        "transactionId": "e0780d2307614006819e1790c4e666a2c11705984ac4fe58fdaaa6f72d88549a",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "CONFLICTING_EVIDENCE",
+        "message": "Definitive rejection required",
+        "state": {
+          "id": "CP-LIVE-1790755206-5",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "CREDITED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-5",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "e0780d2307614006819e1790c4e666a2c11705984ac4fe58fdaaa6f72d88549a"
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-5",
+        "{\"requestId\":\"live-1790755206-4-3\",\"expectedVersion\":1,\"action\":\"OBSERVE_REJECTION\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 50,
+        "successful": true,
+        "transactionId": "e767df86405f08be11845d26083dc235a0b30feeac0254b2669c1b9dd1487da4",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "CONFLICTING_EVIDENCE",
+        "state": {
+          "id": "CP-LIVE-1790755206-5",
+          "quote": {
+            "quoteId": "Q-CP-LIVE-1790755206-5",
+            "feeMinor": 300,
+            "synthetic": true,
+            "sourceMinor": 10000,
+            "recipientMinor": 620000,
+            "sourceCurrency": "SGD",
+            "destinationCurrency": "INR"
+          },
+          "votes": [],
+          "payout": "CREDITED",
+          "status": "CREDITED",
+          "closure": [],
+          "history": [],
+          "version": 1,
+          "scenario": "timeout",
+          "resolution": null,
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "observedMinor": 620000
+        },
+        "message": "Definitive rejection required",
+        "transactionId": "e0780d2307614006819e1790c4e666a2c11705984ac4fe58fdaaa6f72d88549a"
+      }
+    },
+    {
+      "role": "SENDER",
+      "function": "Command",
+      "arguments": [
+        "CP-LIVE-1790755206-5",
+        "{\"requestId\":\"live-1790755206-stale-4\",\"expectedVersion\":0,\"action\":\"OBSERVE_TIMEOUT\",\"payload\":{}}"
+      ],
+      "receipt": {
+        "blockNumber": 51,
+        "successful": true,
+        "transactionId": "042fdf7c3156f3e995e3277c67826739a617d662db285b4c5731c2f892f07a6c",
+        "validationCode": "VALID"
+      },
+      "result": {
+        "ok": false,
+        "code": "STALE_VERSION",
+        "message": "Refresh case before acting",
+        "state": {
+          "id": "CP-LIVE-1790755206-5",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "CREDITED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-LIVE-1790755206-5",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "042fdf7c3156f3e995e3277c67826739a617d662db285b4c5731c2f892f07a6c"
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "CP-LIVE-1790755206-1",
+      "scenario": "late credit after timeout",
+      "state": {
+        "id": "CP-LIVE-1790755206-1",
+        "scenario": "timeout",
+        "version": 4,
+        "status": "CLOSED",
+        "payout": "CREDITED",
+        "observedMinor": 620000,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-CP-LIVE-1790755206-1",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+        "votes": [],
+        "closure": [
+          "SENDER",
+          "RECEIVER"
+        ],
+        "resolution": null,
+        "history": []
+      },
+      "crossOrgReadEqual": true
+    },
+    {
+      "id": "CP-LIVE-1790755206-2",
+      "scenario": "shortfall requires both parties",
+      "state": {
+        "id": "CP-LIVE-1790755206-2",
+        "scenario": "shortfall",
+        "version": 6,
+        "status": "CLOSED",
+        "payout": "CREDITED",
+        "observedMinor": 620000,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-CP-LIVE-1790755206-2",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+        "votes": [
+          "SENDER",
+          "RECEIVER"
+        ],
+        "closure": [
+          "SENDER",
+          "RECEIVER"
+        ],
+        "resolution": "CORRECTION",
+        "history": []
+      },
+      "crossOrgReadEqual": true
+    },
+    {
+      "id": "CP-LIVE-1790755206-3",
+      "scenario": "definitive rejection enables refund review",
+      "state": {
+        "id": "CP-LIVE-1790755206-3",
+        "scenario": "rejection",
+        "version": 6,
+        "status": "CLOSED",
+        "payout": "REJECTED",
+        "observedMinor": 0,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-CP-LIVE-1790755206-3",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+        "votes": [
+          "SENDER",
+          "RECEIVER"
+        ],
+        "closure": [
+          "RECEIVER",
+          "SENDER"
+        ],
+        "resolution": "REFUND",
+        "history": []
+      },
+      "crossOrgReadEqual": true
+    },
+    {
+      "id": "CP-LIVE-1790755206-4",
+      "scenario": "compliance block is never an automatic refund",
+      "state": {
+        "id": "CP-LIVE-1790755206-4",
+        "scenario": "timeout",
+        "version": 1,
+        "status": "MANUAL_REVIEW",
+        "payout": "BLOCKED",
+        "observedMinor": 0,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-CP-LIVE-1790755206-4",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+        "votes": [],
+        "closure": [],
+        "resolution": null,
+        "history": []
+      },
+      "crossOrgReadEqual": true
+    },
+    {
+      "id": "CP-LIVE-1790755206-5",
+      "scenario": "invalid and contradictory evidence",
+      "state": {
+        "id": "CP-LIVE-1790755206-5",
+        "scenario": "timeout",
+        "version": 1,
+        "status": "CREDITED",
+        "payout": "CREDITED",
+        "observedMinor": 620000,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-CP-LIVE-1790755206-5",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient \u2022\u2022\u2022\u2022 2048",
+        "votes": [],
+        "closure": [],
+        "resolution": null,
+        "history": []
+      },
+      "crossOrgReadEqual": true
+    }
+  ],
+  "passed": true
+}

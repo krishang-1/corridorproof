@@ -22,7 +22,7 @@ Deadline supplied by the team: **30 September 2026, 23:59 IST**. Portal cutoff, 
 
 **Innovation / distinction:** Existing providers including Swift already offer case management. Our proposed distinction is joint governance of corridor exception evidence and resolution state among independent operators. This is a partner-validation hypothesis. The prototype demonstrates policy safeguards rather than claiming a new settlement rail or cheaper FX.
 
-**Technology / Drunix:** Node.js 24, SQLite, Ed25519/SHA-256 and a browser-native dashboard support the local demo. Go Fabric-compatible chaincode derives roles from organization MSPs and enforces version/idempotency rules. The certificate-bound Gateway CLI waits for valid commit. The live Drunix network and dashboard integration are unverified. No NPCI sandbox or UPI endpoint is connected.
+**Technology / Drunix:** Node.js 24, SQLite, Ed25519/SHA-256 and a browser-native dashboard support the local demo. Go chaincode derives roles from organization MSPs and enforces version/idempotency rules. A separate certificate-bound Gateway CLI passed five scenario checks with 46 VALID transactions on the local Drunix test network under both-organization endorsement. The dashboard integration remains pending. Quotes and payments are synthetic; no NPCI sandbox or UPI endpoint is connected.
 
 **Impact / business model:** Candidate users are PSP payment-operations teams. A pilot would compare staff time, counterparty contacts, evidence rework and resolution time against current workflows. Subscription plus integration is a pricing hypothesis. No operational savings, willingness-to-pay, customer adoption or market size has been validated.
 
@@ -30,10 +30,10 @@ Deadline supplied by the team: **30 September 2026, 23:59 IST**. Portal cutoff, 
 
 - [ ] Verify exact official problem statement and judging rules.
 - [ ] Verify portal cutoff and field limits.
-- [ ] Publish source repository to the intended account.
+- [x] Publish source repository to the intended account: https://github.com/krishang-1/corridorproof.
 - [ ] Check GitHub CI status and clean-clone start.
-- [ ] Ensure `.data/`, generated private keys and external credentials are absent from tracked files.
-- [ ] Confirm live/mock labels match validation evidence.
+- [x] Ensure `.data/`, generated private keys and external credentials are absent from tracked files.
+- [x] Confirm live/mock labels match validation evidence: CLI on Drunix, dashboard local, payment rails simulated.
 - [ ] Open final pitch deck and rehearse.
 - [ ] Verify source and deck links while signed out.
 - [ ] Complete portal fields and upload before buffer deadline.

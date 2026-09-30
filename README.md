@@ -4,7 +4,7 @@
 
 A hackathon prototype for sender and receiver operations teams. It preserves the accepted recipient amount, records attributable payout evidence, and requires both organizations to approve a correction or refund. A missing payout response remains unknown. It cannot authorize a refund.
 
-**Current mode: LOCAL_SIGNED_DEMO. Payments and organization identities are simulated. No live Drunix network, NPCI sandbox, UPI connector or real funds are connected.** The separately supplied Go chaincode and certificate-bound Gateway CLI compile locally. Network deployment and dashboard integration remain unverified.
+**Dashboard mode: LOCAL_SIGNED_DEMO. Payments and dashboard organization identities are simulated.** The separate certificate-bound Gateway CLI and Go chaincode were deployed on the local two-organization Drunix test network: 46 transactions confirmed VALID, five scenario checks passed, and both organizations read matching state. See [live receipts](submission/drunix-live-evidence.json) and [setup](docs/DRUNIX-SETUP.md). The dashboard is not connected to that network. No NPCI sandbox, UPI connector or real funds are connected.
 
 ![Operations dashboard](docs/screenshots/dashboard.jpg)
 
@@ -68,6 +68,8 @@ Verification checks signatures, hash links, sequence, supplied head and reconstr
 - `gateway/`: TLS and certificate-bound Fabric Gateway CLI. Separate from local server.
 - `docs/`: architecture, evidence register, API, setup, threats, pilot, submission and demo script.
 - `DECISIONS.md`: decisions and tradeoffs.
+
+Latest pitch: [CorridorProof-pitch-live.pptx](submission/CorridorProof-pitch-live.pptx). It supersedes the earlier deck's infrastructure status.
 
 ## Why a ledger?
 
