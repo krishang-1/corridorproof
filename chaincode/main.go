@@ -101,7 +101,10 @@ func (c *Contract) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 			return shim.Error("No arguments expected")
 		}
 		cases := []Case{}
-		iter, e := stub.GetStateByRange("case:", "case;")
+		// Drunix SQL defaults unpaginated scans to ten rows. Use an explicit
+		// bounded page and fail rather than silently presenting a partial export.
+		const workspaceLimit int32 = 1000
+		iter, _, e := stub.GetStateByRangeWithPagination("case:", "case;", workspaceLimit, "")
 		if e != nil {
 			return shim.Error(e.Error())
 		}
@@ -118,7 +121,7 @@ func (c *Contract) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 			cases = append(cases, state)
 		}
 		events := []json.RawMessage{}
-		ei, e := stub.GetStateByPartialCompositeKey("evidence", []string{})
+		ei, _, e := stub.GetStateByPartialCompositeKeyWithPagination("evidence", []string{}, workspaceLimit, "")
 		if e != nil {
 			return shim.Error(e.Error())
 		}
@@ -129,6 +132,9 @@ func (c *Contract) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 				return shim.Error(e.Error())
 			}
 			events = append(events, json.RawMessage(row.Value))
+		}
+		if len(cases) >= int(workspaceLimit) || len(events) >= int(workspaceLimit) {
+			return shim.Error("WORKSPACE_LIMIT: narrow the workspace before exporting; a complete export is not available")
 		}
 		body, e := json.Marshal(struct {
 			Cases  []Case            `json:"cases"`

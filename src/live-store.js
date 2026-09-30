@@ -57,7 +57,7 @@ export class LiveStore {
         .map((e,i)=>({...e,sequence:i+1,timestamp:new Date(e.seconds*1000+(e.nanos||0)/1e6).toISOString(),
           mode:'LIVE_DRUNIX_TEST_NETWORK',eventHash:e.transactionId}));
       const bundle={schema:'corridorproof-drunix-evidence-v1',mode:'LIVE_DRUNIX_TEST_NETWORK',exportedAt:new Date().toISOString(),
-        channel:'mychannel',chaincode:'corridorproof',cases:result.cases,events,
+        channel:'mychannel',chaincode:'corridorproof',cases:result.cases.slice().sort((a,b)=>a.id.localeCompare(b.id)),events,
         caveat:'Live local ledger query. Quotes and payment execution are synthetic. Transaction IDs are not standalone cryptographic proofs. Comparison requires a trusted live connection; no block-signature or inclusion-proof verifier is supplied.'};
       this.cache={role,time:Date.now(),bundle};return bundle;
     });
