@@ -10,6 +10,7 @@
 | Go Gateway CLI | Compiled successfully using Go 1.27.1. No live connection tested. |
 | Browser timeout/late-credit | Timeout, denied refund, receiver credit and two acknowledgments visibly reached CLOSED. |
 | Browser shortfall | Both approvals, receiver correction and two acknowledgments visibly reached CLOSED. |
+| Browser rejection/refund | Final build: receiver definitive rejection, two approvals, sender mock refund and both closure acknowledgments reached CLOSED. Eleven-event journal verification passed. Screenshot in docs/screenshots/refund-verified.jpg. |
 | Browser integrity | Original export verified. Altered quote content failed verification without modifying stored journal. |
 | Automated three-case demo | 20 synthetic events, all three cases CLOSED, unsafe refund denied, export verifier passed. Sample in submission/demo-evidence.json. |
 | Desktop layout | Inspected at 1440×960 and 1280×720. Local mode, roles, case state and evidence visible. No horizontal overflow observed. |
