@@ -36,7 +36,12 @@ Three primary sources frame the opportunity:
 
 ### Where CorridorProof sits
 
-```mermaid
+![Market ecosystem and proposed integration position](docs/diagrams/market-position.svg)
+
+<details>
+<summary>Editable Mermaid source</summary>
+
+```text
 flowchart TB
   subgraph Existing["Existing payments and operations ecosystem"]
     Customer["Sender / recipient"] --> PSP["Sender and receiver PSPs"]
@@ -60,6 +65,8 @@ Drunix jointly endorsed state"]
   Joint -. "Future idempotent execution adapter" .-> Rails
 ```
 
+</details>
+
 Solid lines inside CorridorProof describe implemented components. Dashed external links are future integrations. The app is an exception decision component alongside payment infrastructure, not a replacement for it.
 
 ### Before / after workflow
@@ -70,7 +77,12 @@ The comparison is a target partner workflow to validate, not a universal baselin
 
 ### Detailed implementation and trust boundaries
 
-```mermaid
+![Detailed architecture and trust boundaries](docs/diagrams/detailed-architecture.svg)
+
+<details>
+<summary>Editable Mermaid source</summary>
+
+```text
 flowchart TB
   Sender["Sender operator
 Generated Org1 identity"] --> UI["Browser operations desk"]
@@ -103,11 +115,18 @@ Business denial may also be VALID"]
 Selected explicitly; no silent fallback"]
 ```
 
+</details>
+
 Status-inbox metadata and saved submission identities live in ignored adapter storage. **Accepted observations and financial case decisions live on the selected ledger.** SLA/ageing labels are derived views, never consensus triggers. The local API holds both generated credentials; production needs separate institutional custody and user authentication.
 
 ### Structured status intake sequence
 
-```mermaid
+![Structured status intake and exact replay](docs/diagrams/status-intake.svg)
+
+<details>
+<summary>Editable Mermaid source</summary>
+
+```text
 sequenceDiagram
   actor R as Receiver operator
   participant I as Status inbox
@@ -133,9 +152,16 @@ sequenceDiagram
   Note over I,D: Exact replay reuses the original command; changed message contents are rejected
 ```
 
+</details>
+
 ### Financial lifecycle
 
-```mermaid
+![Financial lifecycle and approval safeguards](docs/diagrams/financial-lifecycle.svg)
+
+<details>
+<summary>Editable Mermaid source</summary>
+
+```text
 stateDiagram-v2
   [*] --> PAYOUT_PENDING: Accepted synthetic quote
   PAYOUT_PENDING --> RECONCILING: Missing response
@@ -155,6 +181,8 @@ stateDiagram-v2
   REFUNDED --> CLOSED: Both closure acknowledgments
   CLOSED --> [*]
 ```
+
+</details>
 
 Unknown has no direct refund path. MANUAL_REVIEW has no invented automated release path. Financial approvals differ from network endorsement: business votes authorize a resolution; peers endorse contract execution.
 
