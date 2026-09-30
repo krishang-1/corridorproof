@@ -4,9 +4,11 @@
 
 Official repository inspected at commit `ddc0eae778158d3f8a96605cfeda383ae5eafcfc`.
 
-- Docker client: 28.4.0. Docker Desktop Linux engine pipe absent, including after launching Docker Desktop.
-- WSL distribution enumeration: `E_ACCESSDENIED` in this execution session.
-- Consequently no peer/channel/chaincode lifecycle command has successfully run here. **Live deployment is unverified.** Do not present local SQLite or Go mock-stub results as Drunix commits.
+- Docker Desktop 4.47.0 / Linux engine 28.4.0 and Ubuntu WSL2 are now available. Docker `hello-world` successfully ran inside Ubuntu on 30 September 2026.
+- Earlier sandbox commands returned `E_ACCESSDENIED`; running the user-authorized setup in the actual Windows user context resolved service access.
+- Desktop startup additionally failed on stale `dockerInference` and `userAnalyticsOtlpHttp.sock` socket entries. Docker was stopped, those exact entries were moved to `.stale-corridorproof*` backup names through Ubuntu, and Desktop restarted. No factory reset or volume deletion was performed. This is an observed local repair, not a general Docker recommendation.
+- Go 1.27.1 for Linux was downloaded from go.dev and verified against its published SHA-256; Linux build tools and jq were installed. Official Drunix binaries are being built in `/home/krish/corridorproof-infra/drunix` and official network images are being pulled.
+- No peer/channel/chaincode lifecycle command has successfully run yet. **Live deployment is unverified.** Do not present local SQLite or Go mock-stub results as Drunix commits.
 - Official source says Linux with git, Docker, Go and jq. Source `go.mod` requires Go 1.26.1; the project was compiled locally with verified official Go 1.27.1 for Windows.
 - Official peer config references `$(DOCKER_NS)/drunix-ccenv:$(TWO_DIGIT_VERSION)`. Verify the builder tag actually required by the chosen binary/image version instead of copying another project's workaround.
 - `network.sh prereq` routes through the inherited Fabric installer. Network checks separately expect Drunix build binaries. Verify images and binaries match this Drunix commit rather than assuming the generic prerequisites command builds Drunix.
