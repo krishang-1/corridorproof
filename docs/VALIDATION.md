@@ -16,7 +16,7 @@
 | Mobile layout | CSS has responsive rules, but browser viewport control did not apply requested mobile dimensions. Mobile rendering remains unverified. |
 | Drunix Linux runtime | Blocked: Linux Docker engine pipe absent; WSL service enumeration denied. No live network claim. |
 | GitHub publishing | Pending authenticated repository creation. Local Git initialized. |
-| Clean clone / release archive | Final packaging check pending. Generated keys and `.data/` are ignored and absent from staged files. |
+| Clean clone / release archive | Fresh local clone passed all nine Node tests, three-case demo check, sample export verification and server entrypoint/health/dashboard startup without packages or credentials. Source ZIP contains tracked files only. Generated keys and `.data/` are absent from tracked files. |
 | Pitch deck | Eight slides exported to PPTX, package/layout/font/import checks passed. Each rendered slide inspected. Final-slide contrast corrected. Native PowerPoint/Google Slides execution untested. |
 
 No production rail integration, endorsement benchmark, fault-tolerance exercise, vulnerability certification or partner pilot has run. The project cannot claim measured operational savings.
