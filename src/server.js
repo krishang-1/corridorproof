@@ -33,6 +33,7 @@ export function buildServer(store) {
         if (req.headers['content-type']?.split(';')[0] !== 'application/json') return json({error:'JSON required'},415);
         let body = ''; for await (const chunk of req) { body += chunk; if (body.length > 1000000) return json({error:'Request too large'},413); }
         let input; try { input = JSON.parse(body); } catch { return json({error:'Malformed JSON'},400); }
+        if (!input || typeof input !== 'object' || Array.isArray(input)) return json({error:'INVALID_REQUEST',message:'JSON object required'},400);
         if (match) { const result = await store.command(match[1], role, input); return json(result, result.ok ? 200 : result.pending ? 202 : 409); }
         if (url.pathname === '/api/cases') return json(await store.create(role,input),201);
         if (url.pathname === '/api/reconcile' && store.reconcile) { const result=await store.reconcile(input.key);return json(result,result.pending?202:result.ok?200:409); }

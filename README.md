@@ -246,6 +246,7 @@ The receiver can also record a compliance block. It requires manual review and o
 ```sh
 npm test
 npm run demo:check
+npm run test:campaign
 # Explicitly live backend only:
 node scripts/operations-live-check.js
 cd chaincode
@@ -264,6 +265,10 @@ npm run verify -- corridorproof-evidence.json independently-pinned-public-keys.j
 ```
 
 Verification checks signatures, hash links, sequence, supplied head and reconstructed case states. Embedded keys establish consistency only. Independently pinned public keys and previously witnessed heads are required to detect identity substitution or rewritten/truncated history. A statement signed by a bank still needs authoritative rail reconciliation.
+
+## Reproducible reliability simulations
+
+The first overnight campaign passed **81,920 seeded policy attempts** across two distinct seed ranges and **1,440 isolated localhost HTTP requests**, including controlled malformed inputs. All 24 Node regression tests pass, including 24 injected lost-acknowledgment recovery variants. A separate modest live Drunix smoke passed; the large simulation runs are not live-chain throughput measurements. The [validation record](docs/VALIDATION.md) reports realized accepted/denied counts, response distributions and limits; the [campaign guide](docs/OVERNIGHT-CAMPAIGN.md) documents reproducible commands and the next fault profiles.
 
 ## Repository map
 

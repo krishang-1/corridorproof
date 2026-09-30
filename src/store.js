@@ -50,7 +50,7 @@ export class Store {
   command(id, role, input) {
     if (!ROLES.includes(role)) throw new PolicyError('INVALID_ROLE','Unknown organization');
     if (!input || typeof input.requestId !== 'string' || !/^[A-Za-z0-9_-]{8,100}$/.test(input.requestId)) throw new PolicyError('INVALID_REQUEST','Supply an 8–100 character idempotency key');
-    if (!Number.isSafeInteger(input.expectedVersion)) throw new PolicyError('INVALID_VERSION','Supply an integer expectedVersion');
+    if (!Number.isSafeInteger(input.expectedVersion) || input.expectedVersion < 0) throw new PolicyError('INVALID_VERSION','Supply a non-negative integer expectedVersion');
     const key = `${role}:${input.requestId}`;
     const fingerprint = hash({ id, role, input });
     this.db.exec('BEGIN IMMEDIATE');

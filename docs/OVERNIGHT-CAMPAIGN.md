@@ -1,0 +1,37 @@
+# Overnight reliability campaign
+
+User authorized varied-input simulations, controlled noise, concurrency, recovery, responsiveness checks, fixes and verified GitHub pushes. First scheduled continuation is **1 October 2026 at 01:33 IST**, followed by hourly overnight continuations through 06:33. Respect any later user freeze time or deadline. Scheduling a retry does not prove a usage reset or guarantee that a powered-off application runs.
+
+## Working rules
+
+- Preserve the submission checkpoint `2cc288f` and existing live evidence. Use isolated temporary stores for large/noisy runs, bounded workloads and reproducible seeds.
+- Mix successful workflows with faults. Default policy sampling targets normal commands 60% of the time; terminal states also receive denied attempts before a new case. Report realized counts, rather than calling every adversarial sample invalid.
+- Check immutable accepted quotes, amounts in integer minor units, no mutation on denial, correct approval/closure counts, no unsafe refund on unknown/blocked credit, deterministic replay and exact recovery.
+- Measure localhost response distributions under bounded concurrency. Keep local HTTP, browser rendering and live Drunix measurements separate.
+- Treat a failure as a reproduction to investigate, not permission to weaken policy or delete state. Save the seed/request, write a regression, fix the confirmed cause, and run relevant checks before publishing.
+- Do not repeatedly run identical passed checks without new changes, a new workload profile or an unresolved question. Stop manufacturing scope when meaningful coverage is complete.
+
+## Commands
+
+`npm test` runs conformance, HTTP, persistence, inbox concurrency and injected gateway recovery checks.
+
+`npm run test:campaign` runs 512 seeded workloads of 80 attempts each, then 480 localhost requests at concurrency eight against 163 synthetic cases. Optional environment variables: `CP_SIM_FIRST_SEED`, `CP_SIM_SEEDS`, `CP_SIM_STEPS`, `CP_SIM_CASES`, `CP_SIM_HTTP_REQUESTS`, `CP_SIM_CONCURRENCY`, and `CP_SIM_OUTPUT`. Inputs are bounded by the script. Set output to a named file under `submission/` only for an inspected, publishable evidence checkpoint.
+
+## Findings and continuation queue
+
+First review reproduced valid message-ID collisions with inherited JavaScript properties, non-object JSON reaching implementation exceptions, and inconsistent negative-version validation in the local adapter. Regression tests cover the fixes. Injected commit-success/lost-acknowledgment recovery already passed 24 timing variants across both adapter restarts without duplicate business events.
+
+Next runs should inspect the current evidence and Git state, then select a useful remaining profile:
+
+1. Additional seed ranges and amount boundaries; report realized success/fault coverage.
+2. Concurrent duplicate, stale-preview and out-of-order synthetic reports, including uncertain/invalid commit recovery; corrupted bookkeeping should fail closed rather than invent evidence.
+3. Bounded HTTP contention and malformed transport requests, with measured response distributions and state-integrity checks.
+4. Browser rendering and usability at narrow/wide viewports with a bounded large case queue; use the computer-use skill and restore temporary viewport overrides.
+5. Modest live Drunix adapter smoke scenarios and current authenticated views, keeping synthetic evidence explicit. Never treat isolated load as live-chain throughput.
+6. Inspect faults in storage/restarts, add regressions for real gaps, and update the limits register. Transactional cross-process adapter storage and production message authentication remain separate architecture work, not properties supplied by a passing simulation.
+
+Push only verified changes to `https://github.com/krishang-1/corridorproof` with account `krishang-1`; publish no private runtime data or generated keys. Preserve containers and volumes. Do not submit to the portal. A shadow pilot, real funds and regulatory authority remain untested.
+
+## Published first-wave checkpoints
+
+Two seed ranges (1–512 and 10,001–10,512) passed 81,920 total policy attempts. The isolated HTTP profiles completed 1,440 requests, including 288 expected malformed-input rejections, with no timeouts or journal mutations. Four added regression tests bring the suite to 24 tests; one contains 24 injected lost-acknowledgment timing variants. A modest live smoke passed at 135 events after loading the fixes. See VALIDATION.md and the three dated evidence JSON files. Next prioritize a different fault or browser profile, not an identical replay of these passed runs.

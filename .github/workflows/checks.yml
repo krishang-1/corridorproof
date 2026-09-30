@@ -11,6 +11,10 @@ jobs:
         with:
           node-version: 24
       - run: npm test
+      - run: npm run test:campaign
+        env:
+          CP_SIM_CASES: 60
+          CP_SIM_HTTP_REQUESTS: 120
   chaincode-and-gateway:
     runs-on: ubuntu-latest
     steps:

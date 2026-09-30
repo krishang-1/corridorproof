@@ -4,11 +4,12 @@ import {PolicyError} from './policy.js';
 import {normalizeStatusReport} from './operations.js';
 
 export class StatusInbox {
-  constructor(directory){mkdirSync(directory,{recursive:true});this.file=join(directory,'status-inbox.json');this.records=existsSync(this.file)?JSON.parse(readFileSync(this.file,'utf8')):{};this.inFlight=new Set();}
+  constructor(directory){mkdirSync(directory,{recursive:true});this.file=join(directory,'status-inbox.json');this.records=Object.assign(Object.create(null),existsSync(this.file)?JSON.parse(readFileSync(this.file,'utf8')):{});this.inFlight=new Set();}
   save(){writeFileSync(this.file+'.tmp',JSON.stringify(this.records,null,2),{mode:0o600});renameSync(this.file+'.tmp',this.file);}
   list(){return Object.values(this.records).map(({command,...r})=>r);}
   async preview(store,role,input){
     if(role!=='RECEIVER')throw new PolicyError('ROLE_DENIED','Receiver test identity required');
+    if(!input||typeof input!=='object'||Array.isArray(input))throw new PolicyError('INVALID_REPORT','A status report must be a JSON object');
     const state=(await store.list(role)).find(c=>c.id===input.caseId);if(!state)throw new PolicyError('NOT_FOUND','Case not found');
     const result=normalizeStatusReport(input,state),prior=this.records[input.messageId];
     if(prior&&prior.digest!==result.digest)throw new PolicyError('REPORT_CONFLICT','Message ID already bound to different contents');
