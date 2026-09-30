@@ -36,3 +36,14 @@ test('live comparison rejects altered and incomplete evidence without pretending
   const copy=structuredClone(bundle);copy.events[0].payload.quote.recipientMinor++;const check=await store.verify(copy);assert.equal(check.valid,false);assert.equal(check.method,'LIVE_LEDGER_COMPARISON');
   const truncated=structuredClone(bundle);truncated.events=[];assert.equal((await store.verify(truncated)).valid,false);
 });
+test('known invalid commit permits a fresh decision but an uncertain one blocks replacement',async t=>{
+  const dir=mkdtempSync(join(tmpdir(),'cp-live-invalid-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));let calls=0;
+  const store=new LiveStore(dir,async()=>{calls++;return {ok:false,receipt:{successful:false,validationCode:'MVCC_READ_CONFLICT',transactionId:'conflict-tx',blockNumber:13},error:'Conflict'};});
+  const input={requestId:'conflict-request-001',expectedVersion:0,action:'OBSERVE_TIMEOUT',payload:{}};
+  const invalid=await store.command('CP-I','SENDER',input);assert.equal(invalid.code,'INVALID_COMMIT');assert.equal(store.pending().length,0);
+  await store.command('CP-I','SENDER',input);assert.equal(calls,1);
+  store.run=async()=>{calls++;throw new Error('Disconnected');};
+  assert.equal((await store.command('CP-I','SENDER',{...input,requestId:'uncertain-request-002'})).pending,true);
+  const replacement=await store.command('CP-I','SENDER',{...input,requestId:'replacement-request-003'});
+  assert.equal(replacement.code,'UNRESOLVED_SUBMISSION');assert.equal(calls,2);
+});

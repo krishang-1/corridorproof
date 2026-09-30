@@ -5,6 +5,7 @@ import { createCase, PolicyError, ROLES } from './policy.js';
 import { canonical, hash } from './integrity.js';
 
 export function gatewayRunner({infra=process.env.CP_INFRA_DIR || '/home/krish/corridorproof-infra', distribution=process.env.CP_WSL_DISTRO || 'Ubuntu'}={}) {
+  if(process.env.CP_GATEWAY_BIN&&process.env.CP_CERT_ROOT)return nativeGatewayRunner(process.env.CP_GATEWAY_BIN,process.env.CP_CERT_ROOT);
   return request => new Promise((resolve, reject) => {
     const child = execFile('wsl.exe', ['-d',distribution,'--','python3',`${infra}/corridorproof/scripts/gateway-bridge.py`,infra],
       {timeout:115000,maxBuffer:8*1024*1024,windowsHide:true}, (error,stdout) => {
@@ -12,6 +13,20 @@ export function gatewayRunner({infra=process.env.CP_INFRA_DIR || '/home/krish/co
         try { resolve(JSON.parse(stdout)); } catch { reject(new Error('Invalid gateway response; outcome requires reconciliation.')); }
       });
     child.stdin.on('error',()=>{}); child.stdin.end(JSON.stringify(request));
+  });
+}
+export function nativeGatewayRunner(binary,certRoot){
+  return request=>new Promise((resolve,reject)=>{
+    if(!ROLES.includes(request.role))return reject(new Error('Unknown test identity'));
+    const org=request.role==='SENDER'?1:2,dir=join(certRoot,`Org${org}MSP`);
+    const env={...process.env,CP_MSP_ID:`Org${org}MSP`,CP_CLIENT_CERT:join(dir,'client.pem'),CP_CLIENT_KEY:join(dir,'client-key.pem'),
+      CP_TLS_CERT:join(dir,'tls-ca.crt'),CP_PEER_ENDPOINT:`localhost:${org===1?7051:9051}`,CP_PEER_HOST:`peer0.org${org}.example.com`,CP_CHANNEL:'mychannel',CP_CHAINCODE:'corridorproof'};
+    execFile(binary,[request.method,request.function,...request.args],{env,timeout:110000,maxBuffer:8*1024*1024,windowsHide:true},(error,stdout,stderr)=>{
+      let receipt=null,transactionId=null;
+      for(const line of stderr.split(/\r?\n/)){if(line.startsWith('{'))try{receipt=JSON.parse(line);}catch{}if(line.startsWith('Pending reconciliation transaction:'))transactionId=line.slice(line.indexOf(':')+1).trim();}
+      if(error)return resolve({ok:false,outcome:receipt?.successful===false?'INVALID':'UNCERTAIN',receipt,transactionId,error:stderr.slice(-4000)||'Gateway unavailable'});
+      try{resolve({ok:true,result:JSON.parse(stdout),receipt});}catch{reject(new Error('Invalid gateway response; reconcile outcome'));}
+    });
   });
 }
 export class LiveStore {
