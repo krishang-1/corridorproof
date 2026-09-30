@@ -4,9 +4,11 @@
 
 A hackathon prototype for sender and receiver operations teams. It preserves the accepted recipient amount, records attributable payout evidence, and requires both organizations to approve a correction or refund. A missing payout response remains unknown. It cannot authorize a refund.
 
-**Dashboard mode: LOCAL_SIGNED_DEMO. Payments and dashboard organization identities are simulated.** The separate certificate-bound Gateway CLI and Go chaincode were deployed on the local two-organization Drunix test network: 46 transactions confirmed VALID, five scenario checks passed, and both organizations read matching state. See [live receipts](submission/drunix-live-evidence.json) and [setup](docs/DRUNIX-SETUP.md). The dashboard is not connected to that network. No NPCI sandbox, UPI connector or real funds are connected.
+**Live dashboard verified on the local Drunix test network. Payments remain simulated.** The certificate-bound gateway connects the browser workflow to Go chaincode under Org1 AND Org2 endorsement. Five API scenarios passed with 36 VALID commits; an actual MVCC conflict, unauthorized MSP rejection and persistence after both lite peers restarted also passed. The live network uses two documented upstream SQL bookmark fixes. See [live dashboard setup](docs/LIVE-DASHBOARD.md), [API evidence](submission/drunix-dashboard-evidence.json) and [resilience evidence](submission/drunix-resilience-evidence.json). Generated test credentials on one laptop do not establish independent institutions. No NPCI sandbox, UPI connector or real funds are connected.
 
-![Operations dashboard](docs/screenshots/dashboard.jpg)
+`npm start` defaults to the separately labelled **LOCAL_SIGNED_DEMO**. Use the documented environment configuration for **LIVE_DRUNIX_TEST_NETWORK**; live failures never silently switch to local data.
+
+![Operations dashboard](docs/screenshots/live-dashboard.jpg)
 
 ## Run the demo
 
@@ -50,7 +52,7 @@ go build ./...
 
 The Node and Go policies use the same conformance scenarios. Go mock-stub tests also check MSP restrictions, persisted business denials and idempotency. These tests do not prove distributed endorsement or live rail behavior.
 
-Use **Verify signatures**, **Test altered evidence**, and **Export JSON** in the dashboard. The tamper demonstration changes only an in-memory export copy. It never changes the stored journal.
+In local mode use **Verify signatures**; in live mode use **Compare with live ledger**. Both modes offer **Test altered evidence** and **Export JSON**. The live verifier compares against the current authenticated query and does not verify offline block signatures or inclusion proofs. The tamper demonstration changes only an in-memory export copy. It never changes the stored journal.
 
 ```sh
 npm run verify -- corridorproof-evidence.json

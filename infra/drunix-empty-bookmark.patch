@@ -1,0 +1,16 @@
+diff --git a/core/ledger/kvledger/txmgmt/statedb/statesqldb/sql_client.go b/core/ledger/kvledger/txmgmt/statedb/statesqldb/sql_client.go
+--- a/core/ledger/kvledger/txmgmt/statedb/statesqldb/sql_client.go
++++ b/core/ledger/kvledger/txmgmt/statedb/statesqldb/sql_client.go
+@@ -457,7 +457,11 @@ func (sql *sqlSchema) NextKey(key string, cursor int, pagesize int) (string, error)
+ 		return "", err
+ 	}
+ 
+-	return string(data["key"].([]byte)), nil
++	keyBytes, ok := data["key"].([]byte)
++	if !ok {
++		return "", nil
++	}
++	return string(keyBytes), nil
+ }
+ 
+ func (sql *sqlSchema) GetTable(key string) (string, bool, error) {

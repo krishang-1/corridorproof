@@ -1,6 +1,6 @@
 # CorridorProof architecture
 
-Decision date: 30 September 2026. Submission deadline: 23:59 IST, as supplied by the user. Scope: evidence and exception resolution for one synthetic Singapore-to-India corridor.
+Decision date: 30 September 2026. Readiness target: 23:00 IST, as supplied by the user; official portal cutoff remains unverified. Scope: evidence and exception resolution for one synthetic Singapore-to-India corridor.
 
 ## System boundaries
 
@@ -12,7 +12,7 @@ flowchart LR
   API --> CORE[Deterministic case policy]
   CORE --> PORT[Ledger port]
   PORT --> LOCAL[Local signed SQLite journal\nDemo fallback]
-  PORT -. Planned dashboard integration .-> GW[Go Fabric Gateway CLI adapter]
+  PORT --> GW[Certificate-bound Go Gateway adapter]
   GW --> CC[Go chaincode on Drunix]
   CC --> O1[Org1 committing and lite peers]
   CC --> O2[Org2 committing and lite peers]
@@ -22,7 +22,7 @@ flowchart LR
   LOCAL --> EXPORT[Evidence export and verification]
 ```
 
-The diagram distinguishes the executable local fallback from the live integration path. The standalone certificate-bound Go CLI and chaincode passed five scenarios with 46 VALID commits on the local Drunix test network; both organizations read matching case state. The dashboard is currently local-only and does not switch to live mode. README/health/UI disclose the actual mode. A local journal is not a distributed network. Two local role keys do not constitute independent institutions. Generated test-network certificates likewise do not establish real institutional ownership.
+The ledger port selects one explicit backend: the signed local fallback or the live Drunix gateway. The live dashboard passed five API scenarios with 36 VALID commits and matching reads from both organizations. Concurrent proposals produced one VALID commit and one MVCC_READ_CONFLICT. Restarting both lite peers preserved the recorded checkpoint. Mode labels disclose the selected backend. All payment actions remain synthetic, and both generated organizational credentials are held by the local development server. Independent institutional deployment is not demonstrated.
 
 ## Stack
 
@@ -32,7 +32,7 @@ Node.js 24 LTS supplies the HTTP server, SQLite transactions, Ed25519 signatures
 
 Transfer: immutable accepted quote, integer source/destination minor units, currency pair, pseudonymous beneficiary, expected recipient amount, observed payout state/amount, exception status, resolution votes, version.
 
-Evidence event: case ID, event type, submitting organization, transaction/request ID, timestamp, evidence payload, previous hash, event hash and organization signature. Demo keys are generated locally and ignored by Git. No raw KYC, PIN, bank credential or real recipient data enters the demo.
+Local evidence event: case ID, event type, organization, request ID, timestamp, payload, previous hash, event hash and Ed25519 signature. Live evidence instead uses chaincode records, certificate-derived role/actor identifier, transaction ID and timestamp; the gateway separately returns commit validation receipts. Demo keys are generated locally and ignored by Git. No raw KYC, PIN, bank credential or real recipient data enters the demo.
 
 Private data and independent certificates are required for live institutions. Public-channel records should contain minimum case state and commitments, not customer documents. Queries and writes require role-specific authorization. Endorsement is separate from caller access control.
 
@@ -59,3 +59,7 @@ The prototype records synthetic evidence and does not run a payment worker. It c
 Local: one process, localhost:8787, SQLite under ignored .data/, synthetic seed fixtures, no cloud account required. Docker packaging is optional. Live: pinned official Drunix checkout, two organizations, Go chaincode, trusted TLS gateway credentials and protected operational secrets. CI runs Node tests and Go tests. External hosting is separate from the core acceptance gate.
 
 Release gate: clean clone starts, meaningful tests pass, mode labels match reality, repository contains no generated private keys, evidence exports verify, pitch cites sources and implemented functionality, repo/deck links are accessible. Record evidence in VALIDATION.md. A production pilot requires real rail contracts and institutional data/governance agreements.
+
+## Live infrastructure exception
+
+Pinned Drunix source: `ddc0eae778158d3f8a96605cfeda383ae5eafcfc`. Expanded queries exposed an empty-bookmark panic and an incorrectly encoded namespace lookup in the SQL iterator. The two minimal patches and preserving recovery script are under `infra/`. Both lite peers use the patched binary. Restart preserves it, but recreating containers from the original image requires rebuilding/reapplying the patch. Workspace queries use an explicit 1,000-record limit and fail at that boundary. This prototype is not an unmodified-stock-network or production pagination claim.

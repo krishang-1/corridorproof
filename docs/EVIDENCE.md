@@ -20,12 +20,16 @@ For a partner pair that currently exchanges manual exception records and needs i
 
 **“When a cross-border payout outcome is uncertain, both operations teams work from the same attributable evidence before anyone approves a refund or correction.”**
 
-The demo backs the safeguard with a visible denied refund, two-party approvals, restart persistence and independently executable export verification. These establish bounded software behavior on synthetic data. They do not establish reduced fraud, guaranteed settlement, lower FX spreads, regulatory compliance or actual cost savings.
+The demo backs the safeguard with a visible denied refund, two-party approvals, restart persistence and local signed export verification and live authenticated ledger comparison. These establish bounded software behavior on synthetic data. They do not establish reduced fraud, guaranteed settlement, lower FX spreads, regulatory compliance or actual cost savings.
 
 ## Claims excluded from submission
 
-No “atomic settlement across two rails,” “UPI fraud eliminated,” “FX fee reduction,” “Nexus has no investigations product,” “first-ever case manager,” “live Drunix,” national-scale throughput, billion-dollar TAM or percentage savings. UPI volumes are not the addressable market for this B2B exception tool. Source descriptions of future plans are not an implementation guarantee.
+No “atomic settlement across two rails,” “UPI fraud eliminated,” “FX fee reduction,” “Nexus has no investigations product,” “first-ever case manager,” “production Drunix deployment,” national-scale throughput, billion-dollar TAM or percentage savings. UPI volumes are not the addressable market for this B2B exception tool. Source descriptions of future plans are not an implementation guarantee.
 
 ## Next credibility gate
 
 Interview sender and receiver operations together. Map ten de-identified real exceptions against existing workflows. If a trusted database is acceptable, benchmark it and keep it as a lower-complexity deployment option. Choose Drunix only if independent write governance is a real partner requirement. Run a shadow pilot before permitting financial action.
+
+## Observed live implementation
+
+The local Drunix test network now backs the browser. Public API, browser and resilience evidence distinguish VALID envelope commits from denied business actions. Both SQL iterator fixes are disclosed; no external payment rail or independent institutional custody was tested. These measurements substantiate bounded policy behavior, not commercial demand or savings.

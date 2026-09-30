@@ -1,6 +1,6 @@
 # Expansion and issue audit — 30 September 2026
 
-Finish-and-upload target: **20:00 IST**, supplied by the team. Official portal deadline and upload requirements still need confirmation. Recovery checkpoint: `checkpoint-before-expansion-20260930`, commit `fa52973`. Full Git bundle, source archive and local demo data are saved privately under the task's work/recovery directory. Generated network certificates/channel artifacts are separately backed up inside Ubuntu. Running database volumes are preserved in place; this is not a full disaster-recovery backup of YugabyteDB.
+Finish-and-upload target: **23:00 IST**, updated by the team after the approval-review usage limit. The previous 20:00 IST target is superseded. Official portal deadline and upload requirements still need confirmation. Recovery checkpoint: `checkpoint-before-expansion-20260930`, commit `fa52973`. Full Git bundle, source archive and local demo data are saved privately under the task's work/recovery directory. Generated network certificates/channel artifacts are separately backed up inside Ubuntu. Running database volumes are preserved in place; this is not a full disaster-recovery backup of YugabyteDB.
 
 ## Product and scope
 
@@ -34,4 +34,4 @@ This build will not invent a real NPCI/UPI endpoint, treat synthetic bank eviden
 3. Connect the backend and browser, expose commit receipts and uncertain outcomes; preserve the local fallback.
 4. Run full browser scenarios, live conflict/restart checks, evidence alteration checks and fresh-clone verification.
 5. Freeze the implemented scope, publish verified source and update the pitch/demo.
-6. Confirm portal requirements, rehearse and finish upload before 20:00 IST.
+6. Confirm portal requirements, rehearse and finish upload before 23:00 IST.

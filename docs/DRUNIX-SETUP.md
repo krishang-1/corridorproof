@@ -10,7 +10,7 @@ Official repository inspected at commit `ddc0eae778158d3f8a96605cfeda383ae5eafcf
 - Go 1.27.1 for Linux was downloaded from go.dev and verified against its published SHA-256; Linux build tools and jq were installed. Official Drunix binaries were built in `/home/krish/corridorproof-infra/drunix` and the network images downloaded.
 - **Live local test-network deployment passed.** `mychannel` was created, both organizations joined, and chaincode `corridorproof` version 1.0 / sequence 1 was installed, approved by both organizations, and committed with `AND('Org1MSP.peer','Org2MSP.peer')` endorsement.
 - `scripts/live-check.py` passed five shared conformance scenarios, exact request replay, stale-version denial and matching reads through both organizations' User1 certificates. All 46 submitted transactions returned `VALID` commit receipts. Timeout/late-credit, shortfall/correction and rejection/refund cases reached CLOSED. Compliance block stayed MANUAL_REVIEW; contradictory rejection was denied after credit.
-- Receipts are saved in `submission/drunix-live-evidence.json`. These are real local ledger commits with synthetic quotes and simulated payment execution. The browser dashboard remains separate. They do not establish real institutional ownership, external evidence truth, production rail access or fault tolerance.
+- Receipts are saved in `submission/drunix-live-evidence.json`. These are real local ledger commits with synthetic quotes and simulated payment execution. The browser dashboard now connects through the live gateway; see docs/LIVE-DASHBOARD.md and newer dashboard/resilience evidence. They do not establish real institutional ownership, external evidence truth, production rail access or fault tolerance.
 - Official source says Linux with git, Docker, Go and jq. Source `go.mod` requires Go 1.26.1; the project was compiled locally with verified official Go 1.27.1 for Windows.
 - Official peer config references `$(DOCKER_NS)/drunix-ccenv:$(TWO_DIGIT_VERSION)`. Verify the builder tag actually required by the chosen binary/image version instead of copying another project's workaround.
 - `network.sh prereq` routes through the inherited Fabric installer. Network checks separately expect Drunix build binaries. Verify images and binaries match this Drunix commit rather than assuming the generic prerequisites command builds Drunix.
@@ -55,7 +55,7 @@ go run . submit Command CP-LIVE-001 \
   '{"requestId":"live-timeout-001","expectedVersion":0,"action":"OBSERVE_TIMEOUT","payload":{}}'
 ```
 
-`SubmitTransaction` waits for valid commit. An error can leave transport outcome uncertain: reconcile transaction/case state rather than infer payout failure. The CLI invokes no payment rail. The local dashboard currently remains a separate local demo.
+`SubmitTransaction` waits for valid commit. An error can leave transport outcome uncertain: reconcile transaction/case state rather than infer payout failure. The CLI invokes no payment rail. The default local mode remains a separate fallback; explicit Drunix configuration enables the verified live dashboard.
 
 ## Running the live check on this machine
 
@@ -73,4 +73,6 @@ The script creates new synthetic cases and writes receipts to `~/corridorproof-i
 
 For the existing network after a Docker restart, run `./network.sh up` from its test-network directory to restore services using the existing certificates and volumes. Do not recreate the channel or redeploy sequence 1 unnecessarily. `network.sh down` is destructive.
 
-Remaining acceptance work: unauthorized MSP denial, simultaneous MVCC conflict, restart recovery, participant isolation, private-data/access review and dashboard integration. Sequential stale-version rejection is not a concurrent MVCC test. The existing receipts establish the tested local network properties only.
+Additional acceptance completed: unauthorized MSP rejection, simultaneous MVCC conflict, both-lite-peer restart persistence and dashboard integration. Participant isolation and production private-data/access review remain untested. Sequential stale-version rejection is not a concurrent MVCC test. The existing receipts establish the tested local network properties only.
+
+Expanded workspace queries require the two documented pinned-source SQL bookmark repairs under `infra/`. See `docs/LIVE-DASHBOARD.md` for limitations and preserving recovery instructions.

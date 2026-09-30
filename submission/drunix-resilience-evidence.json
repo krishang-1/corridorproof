@@ -1,0 +1,111 @@
+{
+  "mode": "LIVE_DRUNIX_TEST_NETWORK",
+  "paymentRails": "SIMULATED",
+  "checkedAt": "2026-09-30T15:27:09.641Z",
+  "race": {
+    "passed": true,
+    "id": "CP-RACE-muo9dn0m",
+    "receipts": [
+      {
+        "blockNumber": 138,
+        "proposedResult": {
+          "ok": true,
+          "state": {
+            "beneficiary": "Demo recipient •••• 2048",
+            "closure": [],
+            "history": [],
+            "id": "CP-RACE-muo9dn0m",
+            "observedMinor": 0,
+            "payout": "UNKNOWN",
+            "quote": {
+              "destinationCurrency": "INR",
+              "feeMinor": 300,
+              "quoteId": "Q-CP-RACE-muo9dn0m",
+              "recipientMinor": 620000,
+              "sourceCurrency": "SGD",
+              "sourceMinor": 10000,
+              "synthetic": true
+            },
+            "resolution": null,
+            "scenario": "timeout",
+            "status": "RECONCILING",
+            "version": 1,
+            "votes": []
+          },
+          "transactionId": "3a537f5b545909522ee6a76ef631c59e508cf4ba2637891713c9519c77fbbe0c"
+        },
+        "successful": true,
+        "transactionId": "3a537f5b545909522ee6a76ef631c59e508cf4ba2637891713c9519c77fbbe0c",
+        "validationCode": "VALID"
+      },
+      {
+        "blockNumber": 138,
+        "proposedResult": {
+          "ok": true,
+          "state": {
+            "beneficiary": "Demo recipient •••• 2048",
+            "closure": [],
+            "history": [],
+            "id": "CP-RACE-muo9dn0m",
+            "observedMinor": 0,
+            "payout": "UNKNOWN",
+            "quote": {
+              "destinationCurrency": "INR",
+              "feeMinor": 300,
+              "quoteId": "Q-CP-RACE-muo9dn0m",
+              "recipientMinor": 620000,
+              "sourceCurrency": "SGD",
+              "sourceMinor": 10000,
+              "synthetic": true
+            },
+            "resolution": null,
+            "scenario": "timeout",
+            "status": "RECONCILING",
+            "version": 1,
+            "votes": []
+          },
+          "transactionId": "5978a77eda1e80ccad02fecd4defdeec390fb3b0725eaef8599aa60ad9ffae3f"
+        },
+        "successful": false,
+        "transactionId": "5978a77eda1e80ccad02fecd4defdeec390fb3b0725eaef8599aa60ad9ffae3f",
+        "validationCode": "MVCC_READ_CONFLICT"
+      }
+    ],
+    "matchingOrganizationReads": true,
+    "finalState": {
+      "id": "CP-RACE-muo9dn0m",
+      "quote": {
+        "quoteId": "Q-CP-RACE-muo9dn0m",
+        "feeMinor": 300,
+        "synthetic": true,
+        "sourceMinor": 10000,
+        "recipientMinor": 620000,
+        "sourceCurrency": "SGD",
+        "destinationCurrency": "INR"
+      },
+      "votes": [],
+      "payout": "UNKNOWN",
+      "status": "RECONCILING",
+      "closure": [],
+      "history": [],
+      "version": 1,
+      "scenario": "timeout",
+      "resolution": null,
+      "beneficiary": "Demo recipient •••• 2048",
+      "observedMinor": 0
+    }
+  },
+  "untrustedMSP": {
+    "rejected": true,
+    "code": 1,
+    "error": "Gateway failed; outcome may need transaction reconciliation. Do not infer rejection or retry money movement: rpc error: code = FailedPrecondition desc = evaluate call to endorser returned error: error validating proposal: access denied: channel [mychannel] creator org unknown, creator is malformed\n"
+  },
+  "restart": {
+    "passed": true,
+    "checkedAt": "2026-09-30T15:27:59.592Z",
+    "cases": 17,
+    "events": 122,
+    "digest": "8d77d47c8a76b6290089f202fe18cc1b9b5fb736b05847bc0c1aec224c263490",
+    "scope": "Both existing lite peers restarted; databases and volumes preserved"
+  }
+}

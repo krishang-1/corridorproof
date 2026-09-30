@@ -1,0 +1,1539 @@
+{
+  "mode": "LIVE_DRUNIX_TEST_NETWORK",
+  "entryPoint": "Dashboard HTTP API",
+  "paymentRails": "SIMULATED",
+  "startedAt": "2026-09-30T15:18:55.345Z",
+  "transactions": [
+    {
+      "role": "SENDER",
+      "action": "CreateCase",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-0",
+          "scenario": "timeout",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-0",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "receipt": {
+          "blockNumber": 101,
+          "successful": true,
+          "transactionId": "9d7639e20ef474e68dc9af6f33422b690839dd43a4ea4d8b42d064797254acb5",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "OBSERVE_TIMEOUT",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-0",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "RECONCILING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-0",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "c2816cb65c40a712113308c532615f24ecda588749f45cf0e8f1ad46058d6710",
+        "receipt": {
+          "blockNumber": 102,
+          "successful": true,
+          "transactionId": "c2816cb65c40a712113308c532615f24ecda588749f45cf0e8f1ad46058d6710",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "APPROVE_REFUND",
+      "result": {
+        "ok": false,
+        "code": "UNKNOWN_OR_UNSAFE",
+        "message": "Timeout is insufficient for refund",
+        "state": {
+          "id": "CP-API-muo9381c-0",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "RECONCILING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-0",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "845ee16d0201c3aa779650121fb794b6b6464c0b6d10844d10d38d9207b3372d",
+        "receipt": {
+          "blockNumber": 103,
+          "successful": true,
+          "transactionId": "845ee16d0201c3aa779650121fb794b6b6464c0b6d10844d10d38d9207b3372d",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "OBSERVE_CREDIT",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-0",
+          "scenario": "timeout",
+          "version": 2,
+          "status": "CREDITED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-0",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "3e2b3233c4bf9a0b0e58ee5e7f8b48b36950d2a8320a511c36d4c61e623eee03",
+        "receipt": {
+          "blockNumber": 104,
+          "successful": true,
+          "transactionId": "3e2b3233c4bf9a0b0e58ee5e7f8b48b36950d2a8320a511c36d4c61e623eee03",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "ACK_CLOSE",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-0",
+          "scenario": "timeout",
+          "version": 3,
+          "status": "CREDITED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-0",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [
+            "SENDER"
+          ],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "e5feca854f2878745297fa54ae2414ae36faf043597e6c0aaa285d357bc3046a",
+        "receipt": {
+          "blockNumber": 105,
+          "successful": true,
+          "transactionId": "e5feca854f2878745297fa54ae2414ae36faf043597e6c0aaa285d357bc3046a",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "ACK_CLOSE",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-0",
+          "scenario": "timeout",
+          "version": 4,
+          "status": "CLOSED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-0",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "073ccfbb2b1190bcbd7ae01750a5abcb1e2943686117c11a9b49e46aeafbe4e0",
+        "receipt": {
+          "blockNumber": 106,
+          "successful": true,
+          "transactionId": "073ccfbb2b1190bcbd7ae01750a5abcb1e2943686117c11a9b49e46aeafbe4e0",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "OBSERVE_REJECTION",
+      "result": {
+        "ok": false,
+        "code": "CASE_CLOSED",
+        "message": "Closed case is immutable",
+        "state": {
+          "id": "CP-API-muo9381c-0",
+          "scenario": "timeout",
+          "version": 4,
+          "status": "CLOSED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-0",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "a6d887ad28542e1750a1d0e14a7c8e6811792e2c4634cd8e5b869e1d51e997bc",
+        "receipt": {
+          "blockNumber": 107,
+          "successful": true,
+          "transactionId": "a6d887ad28542e1750a1d0e14a7c8e6811792e2c4634cd8e5b869e1d51e997bc",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "CreateCase",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-1",
+          "scenario": "shortfall",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "receipt": {
+          "blockNumber": 108,
+          "successful": true,
+          "transactionId": "8c6ef1db9ed096189156d7879d9ab5c9d70cd6518a1d088839f2a0c4b01f6f2c",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "OBSERVE_CREDIT",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-1",
+          "scenario": "shortfall",
+          "version": 1,
+          "status": "SHORTFALL",
+          "payout": "CREDITED",
+          "observedMinor": 608000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "eb95e2d0a9bfcc2100a4f531b67a8313f79c026608a3d106cfd5246c42cc2617",
+        "receipt": {
+          "blockNumber": 109,
+          "successful": true,
+          "transactionId": "eb95e2d0a9bfcc2100a4f531b67a8313f79c026608a3d106cfd5246c42cc2617",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "EXECUTE_CORRECTION",
+      "result": {
+        "ok": false,
+        "code": "NOT_APPROVED",
+        "message": "Both approvals required",
+        "state": {
+          "id": "CP-API-muo9381c-1",
+          "scenario": "shortfall",
+          "version": 1,
+          "status": "SHORTFALL",
+          "payout": "CREDITED",
+          "observedMinor": 608000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "eda04a1c73aa78e536fd4012e7c1e6ade421e8cfad977f4513ba492c4966169c",
+        "receipt": {
+          "blockNumber": 110,
+          "successful": true,
+          "transactionId": "eda04a1c73aa78e536fd4012e7c1e6ade421e8cfad977f4513ba492c4966169c",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "APPROVE_CORRECTION",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-1",
+          "scenario": "shortfall",
+          "version": 2,
+          "status": "SHORTFALL",
+          "payout": "CREDITED",
+          "observedMinor": 608000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [
+            "SENDER"
+          ],
+          "closure": [],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "850b51af4d8019902bf365f4f6472c5f994357f99af6678afd88c895ba403097",
+        "receipt": {
+          "blockNumber": 111,
+          "successful": true,
+          "transactionId": "850b51af4d8019902bf365f4f6472c5f994357f99af6678afd88c895ba403097",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "APPROVE_CORRECTION",
+      "result": {
+        "ok": false,
+        "code": "DUPLICATE_VOTE",
+        "message": "Already approved",
+        "state": {
+          "id": "CP-API-muo9381c-1",
+          "scenario": "shortfall",
+          "version": 2,
+          "status": "SHORTFALL",
+          "payout": "CREDITED",
+          "observedMinor": 608000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [
+            "SENDER"
+          ],
+          "closure": [],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "5108558145c704a704a27c2419fa8e29950767bdc535672363fd97689a285c58",
+        "receipt": {
+          "blockNumber": 112,
+          "successful": true,
+          "transactionId": "5108558145c704a704a27c2419fa8e29950767bdc535672363fd97689a285c58",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "APPROVE_CORRECTION",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-1",
+          "scenario": "shortfall",
+          "version": 3,
+          "status": "CORRECTION_APPROVED",
+          "payout": "CREDITED",
+          "observedMinor": 608000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "12efddb775c3e8aff3aef783f36cb25f7a54d9aab16935b628b4d384b70deb2f",
+        "receipt": {
+          "blockNumber": 113,
+          "successful": true,
+          "transactionId": "12efddb775c3e8aff3aef783f36cb25f7a54d9aab16935b628b4d384b70deb2f",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "EXECUTE_CORRECTION",
+      "result": {
+        "ok": false,
+        "code": "ROLE_DENIED",
+        "message": "Receiver evidence required",
+        "state": {
+          "id": "CP-API-muo9381c-1",
+          "scenario": "shortfall",
+          "version": 3,
+          "status": "CORRECTION_APPROVED",
+          "payout": "CREDITED",
+          "observedMinor": 608000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "04d3ba85c5c363f0dcd50ebcf8298b564e853a02729307f9d13210614d4ae1a0",
+        "receipt": {
+          "blockNumber": 114,
+          "successful": true,
+          "transactionId": "04d3ba85c5c363f0dcd50ebcf8298b564e853a02729307f9d13210614d4ae1a0",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "EXECUTE_CORRECTION",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-1",
+          "scenario": "shortfall",
+          "version": 4,
+          "status": "CREDITED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "1d837773511b18e177a2439a3daabb47ed134efadd6dcf86bad89b592dfc6655",
+        "receipt": {
+          "blockNumber": 115,
+          "successful": true,
+          "transactionId": "1d837773511b18e177a2439a3daabb47ed134efadd6dcf86bad89b592dfc6655",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "ACK_CLOSE",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-1",
+          "scenario": "shortfall",
+          "version": 5,
+          "status": "CREDITED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [
+            "SENDER"
+          ],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "5e5aa7c508ed99f089d7e4ddb9d3a9f6c5a9a925c44cdb59bfab119c0ed255d7",
+        "receipt": {
+          "blockNumber": 116,
+          "successful": true,
+          "transactionId": "5e5aa7c508ed99f089d7e4ddb9d3a9f6c5a9a925c44cdb59bfab119c0ed255d7",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "ACK_CLOSE",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-1",
+          "scenario": "shortfall",
+          "version": 6,
+          "status": "CLOSED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-1",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "resolution": "CORRECTION",
+          "history": []
+        },
+        "transactionId": "630cb170669a65a5ab8d11ff31a4be0eaf03d711d1d89960b1cd4ec7bb8ce2bb",
+        "receipt": {
+          "blockNumber": 117,
+          "successful": true,
+          "transactionId": "630cb170669a65a5ab8d11ff31a4be0eaf03d711d1d89960b1cd4ec7bb8ce2bb",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "CreateCase",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-2",
+          "scenario": "rejection",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "receipt": {
+          "blockNumber": 118,
+          "successful": true,
+          "transactionId": "902a9abd3e688495067a5d40284ae7ad002b94f2de0e2504b84616b4de6c123e",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "OBSERVE_REJECTION",
+      "result": {
+        "ok": false,
+        "code": "ROLE_DENIED",
+        "message": "Receiver evidence required",
+        "state": {
+          "id": "CP-API-muo9381c-2",
+          "scenario": "rejection",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "d01f7a7ddaa8ae32a4a4f2974f97538a824beb2c6183131373eda10632d235a2",
+        "receipt": {
+          "blockNumber": 119,
+          "successful": true,
+          "transactionId": "d01f7a7ddaa8ae32a4a4f2974f97538a824beb2c6183131373eda10632d235a2",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "OBSERVE_REJECTION",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-2",
+          "scenario": "rejection",
+          "version": 1,
+          "status": "REFUND_REVIEW",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "ae20657f58cad165cac36577e5fd2ab7cc2cf3a45369d995721950825db94bbc",
+        "receipt": {
+          "blockNumber": 120,
+          "successful": true,
+          "transactionId": "ae20657f58cad165cac36577e5fd2ab7cc2cf3a45369d995721950825db94bbc",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "EXECUTE_REFUND",
+      "result": {
+        "ok": false,
+        "code": "NOT_APPROVED",
+        "message": "Both approvals required",
+        "state": {
+          "id": "CP-API-muo9381c-2",
+          "scenario": "rejection",
+          "version": 1,
+          "status": "REFUND_REVIEW",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "a870fee8452219b3b50271bbab3578e7e67960bb5811d183e318c099e28c360d",
+        "receipt": {
+          "blockNumber": 121,
+          "successful": true,
+          "transactionId": "a870fee8452219b3b50271bbab3578e7e67960bb5811d183e318c099e28c360d",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "APPROVE_REFUND",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-2",
+          "scenario": "rejection",
+          "version": 2,
+          "status": "REFUND_REVIEW",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [
+            "SENDER"
+          ],
+          "closure": [],
+          "resolution": "REFUND",
+          "history": []
+        },
+        "transactionId": "83c87aced44d0b0e95f1a4ff901e66460c1b1add5e0d13b776792b47addc9545",
+        "receipt": {
+          "blockNumber": 122,
+          "successful": true,
+          "transactionId": "83c87aced44d0b0e95f1a4ff901e66460c1b1add5e0d13b776792b47addc9545",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "APPROVE_REFUND",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-2",
+          "scenario": "rejection",
+          "version": 3,
+          "status": "REFUND_APPROVED",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [],
+          "resolution": "REFUND",
+          "history": []
+        },
+        "transactionId": "c08027fb19aad56740f32986730bd99eb1be6fccfab63c83e600e91819a823ec",
+        "receipt": {
+          "blockNumber": 123,
+          "successful": true,
+          "transactionId": "c08027fb19aad56740f32986730bd99eb1be6fccfab63c83e600e91819a823ec",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "EXECUTE_REFUND",
+      "result": {
+        "ok": false,
+        "code": "ROLE_DENIED",
+        "message": "Sender records refund",
+        "state": {
+          "id": "CP-API-muo9381c-2",
+          "scenario": "rejection",
+          "version": 3,
+          "status": "REFUND_APPROVED",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [],
+          "resolution": "REFUND",
+          "history": []
+        },
+        "transactionId": "b7a4952e1dddd9655d030bff940ae8ebf4b1b084bca98ffdb4cac7a119742af2",
+        "receipt": {
+          "blockNumber": 124,
+          "successful": true,
+          "transactionId": "b7a4952e1dddd9655d030bff940ae8ebf4b1b084bca98ffdb4cac7a119742af2",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "EXECUTE_REFUND",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-2",
+          "scenario": "rejection",
+          "version": 4,
+          "status": "REFUNDED",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [],
+          "resolution": "REFUND",
+          "history": []
+        },
+        "transactionId": "97aec920555388bf480209ce193a77ee3e443565312062d70c127d7f0d2367c7",
+        "receipt": {
+          "blockNumber": 125,
+          "successful": true,
+          "transactionId": "97aec920555388bf480209ce193a77ee3e443565312062d70c127d7f0d2367c7",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "ACK_CLOSE",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-2",
+          "scenario": "rejection",
+          "version": 5,
+          "status": "REFUNDED",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [
+            "RECEIVER"
+          ],
+          "resolution": "REFUND",
+          "history": []
+        },
+        "transactionId": "a24fc88ba5a890e4a778956a41f088e1ecd65a811d9a5bcbe5e89987ec4510c7",
+        "receipt": {
+          "blockNumber": 126,
+          "successful": true,
+          "transactionId": "a24fc88ba5a890e4a778956a41f088e1ecd65a811d9a5bcbe5e89987ec4510c7",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "ACK_CLOSE",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-2",
+          "scenario": "rejection",
+          "version": 6,
+          "status": "CLOSED",
+          "payout": "REJECTED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-2",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [
+            "SENDER",
+            "RECEIVER"
+          ],
+          "closure": [
+            "RECEIVER",
+            "SENDER"
+          ],
+          "resolution": "REFUND",
+          "history": []
+        },
+        "transactionId": "f57490930db34826e9d455aa8f5a08ef6ba696f490298a014627698bd3598d91",
+        "receipt": {
+          "blockNumber": 127,
+          "successful": true,
+          "transactionId": "f57490930db34826e9d455aa8f5a08ef6ba696f490298a014627698bd3598d91",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "CreateCase",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-3",
+          "scenario": "timeout",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "receipt": {
+          "blockNumber": 128,
+          "successful": true,
+          "transactionId": "6017431065b14187309eaf421f56b4c5fe27463e7658220c9df2c83fade2431a",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "OBSERVE_BLOCK",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-3",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "MANUAL_REVIEW",
+          "payout": "BLOCKED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "58d6bc9b9eddd0d15d6b1dc4f40b43b6fce9f5086974e6c71299983fc5779724",
+        "receipt": {
+          "blockNumber": 129,
+          "successful": true,
+          "transactionId": "58d6bc9b9eddd0d15d6b1dc4f40b43b6fce9f5086974e6c71299983fc5779724",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "APPROVE_REFUND",
+      "result": {
+        "ok": false,
+        "code": "UNKNOWN_OR_UNSAFE",
+        "message": "Timeout is insufficient for refund",
+        "state": {
+          "id": "CP-API-muo9381c-3",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "MANUAL_REVIEW",
+          "payout": "BLOCKED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "c433a63dacc1da32cab292c5d3fd0c9eaa1a8b78a7e1d64c6b2b6ed497764fb5",
+        "receipt": {
+          "blockNumber": 130,
+          "successful": true,
+          "transactionId": "c433a63dacc1da32cab292c5d3fd0c9eaa1a8b78a7e1d64c6b2b6ed497764fb5",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "ACK_CLOSE",
+      "result": {
+        "ok": false,
+        "code": "UNRESOLVED",
+        "message": "Completed outcome evidence required",
+        "state": {
+          "id": "CP-API-muo9381c-3",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "MANUAL_REVIEW",
+          "payout": "BLOCKED",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-3",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "ffbd0fed2ba41aafc3a9046ec08f306e5a777bf31576af91df285a769aaf0649",
+        "receipt": {
+          "blockNumber": 131,
+          "successful": true,
+          "transactionId": "ffbd0fed2ba41aafc3a9046ec08f306e5a777bf31576af91df285a769aaf0649",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "SENDER",
+      "action": "CreateCase",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-4",
+          "scenario": "timeout",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-4",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "receipt": {
+          "blockNumber": 132,
+          "successful": true,
+          "transactionId": "200ed5a5a1a765edb9418a8b7e77135438f5ad17ed7eb28ec5d81e8441f105f4",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "OBSERVE_CREDIT",
+      "result": {
+        "ok": false,
+        "code": "INVALID_AMOUNT",
+        "message": "Amount outside allowed integer range",
+        "state": {
+          "id": "CP-API-muo9381c-4",
+          "scenario": "timeout",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-4",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "639d4591d5a35392ec288fde77e13ba96d44a37d50a70e641fcf00c29069b4da",
+        "receipt": {
+          "blockNumber": 133,
+          "successful": true,
+          "transactionId": "639d4591d5a35392ec288fde77e13ba96d44a37d50a70e641fcf00c29069b4da",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "OBSERVE_CREDIT",
+      "result": {
+        "ok": false,
+        "code": "INVALID_AMOUNT",
+        "message": "Amount outside allowed integer range",
+        "state": {
+          "id": "CP-API-muo9381c-4",
+          "scenario": "timeout",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-4",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "d858c79428984ae13d7b188859abd8495a556f0ea8227441b60c2c7ca659f897",
+        "receipt": {
+          "blockNumber": 134,
+          "successful": true,
+          "transactionId": "d858c79428984ae13d7b188859abd8495a556f0ea8227441b60c2c7ca659f897",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "OBSERVE_CREDIT",
+      "result": {
+        "ok": true,
+        "state": {
+          "id": "CP-API-muo9381c-4",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "CREDITED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-4",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "d38e12c1857d70563fd5bb18215610508e2216f09de6f073cb198ef9c5eb240b",
+        "receipt": {
+          "blockNumber": 135,
+          "successful": true,
+          "transactionId": "d38e12c1857d70563fd5bb18215610508e2216f09de6f073cb198ef9c5eb240b",
+          "validationCode": "VALID"
+        }
+      }
+    },
+    {
+      "role": "RECEIVER",
+      "action": "OBSERVE_REJECTION",
+      "result": {
+        "ok": false,
+        "code": "CONFLICTING_EVIDENCE",
+        "message": "Definitive rejection required",
+        "state": {
+          "id": "CP-API-muo9381c-4",
+          "scenario": "timeout",
+          "version": 1,
+          "status": "CREDITED",
+          "payout": "CREDITED",
+          "observedMinor": 620000,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-API-muo9381c-4",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        },
+        "transactionId": "dabf85760c324dc91257ef007cb35ff4996147b9587d55affed3195bec80ad31",
+        "receipt": {
+          "blockNumber": 136,
+          "successful": true,
+          "transactionId": "dabf85760c324dc91257ef007cb35ff4996147b9587d55affed3195bec80ad31",
+          "validationCode": "VALID"
+        }
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "CP-API-muo9381c-0",
+      "status": "CLOSED",
+      "matchingOrganizationReads": true,
+      "state": {
+        "id": "CP-API-muo9381c-0",
+        "scenario": "timeout",
+        "version": 4,
+        "status": "CLOSED",
+        "payout": "CREDITED",
+        "observedMinor": 620000,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-API-muo9381c-0",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient •••• 2048",
+        "votes": [],
+        "closure": [
+          "SENDER",
+          "RECEIVER"
+        ],
+        "resolution": null,
+        "history": []
+      }
+    },
+    {
+      "id": "CP-API-muo9381c-1",
+      "status": "CLOSED",
+      "matchingOrganizationReads": true,
+      "state": {
+        "id": "CP-API-muo9381c-1",
+        "scenario": "shortfall",
+        "version": 6,
+        "status": "CLOSED",
+        "payout": "CREDITED",
+        "observedMinor": 620000,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-API-muo9381c-1",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient •••• 2048",
+        "votes": [
+          "SENDER",
+          "RECEIVER"
+        ],
+        "closure": [
+          "SENDER",
+          "RECEIVER"
+        ],
+        "resolution": "CORRECTION",
+        "history": []
+      }
+    },
+    {
+      "id": "CP-API-muo9381c-2",
+      "status": "CLOSED",
+      "matchingOrganizationReads": true,
+      "state": {
+        "id": "CP-API-muo9381c-2",
+        "scenario": "rejection",
+        "version": 6,
+        "status": "CLOSED",
+        "payout": "REJECTED",
+        "observedMinor": 0,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-API-muo9381c-2",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient •••• 2048",
+        "votes": [
+          "SENDER",
+          "RECEIVER"
+        ],
+        "closure": [
+          "RECEIVER",
+          "SENDER"
+        ],
+        "resolution": "REFUND",
+        "history": []
+      }
+    },
+    {
+      "id": "CP-API-muo9381c-3",
+      "status": "MANUAL_REVIEW",
+      "matchingOrganizationReads": true,
+      "state": {
+        "id": "CP-API-muo9381c-3",
+        "scenario": "timeout",
+        "version": 1,
+        "status": "MANUAL_REVIEW",
+        "payout": "BLOCKED",
+        "observedMinor": 0,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-API-muo9381c-3",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient •••• 2048",
+        "votes": [],
+        "closure": [],
+        "resolution": null,
+        "history": []
+      }
+    },
+    {
+      "id": "CP-API-muo9381c-4",
+      "status": "CREDITED",
+      "matchingOrganizationReads": true,
+      "state": {
+        "id": "CP-API-muo9381c-4",
+        "scenario": "timeout",
+        "version": 1,
+        "status": "CREDITED",
+        "payout": "CREDITED",
+        "observedMinor": 620000,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-API-muo9381c-4",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient •••• 2048",
+        "votes": [],
+        "closure": [],
+        "resolution": null,
+        "history": []
+      }
+    }
+  ],
+  "exportCheck": {
+    "originalMatches": true,
+    "alteredRejected": true,
+    "truncatedRejected": true,
+    "method": "LIVE_LEDGER_COMPARISON"
+  },
+  "completedAt": "2026-09-30T15:20:25.541Z",
+  "passed": true
+}

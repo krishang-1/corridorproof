@@ -1,0 +1,11 @@
+diff --git a/core/ledger/kvledger/txmgmt/statedb/statesqldb/statesqldb.go b/core/ledger/kvledger/txmgmt/statedb/statesqldb/statesqldb.go
+--- a/core/ledger/kvledger/txmgmt/statedb/statesqldb/statesqldb.go
++++ b/core/ledger/kvledger/txmgmt/statedb/statesqldb/statesqldb.go
+@@ -491,6 +491,6 @@ func (s *SqlScanner) GetBookmarkAndClose() string {
+ 
+-	key, err := s.db.sqlSchema.NextKey(s.Key, s.Cursor, s.PageSize)
++	key, err := s.db.sqlSchema.NextKey(s.CompositeKey, s.Cursor, s.PageSize)
+ 	if err != nil {
+ 		logger.Errorf("GetBookmarkAndClose: error querying next key. key:%s, cursor:%d, error:%+v", s.Key, s.Cursor, err)
+ 		return ""
+ 	}

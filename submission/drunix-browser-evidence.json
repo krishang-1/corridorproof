@@ -1,0 +1,111 @@
+{
+  "mode": "LIVE_DRUNIX_TEST_NETWORK",
+  "caseId": "CP-PITCH-20260930",
+  "paymentRails": "SIMULATED",
+  "checks": [
+    {
+      "context": "SENDER · OBSERVE_TIMEOUT · CP-PITCH-20260930",
+      "ok": true,
+      "state": {
+        "id": "CP-PITCH-20260930",
+        "scenario": "timeout",
+        "version": 1,
+        "status": "RECONCILING",
+        "payout": "UNKNOWN",
+        "observedMinor": 0,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 12500,
+          "destinationCurrency": "INR",
+          "recipientMinor": 750000,
+          "feeMinor": 150,
+          "quoteId": "Q-PITCH-20260930",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient •••• 2048",
+        "votes": [],
+        "closure": [],
+        "resolution": null,
+        "history": []
+      },
+      "transactionId": "b270a4592bac653674ebd914d9e64dceab45ca225938ac91e8d24eabcf1f5b8f",
+      "receipt": {
+        "blockNumber": 140,
+        "successful": true,
+        "transactionId": "b270a4592bac653674ebd914d9e64dceab45ca225938ac91e8d24eabcf1f5b8f",
+        "validationCode": "VALID"
+      }
+    },
+    {
+      "context": "SENDER · APPROVE_REFUND · CP-PITCH-20260930",
+      "ok": false,
+      "code": "UNKNOWN_OR_UNSAFE",
+      "message": "Timeout is insufficient for refund",
+      "state": {
+        "id": "CP-PITCH-20260930",
+        "scenario": "timeout",
+        "version": 1,
+        "status": "RECONCILING",
+        "payout": "UNKNOWN",
+        "observedMinor": 0,
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 12500,
+          "destinationCurrency": "INR",
+          "recipientMinor": 750000,
+          "feeMinor": 150,
+          "quoteId": "Q-PITCH-20260930",
+          "synthetic": true
+        },
+        "beneficiary": "Demo recipient •••• 2048",
+        "votes": [],
+        "closure": [],
+        "resolution": null,
+        "history": []
+      },
+      "transactionId": "d06a7341e9883b42c34cb7610072f8776306304eb10fddc25ecf2da37ba29eb6",
+      "receipt": {
+        "blockNumber": 141,
+        "successful": true,
+        "transactionId": "d06a7341e9883b42c34cb7610072f8776306304eb10fddc25ecf2da37ba29eb6",
+        "validationCode": "VALID"
+      }
+    },
+    "{\n  \"context\": \"RECEIVER · OBSERVE_CREDIT · CP-PITCH-20260930\",\n  \"ok\": true,\n  \"state\": {\n    \"id\": \"CP-PITCH-20260930\",\n    \"scenario\": \"timeout\",\n    \"version\": 2,\n    \"status\": \"CREDITED\",\n    \"payout\": \"CREDITED\",\n    \"observedMinor\": 750000,\n    \"quote\": {\n      \"sourceCurrency\": \"SGD\",\n      \"sourceMinor\": 12500,\n      \"destinationCurrency\": \"INR\",\n      \"recipientMinor\": 750000,\n      \"feeMinor\": 150,\n      \"quoteId\": \"Q-PITCH-20260930\",\n      \"synthetic\": true\n    },\n    \"beneficiary\": \"Demo recipient •••• 2048\",\n    \"votes\": [],\n    \"closure\": [],\n    \"resolution\": null,\n    \"history\": []\n  },\n  \"transactionId\": \"657fb6f01ebd2497751fb8de8198e8de229b9bc3b92adbb4184ef2961b4d75e6\",\n  \"receipt\": {\n    \"blockNumber\": 142,\n    \"successful\": true,\n    \"transactionId\": \"657fb6f01ebd2497751fb8de8198e8de229b9bc3b92adbb4184ef2961b4d75e6\",\n    \"validationCode\": \"VALID\"\n  }\n}",
+    "{\n  \"context\": \"RECEIVER · ACK_CLOSE · CP-PITCH-20260930\",\n  \"ok\": true,\n  \"state\": {\n    \"id\": \"CP-PITCH-20260930\",\n    \"scenario\": \"timeout\",\n    \"version\": 3,\n    \"status\": \"CREDITED\",\n    \"payout\": \"CREDITED\",\n    \"observedMinor\": 750000,\n    \"quote\": {\n      \"sourceCurrency\": \"SGD\",\n      \"sourceMinor\": 12500,\n      \"destinationCurrency\": \"INR\",\n      \"recipientMinor\": 750000,\n      \"feeMinor\": 150,\n      \"quoteId\": \"Q-PITCH-20260930\",\n      \"synthetic\": true\n    },\n    \"beneficiary\": \"Demo recipient •••• 2048\",\n    \"votes\": [],\n    \"closure\": [\n      \"RECEIVER\"\n    ],\n    \"resolution\": null,\n    \"history\": []\n  },\n  \"transactionId\": \"a2b1d2a28a74b715f29e475517f8b753a5c928f3b223582dcf38632baec31522\",\n  \"receipt\": {\n    \"blockNumber\": 143,\n    \"successful\": true,\n    \"transactionId\": \"a2b1d2a28a74b715f29e475517f8b753a5c928f3b223582dcf38632baec31522\",\n    \"validationCode\": \"VALID\"\n  }\n}",
+    "{\n  \"context\": \"SENDER · ACK_CLOSE · CP-PITCH-20260930\",\n  \"ok\": true,\n  \"state\": {\n    \"id\": \"CP-PITCH-20260930\",\n    \"scenario\": \"timeout\",\n    \"version\": 4,\n    \"status\": \"CLOSED\",\n    \"payout\": \"CREDITED\",\n    \"observedMinor\": 750000,\n    \"quote\": {\n      \"sourceCurrency\": \"SGD\",\n      \"sourceMinor\": 12500,\n      \"destinationCurrency\": \"INR\",\n      \"recipientMinor\": 750000,\n      \"feeMinor\": 150,\n      \"quoteId\": \"Q-PITCH-20260930\",\n      \"synthetic\": true\n    },\n    \"beneficiary\": \"Demo recipient •••• 2048\",\n    \"votes\": [],\n    \"closure\": [\n      \"RECEIVER\",\n      \"SENDER\"\n    ],\n    \"resolution\": null,\n    \"history\": []\n  },\n  \"transactionId\": \"2a9b6c097dc2fa280722529e79f982302c00740576e49f7f18dff70811e6c840\",\n  \"receipt\": {\n    \"blockNumber\": 144,\n    \"successful\": true,\n    \"transactionId\": \"2a9b6c097dc2fa280722529e79f982302c00740576e49f7f18dff70811e6c840\",\n    \"validationCode\": \"VALID\"\n  }\n}"
+  ],
+  "passed": true,
+  "observedAt": "2026-09-30T15:51:52.967Z",
+  "finalCase": {
+    "id": "CP-PITCH-20260930",
+    "scenario": "timeout",
+    "version": 4,
+    "status": "CLOSED",
+    "payout": "CREDITED",
+    "observedMinor": 750000,
+    "quote": {
+      "sourceCurrency": "SGD",
+      "sourceMinor": 12500,
+      "destinationCurrency": "INR",
+      "recipientMinor": 750000,
+      "feeMinor": 150,
+      "quoteId": "Q-PITCH-20260930",
+      "synthetic": true
+    },
+    "beneficiary": "Demo recipient •••• 2048",
+    "votes": [],
+    "closure": [
+      "RECEIVER",
+      "SENDER"
+    ],
+    "resolution": null,
+    "history": []
+  },
+  "integrity": {
+    "method": "LIVE_LEDGER_COMPARISON",
+    "recordsMatched": 128,
+    "alteredRejected": true,
+    "observedResult": "Alteration detected · Evidence differs from current ledger. The stored ledger was not changed."
+  }
+}
