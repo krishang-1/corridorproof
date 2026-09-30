@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "observedAt": "2026-09-30T16:45:38.403Z",
+  "mode": "LIVE_DRUNIX_TEST_NETWORK",
+  "paymentRails": "SIMULATED",
+  "caseId": "CP-RACE-muo9dn0m",
+  "checks": {
+    "pendingHeldWithoutMutation": true,
+    "pendingVersion": 1,
+    "creditRecordedThroughBrowser": true,
+    "creditVersion": 2
+  },
+  "receipt": {
+    "context": "Synthetic status report · MSG-BROWSER-20260930-CREDIT",
+    "ok": true,
+    "state": {
+      "id": "CP-RACE-muo9dn0m",
+      "scenario": "timeout",
+      "version": 2,
+      "status": "CREDITED",
+      "payout": "CREDITED",
+      "observedMinor": 620000,
+      "quote": {
+        "sourceCurrency": "SGD",
+        "sourceMinor": 10000,
+        "destinationCurrency": "INR",
+        "recipientMinor": 620000,
+        "feeMinor": 300,
+        "quoteId": "Q-CP-RACE-muo9dn0m",
+        "synthetic": true
+      },
+      "beneficiary": "Demo recipient •••• 2048",
+      "votes": [],
+      "closure": [],
+      "resolution": null,
+      "history": []
+    },
+    "transactionId": "07acff4a743119cd86a41c4f7df9d3e9428b632f0dd76f7bdbc1eed69c9010a6",
+    "receipt": {
+      "blockNumber": 149,
+      "successful": true,
+      "transactionId": "07acff4a743119cd86a41c4f7df9d3e9428b632f0dd76f7bdbc1eed69c9010a6",
+      "validationCode": "VALID"
+    },
+    "statusReportDigest": "58ac17bab6d51a44c5f9ee51dd6c71c9bf9cfd41dd11e2f82ee52cc03b2e596b"
+  },
+  "consistency": "Matching organization snapshots · 133 records · digest 5e0a767cd309f31490…",
+  "caveat": "Browser download event capture was unavailable. Dossier contents were verified through the API, not a confirmed browser download."
+}

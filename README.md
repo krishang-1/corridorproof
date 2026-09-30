@@ -8,11 +8,165 @@ A hackathon prototype for sender and receiver operations teams. It preserves the
 
 `npm start` defaults to the separately labelled **LOCAL_SIGNED_DEMO**. Use the documented environment configuration for **LIVE_DRUNIX_TEST_NETWORK**; live failures never silently switch to local data.
 
-![Operations dashboard](docs/screenshots/live-dashboard.jpg)
+![Live operations control room](docs/screenshots/operations-control-room.jpg)
+
+## The market gap: reliable decisions across organizational boundaries
+
+The relevant market is **B2B cross-border exception operations**: sender and receiver payment providers, their corridor operator, and the operations/compliance teams that resolve missing status, recipient shortfalls and rejected payouts. It is not the entire UPI market, an FX exchange or a new settlement rail.
+
+Three primary sources frame the opportunity:
+
+- **Nexus documents the coordination requirement.** Its first-release design uses manual investigations, recalls and disputes through a Service Desk and describes possible future message automation. This is documentation of a requirement, not proof of every corridor's current deployed workflow. [Nexus key points](https://docs.nexusglobalpayments.org/payment-processing/key-points)
+- **Status semantics matter.** Nexus distinguishes credited, pending, accepted-without-posting, rejected and blocked outcomes. Normal-priority missing responses invoke an exception process; high-priority cancellation has different rules. Our generic conservative policy must be mapped to a partner's actual scheme. [Payment priority](https://docs.nexusglobalpayments.org/payment-processing/time-critical-vs-non-time-critical-payments), [pacs.002 status reports](https://docs.nexusglobalpayments.org/messaging-and-translation/message-pacs.002-payment-status-report)
+- **This is an established competitive category.** Swift offers validation, status-based responses, routing, reminders and investigation tracking. We do not claim these are missing from Swift. The FSB's cross-border programme addresses cost, speed, transparency and access; our narrow contribution concerns exception coordination and transparency, not demonstrated macroeconomic improvement. [Swift Case Management](https://www.swift.com/products/case-management), [FSB cross-border programme](https://www.fsb.org/work-of-the-fsb/financial-innovation-and-structural-change/cross-border-payments/)
+
+**Our proposed wedge:** a corridor pair wants its case commitment, evidence and financial-resolution approvals governed jointly, integrated with its status systems, rather than controlled solely by one case-system operator. This is a buyer hypothesis. A qualified partner must confirm what its current service desk, Swift/Nexus capabilities or shared database does not already solve.
+
+### Which gaps the prototype addresses
+
+| Operational gap / scenario | Why addressing it matters | Implemented response | Evidence and boundary |
+| --- | --- | --- | --- |
+| Missing response is mistaken for a final outcome | A follow-up decision needs the real payout state | Unknown remains reconciliation; timeout cannot authorize refund | Core Node/Go fixtures and live denied-refund receipt; conservative prototype rule |
+| Status messages arrive with inconsistent references or semantics | A correct message applied to the wrong case can corrupt a decision | Synthetic JSON normalizer checks case/quote/currency/amount; PDNG and ACWP are held | Adapter tests; no XML parser, bank authentication or ISO certification |
+| Duplicate reports or a reused ID carry different contents | Replay can create repeated effects or disguise contradictory evidence | Durable message-ID/content binding; exact command replay; changed contents rejected | Inbox survives restart; local metadata, applied observations use the active ledger |
+| Ownership and approval waiting are unclear | Cases can stall while each team expects the other to act | Lane, next owner, idle age, missing approvals and review-due queue | Derived from current state/events; 15-minute review threshold is a demo configuration |
+| Evidence conflicts or a compliance block needs escalation | Automation must not invent a final bank outcome | Contradictory reports held; ledger conflicts/compliance cases highlighted; manual review remains explicit | No automated arbitration or compliance-release authority |
+| Audit records are scattered across case state and event exports | Operators need the accepted quote, decision history and verification context together | Per-case dossier includes events, current state, operations context, digest and full workspace | Convenience packet; digest alone does not establish provenance |
+| Counterparties need to compare their views | A single UI view does not establish shared recorded state | Fresh authenticated Org1 and Org2 queries with canonical digest comparison | Sequential reads; concurrent commits can produce differences; local credentials do not prove real independence |
+
+### Where CorridorProof sits
+
+```mermaid
+flowchart TB
+  subgraph Existing["Existing payments and operations ecosystem"]
+    Customer["Sender / recipient"] --> PSP["Sender and receiver PSPs"]
+    PSP --> Rails["Domestic IPS / banks / corridor rails
+Authoritative money movement"]
+    Rails --> Status["Rail status and investigation messages"]
+    Desk["Existing service desks / Swift Case Management
+Validation, orchestration and investigations"]
+    Status --> Desk
+  end
+  subgraph CP["CorridorProof's proposed integration position"]
+    Adapter["Structured status adapter
+Synthetic JSON implemented"] --> Case["Shared case commitment and evidence"]
+    Case --> Rules["Deterministic permitted-action policy"]
+    Rules --> Joint["Both-party resolution approvals
+Drunix jointly endorsed state"]
+    Joint --> Ops["Ownership / ageing / escalation / audit dossier"]
+  end
+  Status -. "Future authenticated connector" .-> Adapter
+  Desk -. "Partner-specific integration hypothesis" .-> Case
+  Joint -. "Future idempotent execution adapter" .-> Rails
+```
+
+Solid lines inside CorridorProof describe implemented components. Dashed external links are future integrations. The app is an exception decision component alongside payment infrastructure, not a replacement for it.
+
+### Before / after workflow
+
+![Illustrative manual coordination compared with CorridorProof](docs/diagrams/before-after.svg)
+
+The comparison is a target partner workflow to validate, not a universal baseline or measured improvement. A pilot must establish whether shared rules actually reduce handoffs, evidence rework and unsafe attempted actions.
+
+### Detailed implementation and trust boundaries
+
+```mermaid
+flowchart TB
+  Sender["Sender operator
+Generated Org1 identity"] --> UI["Browser operations desk"]
+  Receiver["Receiver operator
+Generated Org2 identity"] --> UI
+  UI --> API["Node HTTP API
+Localhost / explicit backend"]
+  API --> Ops["Operations read model
+Lanes, owners, ageing, review flags"]
+  API --> Inbox["Synthetic status inbox
+Reference validation / duplicate binding"]
+  Inbox --> Requests["Persist exact command identity
+Uncertain result blocks replacement"]
+  API --> Requests
+  Requests --> GW["Go gateway
+TLS identity / await VALID commit"]
+  GW --> Contract["Go chaincode
+Role + version + idempotency + financial rules"]
+  Contract --> Endorse["Org1 AND Org2 endorsement"]
+  Endorse --> O1["Org1 committing peer / lite peer / validation server"]
+  Endorse --> O2["Org2 committing peer / lite peer / validation server"]
+  O1 --> DB1["Org1 YugabyteDB state store"]
+  O2 --> DB2["Org2 YugabyteDB state store"]
+  GW --> Receipt["Validation receipt
+Business denial may also be VALID"]
+  Receipt --> UI
+  Ops --> Packet["Case dossier + full verification context"]
+  API --> Compare["Fresh Org1 / Org2 snapshot comparison"]
+  API --> Fallback["Separate local signed SQLite backend
+Selected explicitly; no silent fallback"]
+```
+
+Status-inbox metadata and saved submission identities live in ignored adapter storage. **Accepted observations and financial case decisions live on the selected ledger.** SLA/ageing labels are derived views, never consensus triggers. The local API holds both generated credentials; production needs separate institutional custody and user authentication.
+
+### Structured status intake sequence
+
+```mermaid
+sequenceDiagram
+  actor R as Receiver operator
+  participant I as Status inbox
+  participant P as Policy preview
+  participant G as Gateway
+  participant D as Drunix contract
+  R->>I: Synthetic message ID, case, quote, code, amount
+  I->>I: Validate references and bind message contents
+  I->>P: Normalize ACCC / RJCT / BLCK / PDNG / ACWP
+  alt Pending, unposted, over-credit or contradictory
+    P-->>I: Hold for review; no automatic case mutation
+    I-->>R: Retained local inbox disposition
+  else Permitted observation
+    P-->>R: Preview next state
+    R->>I: Explicitly record ready evidence
+    I->>I: Persist exact command before submit
+    I->>G: Original request ID and expected version
+    G->>D: Submit under receiver test certificate
+    D->>D: Check role, idempotency, version and case policy
+    D-->>G: Commit validation result
+    G-->>R: VALID receipt or uncertain outcome
+  end
+  Note over I,D: Exact replay reuses the original command; changed message contents are rejected
+```
+
+### Financial lifecycle
+
+```mermaid
+stateDiagram-v2
+  [*] --> PAYOUT_PENDING: Accepted synthetic quote
+  PAYOUT_PENDING --> RECONCILING: Missing response
+  PAYOUT_PENDING --> CREDITED: Full receiver credit
+  RECONCILING --> CREDITED: Late full receiver credit
+  PAYOUT_PENDING --> SHORTFALL: Partial receiver credit
+  RECONCILING --> SHORTFALL: Partial receiver credit
+  SHORTFALL --> CORRECTION_APPROVED: Both organizations approve
+  CORRECTION_APPROVED --> CREDITED: Receiver records exact synthetic correction
+  PAYOUT_PENDING --> REFUND_REVIEW: Definitive receiver rejection
+  RECONCILING --> REFUND_REVIEW: Definitive receiver rejection
+  REFUND_REVIEW --> REFUND_APPROVED: Both organizations approve
+  REFUND_APPROVED --> REFUNDED: Sender records synthetic refund
+  PAYOUT_PENDING --> MANUAL_REVIEW: Compliance block
+  RECONCILING --> MANUAL_REVIEW: Compliance block
+  CREDITED --> CLOSED: Both closure acknowledgments
+  REFUNDED --> CLOSED: Both closure acknowledgments
+  CLOSED --> [*]
+```
+
+Unknown has no direct refund path. MANUAL_REVIEW has no invented automated release path. Financial approvals differ from network endorsement: business votes authorize a resolution; peers endorse contract execution.
+
+### Commercial scope and validation
+
+Start with **one PSP pair, one corridor and a shadow pilot**, using de-identified exceptions. Compare existing workflows and a trusted shared database with the jointly governed ledger. Measure operator minutes, evidence requests, repeated work, approval waiting, completeness of closure and denied unsafe attempts. Keep rail waiting separate from application time. Subscription plus integration/support is a business-model hypothesis, not validated pricing.
+
+No defensible TAM or savings percentage has been established. The first addressable segment is providers with a confirmed unmet joint-governance/integration requirement; payment volume alone is not our market size. See [detailed gap analysis](docs/MARKET-GAP.md) and [feature/trust matrix](docs/OPERATIONS.md).
 
 ## Run the demo
 
-Install [Node.js 24 LTS](https://nodejs.org/en/download). No application packages or API keys are required.
+Install [Node.js 24 LTS](https://nodejs.org/en/download). No application packages or API keys are required for the local fallback. Live mode requires the separately documented Drunix network and generated test credentials.
 
 Extract the source ZIP or clone the published repository, then run this from the project directory:
 
@@ -29,7 +183,7 @@ $env:CORRIDORPROOF_DATA = '.data/demo-2'
 npm.cmd start
 ```
 
-## Three scenarios
+## Financial scenarios and operations features
 
 | Case | Steps | Safety property |
 | --- | --- | --- |
@@ -37,13 +191,15 @@ npm.cmd start
 | CP-002: shortfall | Receiver records INR 6,080 credit against INR 6,200 commitment. Both parties approve. Receiver records mock INR 120 correction. Both acknowledge closure. | One organization cannot authorize correction alone. |
 | CP-003: rejection | Receiver records definitive rejection. Both approve refund. Sender records mock refund. Both acknowledge closure. | Refund requires rejection evidence and both approvals. |
 
-The receiver can also record a compliance block. It requires manual review and offers no automatic refund. Contradictory evidence is rejected and recorded for operator escalation. Human arbitration and compliance release are outside this prototype.
+The receiver can also record a compliance block. It requires manual review and offers no automatic refund. Contradictory evidence is rejected and recorded for operator escalation. Human arbitration and compliance release are outside this prototype. The operations queue makes review ownership and ageing visible without overriding the contract.
 
 ## Verification
 
 ```sh
 npm test
 npm run demo:check
+# Explicitly live backend only:
+node scripts/operations-live-check.js
 cd chaincode
 go test ./...
 cd ../gateway
@@ -67,11 +223,11 @@ Verification checks signatures, hash links, sequence, supplied head and reconstr
 - `public/`: browser-native dashboard, no build step or external CDN.
 - `test/`: Node checks and shared policy conformance fixtures.
 - `chaincode/`: Go shim chaincode with MSP authorization and version/idempotency safeguards.
-- `gateway/`: TLS and certificate-bound Fabric Gateway CLI. Separate from local server.
+- `gateway/`: TLS and certificate-bound Go Gateway used by the live Node adapter.
 - `docs/`: architecture, evidence register, API, setup, threats, pilot, submission and demo script.
 - `DECISIONS.md`: decisions and tradeoffs.
 
-Latest pitch: [CorridorProof-pitch-live.pptx](submission/CorridorProof-pitch-live.pptx). It supersedes the earlier deck's infrastructure status.
+Pitch: [submission PDF](submission/CorridorProof-pitch-expanded.pdf) and [editable PPTX](submission/CorridorProof-pitch-expanded.pptx). The ten-slide expanded deck includes structured status intake and the operations control room.
 
 ## Why a ledger?
 

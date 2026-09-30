@@ -4,7 +4,7 @@
 
 | Gate | Observed result |
 | --- | --- |
-| Node policy, journal, HTTP and live adapter | 13 tests passed, covering shared policy conformance, local integrity, role/origin contract and persisted uncertain request handling. |
+| Node policy, journal, HTTP and live adapter | 20 tests passed, covering shared policy conformance, local integrity, role/origin contract and persisted uncertain request handling. |
 | Go chaincode | Shared scenarios, mock-stub authorization, durable denials, idempotency and bounded pagination tests passed. |
 | Gateway | Windows and Linux builds passed; certificate-bound TLS submissions await VALID commit. |
 | Original live CLI | Five scenarios, replay and sequential stale-version checks: 46 VALID receipts. Both organizations read matching state. `submission/drunix-live-evidence.json`. |
@@ -16,7 +16,7 @@
 | Live browser | Custom SGD125 quote, fee SGD1.50, INR7500 commitment: timeout, denied refund, late full credit, one acknowledgment leaves open, both acknowledgments close. Quote unchanged. 128-record export matched current ledger; altered copy rejected. `submission/drunix-browser-evidence.json`. |
 | Layout | Actual live dashboard inspected at 1280×800 and restored default width about 614 pixels; no page horizontal overflow. Narrow layout stacks case queue and detail. |
 | Local fallback | Earlier clean clone passed local test/demo/export/server startup. Local mode remains explicit and separate from Drunix. |
-| Pitch | Eight-slide final PPTX and PDF, all rendered slides inspected. PPTX package, font, geometry and import checks passed. Native PowerPoint/Google Slides execution untested. |
+| Pitch | Ten-slide expanded PPTX and PDF, all rendered slides inspected. PPTX package, font, geometry and import checks passed. Native PowerPoint/Google Slides execution untested. |
 
 ## Infrastructure disclosure
 
@@ -25,3 +25,13 @@ Source pinned to `ddc0eae778158d3f8a96605cfeda383ae5eafcfc`. Explicit workspace 
 Workspace exports fail at the 1,000-record boundary. The live verifier compares with a current authenticated query; it does not verify offline block signatures, inclusion proofs or independently witnessed completeness. Private runtime keys, generated organizations and request state remain ignored by Git.
 
 No production rail integration, national-scale benchmark, institutional independence, security certification or partner pilot has run. Operational savings and willingness to pay remain unvalidated.
+
+## Operations expansion
+
+The existing financial chaincode is unchanged. Seven added Node checks cover status normalization/reference binding, durable exact replay and content conflicts, held observations without mutation, concurrent message-ID reuse, missing owners/ageing, complete dossier context, organization mismatch and HTTP integration.
+
+`submission/drunix-operations-evidence.json` records the live adapter path: pending held with case version unchanged; partial credit normalized and committed VALID; exact replay without duplicate mutation; altered message-ID contents rejected; contradictory rejection held; INR120 exact shortfall; held-conflict review lane; case dossier retaining report digest and full workspace; matching fresh organization reads. Local inbox dispositions are not Drunix commits.
+
+README diagrams describe existing market context, proposed integration boundaries, illustrative before/after, detailed architecture, status intake and financial lifecycle. External rail connectors remain dashed/planned. Operational savings and independent institution ownership remain untested.
+
+Browser acceptance also retained a pending report with unchanged version, recorded a full-credit report through the adapter with a VALID commit receipt, and compared matching Org1/Org2 snapshots (133 events at that checkpoint). See `submission/drunix-operations-browser-evidence.json`. Case dossier contents passed API checks; browser download-event capture was unavailable, so automated browser download completion is not claimed.

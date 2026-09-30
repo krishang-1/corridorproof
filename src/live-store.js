@@ -31,6 +31,7 @@ export function nativeGatewayRunner(binary,certRoot){
 }
 export class LiveStore {
   constructor(directory, run=gatewayRunner()) {
+    this.directory = directory;
     mkdirSync(directory,{recursive:true}); this.file=join(directory,'requests.json');this.run=run;
     this.requests=existsSync(this.file)?JSON.parse(readFileSync(this.file,'utf8')):{};
     this.cache=null;this.loading=null;this.inFlight=new Set();

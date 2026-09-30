@@ -55,3 +55,13 @@ Problem: uncertain outcomes and inter-organization exception coordination.
 Mechanism: deterministic action gating, attributable evidence, dual approval, jointly governed ledger state and explicit reconciliation.
 
 Impact hypothesis: fewer manual handoffs and less unsafe resolution behavior. A pilot must measure whether the implementation improves a provider's current workflow.
+
+## Expanded operations demo
+
+After showing the blocked refund, open the operations control room. Explain the next organization, outstanding approvals, idle age and advisory review flags. These flags never authorize financial actions.
+
+Switch to the receiver's synthetic status inbox. Preview a PDNG report: it is held without changing the case. Preview a valid ACCC credit bound to the case and quote: applying it uses the existing policy and produces a VALID Drunix receipt. Replaying the exact message returns the original result; changed contents under the same message ID are rejected. Contradictory evidence is held for review.
+
+Show the case dossier and compare fresh Org1/Org2 snapshots. The dossier includes full workspace verification context. Its digest is a content checksum, not an independent block-inclusion proof. Adapter bookkeeping is local; accepted observations are recorded on Drunix. Real bank authentication and payment execution remain future integrations.
+
+The detailed market qualification and source links are in [MARKET-GAP.md](MARKET-GAP.md); the implemented adapter and endpoints are in [OPERATIONS.md](OPERATIONS.md).

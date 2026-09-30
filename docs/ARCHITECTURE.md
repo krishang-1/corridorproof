@@ -63,3 +63,7 @@ Release gate: clean clone starts, meaningful tests pass, mode labels match reali
 ## Live infrastructure exception
 
 Pinned Drunix source: `ddc0eae778158d3f8a96605cfeda383ae5eafcfc`. Expanded queries exposed an empty-bookmark panic and an incorrectly encoded namespace lookup in the SQL iterator. The two minimal patches and preserving recovery script are under `infra/`. Both lite peers use the patched binary. Restart preserves it, but recreating containers from the original image requires rebuilding/reapplying the patch. Workspace queries use an explicit 1,000-record limit and fail at that boundary. This prototype is not an unmodified-stock-network or production pagination claim.
+
+## Operations expansion
+
+The Node API now derives review lanes and next owners from ledger state, exposes a structured synthetic status inbox, exports case dossiers with full workspace verification context, and compares fresh organization reads. The expanded diagrams are in the README and the endpoint/trust-boundary details are in [OPERATIONS.md](OPERATIONS.md). Advisory review flags do not modify financial policy. Local adapter records are not shared ledger evidence; only accepted observations submitted through the existing contract become ledger events.

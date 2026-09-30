@@ -3,8 +3,8 @@
 Team readiness target: **30 September 2026, 23:00 IST**. The portal's official cutoff, problem-statement wording and field limits remain unverified. The user is handling portal constraints.
 
 - Repository: https://github.com/krishang-1/corridorproof
-- Public pitch PDF: https://github.com/krishang-1/corridorproof/blob/main/submission/CorridorProof-pitch-submission.pdf
-- Editable deck: `submission/CorridorProof-pitch-submission.pptx`
+- Public pitch PDF: https://github.com/krishang-1/corridorproof/blob/main/submission/CorridorProof-pitch-expanded.pdf
+- Editable deck: `submission/CorridorProof-pitch-expanded.pptx`
 - All eight portal fields: `submission/portal-fields.md`
 - Pitch walkthrough: `docs/PITCH-WALKTHROUGH.md`
 - Three-minute demo: `docs/DEMO.md`

@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "checkedAt": "2026-09-30T16:38:20.530Z",
+  "mode": "LIVE_DRUNIX_TEST_NETWORK",
+  "paymentRails": "SIMULATED",
+  "caseId": "CP-OPS-muobx413",
+  "create": {
+    "ok": true,
+    "state": {
+      "id": "CP-OPS-muobx413",
+      "scenario": "shortfall",
+      "version": 0,
+      "status": "PAYOUT_PENDING",
+      "payout": "UNKNOWN",
+      "observedMinor": 0,
+      "quote": {
+        "sourceCurrency": "SGD",
+        "sourceMinor": 10000,
+        "destinationCurrency": "INR",
+        "recipientMinor": 620000,
+        "feeMinor": 300,
+        "quoteId": "Q-CP-OPS-muobx413",
+        "synthetic": true
+      },
+      "beneficiary": "Demo recipient •••• 2048",
+      "votes": [],
+      "closure": [],
+      "resolution": null,
+      "history": []
+    },
+    "receipt": {
+      "blockNumber": 147,
+      "successful": true,
+      "transactionId": "1c209234fba1f9d4f33a3fe1e112a9050d06085de8924c5689f8bbb734fe4de2",
+      "validationCode": "VALID"
+    }
+  },
+  "credit": {
+    "ok": true,
+    "state": {
+      "id": "CP-OPS-muobx413",
+      "scenario": "shortfall",
+      "version": 1,
+      "status": "SHORTFALL",
+      "payout": "CREDITED",
+      "observedMinor": 608000,
+      "quote": {
+        "sourceCurrency": "SGD",
+        "sourceMinor": 10000,
+        "destinationCurrency": "INR",
+        "recipientMinor": 620000,
+        "feeMinor": 300,
+        "quoteId": "Q-CP-OPS-muobx413",
+        "synthetic": true
+      },
+      "beneficiary": "Demo recipient •••• 2048",
+      "votes": [],
+      "closure": [],
+      "resolution": null,
+      "history": []
+    },
+    "transactionId": "55b74e9b31c05f4a273f71f6813d5ad21ebea8538b760707072db700c564080f",
+    "receipt": {
+      "blockNumber": 148,
+      "successful": true,
+      "transactionId": "55b74e9b31c05f4a273f71f6813d5ad21ebea8538b760707072db700c564080f",
+      "validationCode": "VALID"
+    },
+    "statusReportDigest": "b903722db75eb031a61b236998c43c2793f1779489eb6001c9bb6cdf88cfa294"
+  },
+  "checks": {
+    "pendingHeld": true,
+    "noPendingMutation": true,
+    "partialCreditNormalized": true,
+    "exactReplay": true,
+    "alteredMessageRejected": true,
+    "conflictingReportHeld": true,
+    "exactShortfall": 12000,
+    "caseDossier": true,
+    "organizationReadsMatch": true
+  },
+  "consistency": {
+    "supported": true,
+    "matched": true,
+    "senderDigest": "192fd4ff1176845047ab903cd7fb565fafada3cebd199569dc99d33c760a2035",
+    "receiverDigest": "192fd4ff1176845047ab903cd7fb565fafada3cebd199569dc99d33c760a2035",
+    "senderRecords": 132,
+    "receiverRecords": 132,
+    "checkedAt": "2026-09-30T16:38:20.528Z",
+    "caveat": "Sequential authenticated reads can differ if a new commit occurs between them. Equal reads on one laptop do not prove independent institutional operation."
+  },
+  "caveat": "Inbox metadata is local to the adapter. Only accepted observations are Drunix contract events. Status reports are synthetic JSON, not authenticated bank messages or ISO 20022 XML."
+}

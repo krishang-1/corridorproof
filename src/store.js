@@ -6,6 +6,7 @@ import { createCase, transition, PolicyError, ROLES } from './policy.js';
 import { canonical, hash, verifyExport } from './integrity.js';
 export class Store {
   constructor(directory) {
+    this.directory = directory;
     mkdirSync(directory, { recursive: true }); this.keys = {}; this.publicKeys = {};
     for (const role of ['SYSTEM', ...ROLES]) {
       const path = join(directory, `${role.toLowerCase()}-private.pem`);

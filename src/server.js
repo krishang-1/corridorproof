@@ -4,8 +4,11 @@ import { resolve, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Store } from './store.js';
 import { LiveStore } from './live-store.js';
+import { operationsReport, casePacket, compareOrganizations } from './operations.js';
+import { StatusInbox } from './status-inbox.js';
 const root = fileURLToPath(new URL('../public/', import.meta.url));
 export function buildServer(store) {
+  const inbox = new StatusInbox(store.directory);
   return createServer(async (req, res) => {
     res.setHeader('X-Content-Type-Options','nosniff');
     res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'");
@@ -18,6 +21,11 @@ export function buildServer(store) {
       if (req.method === 'GET' && url.pathname === '/api/cases') return json(await store.list(role));
       if (req.method === 'GET' && url.pathname === '/api/evidence') return json(await store.export(role));
       if (req.method === 'GET' && url.pathname === '/api/pending') return json(store.pending?await store.pending():[]);
+      if (req.method === 'GET' && url.pathname === '/api/operations') return json(operationsReport(await store.export(role),store.pending?await store.pending():[],{reports:inbox.list()}));
+      if (req.method === 'GET' && url.pathname === '/api/consistency') return json(await compareOrganizations(store));
+      if (req.method === 'GET' && url.pathname === '/api/status-reports') return json(inbox.list());
+      const packet = url.pathname.match(/^\/api\/cases\/([A-Za-z0-9_-]+)\/packet$/);
+      if (req.method === 'GET' && packet) return json(casePacket(await store.export(role),packet[1],store.pending?await store.pending():[],inbox.list()));
       const match = url.pathname.match(/^\/api\/cases\/([A-Za-z0-9_-]+)\/commands$/);
       if (req.method === 'POST') {
         const origin = req.headers.origin;
@@ -29,6 +37,8 @@ export function buildServer(store) {
         if (url.pathname === '/api/cases') return json(await store.create(role,input),201);
         if (url.pathname === '/api/reconcile' && store.reconcile) { const result=await store.reconcile(input.key);return json(result,result.pending?202:result.ok?200:409); }
         if (url.pathname === '/api/verify') return json(await store.verify(input,role));
+        if (url.pathname === '/api/status-reports/preview') return json(await inbox.preview(store,role,input));
+        if (url.pathname === '/api/status-reports/apply') {const result=await inbox.apply(store,role,input);return json(result,result.ok?200:result.pending?202:409);}
       }
       if (req.method !== 'GET' || url.pathname.startsWith('/api/')) return json({error:'Not found'},404);
       const path = resolve(root, '.' + (url.pathname === '/' ? '/index.html' : decodeURIComponent(url.pathname)));

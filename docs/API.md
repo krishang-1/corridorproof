@@ -23,3 +23,7 @@ Actions: `OBSERVE_TIMEOUT`, `OBSERVE_CREDIT`, `OBSERVE_REJECTION`, `OBSERVE_BLOC
 Successful actions return HTTP 200 with `ok:true`, state and event. Policy denial returns HTTP 409 with `ok:false`, code and unchanged state, while persisting denial evidence. Schema/role/key conflicts return HTTP 400. Unknown case returns HTTP 404. Repeating identical content with the same role/request key returns the stored result with `replay:true`; altered content with that key is rejected. A stale version cannot change case state.
 
 The standalone Go contract exposes `CreateCase(id,scenario)`, `ReadCase(id)` and `Command(id,json)`. Caller role derives from MSP, not arguments. Denied business commands return a successful Fabric response containing `ok:false`, so the denial can commit. A gateway caller must inspect that application result before performing any external action. Validation/unauthorized identity failures return a chaincode error.
+
+## Operations and structured status endpoints
+
+See [OPERATIONS.md](OPERATIONS.md) for schemas, paths and storage/trust boundaries. Operations read models, receiver-only synthetic report preview/apply, local inbox dispositions, full-context case dossiers and fresh live organization comparison extend the existing API. The original command contract is unchanged.
