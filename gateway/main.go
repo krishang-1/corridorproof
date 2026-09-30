@@ -30,8 +30,8 @@ func read(name string) []byte {
 	return b
 }
 func main() {
-	if len(os.Args) < 3 || (os.Args[1] != "query" && os.Args[1] != "submit") {
-		fmt.Fprintln(os.Stderr, "Usage: gateway query|submit Function [arguments...]")
+	if len(os.Args) < 3 || (os.Args[1] != "query" && os.Args[1] != "submit" && os.Args[1] != "race") {
+		fmt.Fprintln(os.Stderr, "Usage: gateway query|submit Function [arguments...] OR race CaseID CommandJSON1 CommandJSON2")
 		os.Exit(2)
 	}
 	pool := x509.NewCertPool()
@@ -73,6 +73,13 @@ func main() {
 		name = "corridorproof"
 	}
 	contract := gateway.GetNetwork(channel).GetContract(name)
+	if os.Args[1] == "race" {
+		if e := runRace(contract, os.Args[2:]); e != nil {
+			fmt.Fprintln(os.Stderr, e)
+			os.Exit(1)
+		}
+		return
+	}
 	var result []byte
 	if os.Args[1] == "query" {
 		result, e = contract.EvaluateTransaction(os.Args[2], os.Args[3:]...)
