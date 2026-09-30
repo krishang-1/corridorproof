@@ -4,7 +4,7 @@
 | --- | --- | --- |
 | Refund on uncertain payout | Unknown/blocked status denies refund approval | Authoritative scheme status and priority-specific reconciliation |
 | Single-party financial resolution | Distinct sender/receiver votes before mock execution | Independent institutions, certificates, policy and real maker/checker access |
-| Replay or stale decision | Atomic role-scoped idempotency, optimistic case versions | Live MVCC and endorsement tests, recovery after commit uncertainty |
+| Replay or stale decision | Atomic role-scoped idempotency, optimistic case versions | Independent multi-host operation, storage-fault recovery and production concurrency testing |
 | Altered event or changed case summary | SHA-256 chain, Ed25519 signature, deterministic state replay | Independent trust anchors and witnessed heads |
 | Rewrite entire local journal and keys | Explicitly outside demo trust model | Independent Drunix nodes, protected keys, audit replication and witnessed checkpoints |
 | Truncate export and replace head | Supplied-head consistency only | External checkpoint/ledger height to establish completeness |

@@ -10,6 +10,26 @@ A hackathon prototype for sender and receiver operations teams. It preserves the
 
 ![Live operations control room](docs/screenshots/operations-control-room.jpg)
 
+## Explicit Drunix use cases in CorridorProof
+
+Drunix is the **permissioned execution and shared-record layer** in the live build. The financial workflow is our Go chaincode; it is not an off-the-shelf Drunix payment product. [NPCI's architecture](https://github.com/npci/drunix/blob/main/docs/drunix-arch.md) describes lite-peer endorsement, committing peers, stateless validation and SQL state storage. Our local network uses these components; their presence does not demonstrate production throughput or institutional independence.
+
+| Project use case | How we use Drunix | Implemented evidence / boundary |
+| --- | --- | --- |
+| Record a shared recipient commitment | Store accepted synthetic quote terms and case state through chaincode | Original recipient amount remains the reference for shortfall decisions; no live FX price or rate reservation |
+| Attribute actions to an organization | Derive sender/receiver role from the submitting certificate's MSP in Go chaincode | Unauthorized MSP rejection tested; the browser selector is only a test-identity harness |
+| Enforce safe resolution permissions | Execute deterministic policy on peers: unknown cannot approve refund; corrections/refunds require both business votes | Live denial and approval scenarios passed; external evidence and execution remain synthetic |
+| Govern writes jointly | Deployed chaincode endorsement requires `AND('Org1MSP.peer','Org2MSP.peer')` | Both organizations attest execution; endorsement is distinct from their analysts' business approval votes |
+| Retain accepted and refused decisions | Commit case updates and attributable event records; confirm gateway commit status | VALID receipts observed, including recorded business denials; a VALID envelope does not mean a refused action was permitted |
+| Prevent competing/stale updates and duplicate effects | Combine chaincode versions/idempotency with Drunix MVCC validation | Actual race produced one VALID commit and one MVCC conflict; exact application replay retrieves the original result |
+| Reconcile counterparty views and survive restart | Query through each organization's authenticated gateway view; use committing peers and YugabyteDB state stores | Matching snapshots and persistence after both lite peers restarted tested; no independent production deployment or offline inclusion proof |
+
+**Concrete Drunix-backed scenarios:** a timeout followed by late credit; a partial credit requiring exact correction approval; definitive rejection requiring refund approval; a compliance block held for manual review; and concurrent operators attempting conflicting updates. The operations control room and status adapter expose these workflows around the same financial contract.
+
+**Outside the Drunix boundary:** inbox bookkeeping, review-age calculations and dossier packaging run in the Node adapter. Real settlement, bank-message authenticity, production user login, arbitration and compliance decisions require separate systems and authority. Private-data collections, tokenization and throughput scaling are potential platform capabilities, not features implemented or benchmarked in this project. The separate signed SQLite fallback does not use Drunix.
+
+**When this is preferable to a database:** participants require separately controlled identities and jointly governed writes and are willing to operate the network. If a trusted central operator is acceptable, a shared database can implement the same workflow more simply. See the [competition and pitfalls audit](docs/COMPETITION-AND-PITFALLS.md) for qualification gates and remaining risks.
+
 ## The market gap: reliable decisions across organizational boundaries
 
 The relevant market is **B2B cross-border exception operations**: sender and receiver payment providers, their corridor operator, and the operations/compliance teams that resolve missing status, recipient shortfalls and rejected payouts. It is not the entire UPI market, an FX exchange or a new settlement rail.
@@ -266,5 +286,17 @@ Independent corridor participants can jointly govern accepted evidence and resol
 Nexus documentation describes manual investigations, recalls and disputes in its first release. Swift already offers Case Management. We therefore propose a narrow integration and joint-governance hypothesis for corridor exception operations, not a claim that payment investigations are a new category. See [evidence and competitor review](docs/EVIDENCE.md).
 
 Candidate buyer: payment operations teams at corridor PSPs or a corridor operator. Candidate product: subscription plus integration, priced after observing case volume and staff time. No customer interviews, willingness-to-pay, deployed partner pilot, savings estimate or market-share claim has been validated.
+
+## Pitfalls and next build priorities
+
+The [three-pass audit](docs/COMPETITION-AND-PITFALLS.md) reviews source claims and competition, domain/trust boundaries, then implementation and commercial delivery. Its highest-priority findings are:
+
+- **Evidence truth and real settlement:** a certificate or ledger entry cannot prove that a bank credited funds. Production requires authenticated rail reports, payment-reference binding and an idempotent execution/inquiry adapter. No cross-rail atomicity is claimed.
+- **Independent governance:** both generated credentials currently live on one laptop. Real deployment requires separate institutional custody, authenticated operators and agreed upgrade, exit and dispute authority.
+- **Liveness and conflicting reports:** two-party approval can stall. Held inbox conflicts are advisory and do not automatically freeze contract permissions. Partners must decide whether to introduce a governed on-ledger dispute state and how it is resolved.
+- **Operational scale:** workspace export is bounded at 1,000 records; full-workspace dossiers and local JSON bookkeeping need scoped pagination and transactional storage before a production service. The disclosed Drunix patches need a reproducible supported build.
+- **Competitive and commercial fit:** Swift and central workflow systems may already meet the buyer's need. Continue only if a partner confirms an unmet requirement and the integration/operating cost is justified.
+
+Keep the tested financial contract stable for the hackathon. Next prioritize partner qualification, authenticated ingress and operator access, protected durable adapter storage, and independent deployments. Add real execution only after scheme semantics and fault recovery are validated. A central database deployment remains a sensible alternative when joint ledger governance is unnecessary.
 
 **License:** Apache-2.0. No affiliation, endorsement or production approval from NPCI, Nexus or Swift is claimed.

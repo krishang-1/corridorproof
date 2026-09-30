@@ -65,3 +65,5 @@ Switch to the receiver's synthetic status inbox. Preview a PDNG report: it is he
 Show the case dossier and compare fresh Org1/Org2 snapshots. The dossier includes full workspace verification context. Its digest is a content checksum, not an independent block-inclusion proof. Adapter bookkeeping is local; accepted observations are recorded on Drunix. Real bank authentication and payment execution remain future integrations.
 
 The detailed market qualification and source links are in [MARKET-GAP.md](MARKET-GAP.md); the implemented adapter and endpoints are in [OPERATIONS.md](OPERATIONS.md).
+
+For the explicit Drunix use-case mapping, see the README. For the three-pass source, trust-boundary and delivery audit, including alternatives and go/no-go criteria, see [COMPETITION-AND-PITFALLS.md](COMPETITION-AND-PITFALLS.md).
