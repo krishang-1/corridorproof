@@ -1,5 +1,9 @@
 node_modules/
 .data/
+.data-live/
+__pycache__/
+*.pyc
+gateway-cli
 .env
 *.log
 *.exe

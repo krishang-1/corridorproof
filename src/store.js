@@ -33,6 +33,18 @@ export class Store {
     }
   }
   list() { return this.db.prepare('SELECT state FROM cases ORDER BY id').all().map(r => JSON.parse(r.state)); }
+  health() { return { status:'ok', ledger:'LOCAL_SIGNED_DEMO', settlement:'SIMULATED', drunixLive:false, authentication:'Simulated organization selector; localhost only' }; }
+  create(role, input) {
+    if (role !== 'SENDER') throw new PolicyError('ROLE_DENIED','Sender records the agreed synthetic quote');
+    const state = createCase(input.id, input.scenario, input.quote);
+    this.db.exec('BEGIN IMMEDIATE');
+    try {
+      if (this.db.prepare('SELECT id FROM cases WHERE id=?').get(state.id)) throw new PolicyError('CASE_EXISTS','Case ID already exists');
+      this.db.prepare('INSERT INTO cases VALUES (?, ?)').run(state.id, JSON.stringify(state));
+      const event = this.append(state.id, role, 'QUOTE_ACCEPTED', {quote:state.quote,initialState:state}, `create-${state.id}`);
+      this.db.exec('COMMIT'); return {ok:true,state,event};
+    } catch (e) { this.db.exec('ROLLBACK'); throw e; }
+  }
   get(id) { const row = this.db.prepare('SELECT state FROM cases WHERE id=?').get(id); if (!row) throw new PolicyError('NOT_FOUND','Case not found'); return JSON.parse(row.state); }
   command(id, role, input) {
     if (!ROLES.includes(role)) throw new PolicyError('INVALID_ROLE','Unknown organization');

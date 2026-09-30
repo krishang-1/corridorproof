@@ -55,7 +55,7 @@ func (c *Contract) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	fn, args := stub.GetFunctionAndParameters()
 	switch fn {
 	case "CreateCase":
-		if role != "SENDER" || len(args) != 2 || !identifier.MatchString(args[0]) {
+		if role != "SENDER" || (len(args) != 2 && len(args) != 3) || !identifier.MatchString(args[0]) {
 			return shim.Error("Sender, case ID and scenario required")
 		}
 		key := "case:" + args[0]
@@ -69,6 +69,12 @@ func (c *Contract) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		state, e := newCase(args[0], args[1])
 		if e != nil {
 			return shim.Error(e.Error())
+		}
+		if len(args) == 3 {
+			state, e = withQuote(state, []byte(args[2]))
+			if e != nil {
+				return shim.Error(e.Error())
+			}
 		}
 		body, _ := json.Marshal(state)
 		if e = stub.PutState(key, body); e != nil {
@@ -88,6 +94,48 @@ func (c *Contract) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		}
 		if body == nil {
 			return shim.Error("Case not found")
+		}
+		return shim.Success(body)
+	case "ReadWorkspace":
+		if len(args) != 0 {
+			return shim.Error("No arguments expected")
+		}
+		cases := []Case{}
+		iter, e := stub.GetStateByRange("case:", "case;")
+		if e != nil {
+			return shim.Error(e.Error())
+		}
+		defer iter.Close()
+		for iter.HasNext() {
+			row, e := iter.Next()
+			if e != nil {
+				return shim.Error(e.Error())
+			}
+			var state Case
+			if e = json.Unmarshal(row.Value, &state); e != nil {
+				return shim.Error(e.Error())
+			}
+			cases = append(cases, state)
+		}
+		events := []json.RawMessage{}
+		ei, e := stub.GetStateByPartialCompositeKey("evidence", []string{})
+		if e != nil {
+			return shim.Error(e.Error())
+		}
+		defer ei.Close()
+		for ei.HasNext() {
+			row, e := ei.Next()
+			if e != nil {
+				return shim.Error(e.Error())
+			}
+			events = append(events, json.RawMessage(row.Value))
+		}
+		body, e := json.Marshal(struct {
+			Cases  []Case            `json:"cases"`
+			Events []json.RawMessage `json:"events"`
+		}{cases, events})
+		if e != nil {
+			return shim.Error(e.Error())
 		}
 		return shim.Success(body)
 	case "Command":
@@ -175,6 +223,11 @@ func record(stub shim.ChaincodeStubInterface, id, role, kind string, payload jso
 	if e != nil {
 		return e
 	}
+	actor, e := cid.GetID(stub)
+	if e != nil {
+		return e
+	}
+	actorHash := sha256.Sum256([]byte(actor))
 	key, e := stub.CreateCompositeKey("evidence", []string{id, stub.GetTxID()})
 	if e != nil {
 		return e
@@ -185,8 +238,10 @@ func record(stub shim.ChaincodeStubInterface, id, role, kind string, payload jso
 		Type          string          `json:"type"`
 		TransactionID string          `json:"transactionId"`
 		Seconds       int64           `json:"seconds"`
+		Nanos         int32           `json:"nanos"`
+		ActorID       string          `json:"actorId"`
 		Payload       json.RawMessage `json:"payload"`
-	}{id, role, kind, stub.GetTxID(), timestamp.Seconds, payload})
+	}{id, role, kind, stub.GetTxID(), timestamp.Seconds, timestamp.Nanos, hex.EncodeToString(actorHash[:]), payload})
 	if e != nil {
 		return e
 	}

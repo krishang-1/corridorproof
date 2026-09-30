@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"regexp"
 )
 
 type Quote struct {
@@ -48,6 +49,23 @@ func newCase(id, scenario string) (Case, error) {
 		return Case{}, fail("INVALID_SCENARIO", "Unknown scenario")
 	}
 	return Case{ID: id, Scenario: scenario, Status: "PAYOUT_PENDING", Payout: "UNKNOWN", Quote: Quote{"SGD", 10000, "INR", 620000, 300, "Q-" + id, true}, Beneficiary: "Demo recipient •••• 2048", Votes: []string{}, Closure: []string{}, History: []string{}}, nil
+}
+func withQuote(state Case, raw []byte) (Case, error) {
+	var q Quote
+	var fields map[string]json.RawMessage
+	if e := json.Unmarshal(raw, &fields); e != nil || fields["feeMinor"] == nil || string(fields["feeMinor"]) == "null" {
+		return state, fail("INVALID_QUOTE", "Explicit non-negative fee required")
+	}
+	if e := json.Unmarshal(raw, &q); e != nil {
+		return state, fail("INVALID_QUOTE", "Invalid synthetic quote")
+	}
+	if q.SourceCurrency != "SGD" || q.DestinationCurrency != "INR" || !q.Synthetic ||
+		q.SourceMinor <= 0 || q.SourceMinor > 1000000000000 || q.RecipientMinor <= 0 || q.RecipientMinor > 1000000000000 ||
+		q.FeeMinor < 0 || q.FeeMinor > 1000000000000 || !regexp.MustCompile(`^[A-Za-z0-9_-]{1,102}$`).MatchString(q.QuoteID) {
+		return state, fail("INVALID_QUOTE", "Synthetic SGD/INR quote with valid integer amounts and reference required")
+	}
+	state.Quote = q
+	return state, nil
 }
 func transition(state Case, role, action string, payload json.RawMessage) (Case, error) {
 	if !contains([]string{"SENDER", "RECEIVER"}, role) {

@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Store } from './store.js';
+import { LiveStore } from './live-store.js';
 const root = fileURLToPath(new URL('../public/', import.meta.url));
 export function buildServer(store) {
   return createServer(async (req, res) => {
@@ -12,9 +13,11 @@ export function buildServer(store) {
     try {
       if (!/^(127\.0\.0\.1|localhost)(:\d+)?$/.test(req.headers.host || '')) return json({error:'Localhost host required'},403);
       const url = new URL(req.url, 'http://localhost');
-      if (req.method === 'GET' && url.pathname === '/api/health') return json({ status:'ok', ledger:'LOCAL_SIGNED_DEMO', settlement:'SIMULATED', drunixLive:false, authentication:'Simulated organization selector; localhost only' });
-      if (req.method === 'GET' && url.pathname === '/api/cases') return json(store.list());
-      if (req.method === 'GET' && url.pathname === '/api/evidence') return json(store.export());
+      const role = req.headers['x-operator-role'] || req.headers['x-demo-role'] || 'SENDER';
+      if (req.method === 'GET' && url.pathname === '/api/health') return json(await store.health());
+      if (req.method === 'GET' && url.pathname === '/api/cases') return json(await store.list(role));
+      if (req.method === 'GET' && url.pathname === '/api/evidence') return json(await store.export(role));
+      if (req.method === 'GET' && url.pathname === '/api/pending') return json(store.pending?await store.pending():[]);
       const match = url.pathname.match(/^\/api\/cases\/([A-Za-z0-9_-]+)\/commands$/);
       if (req.method === 'POST') {
         const origin = req.headers.origin;
@@ -22,8 +25,10 @@ export function buildServer(store) {
         if (req.headers['content-type']?.split(';')[0] !== 'application/json') return json({error:'JSON required'},415);
         let body = ''; for await (const chunk of req) { body += chunk; if (body.length > 1000000) return json({error:'Request too large'},413); }
         let input; try { input = JSON.parse(body); } catch { return json({error:'Malformed JSON'},400); }
-        if (match) { const result = store.command(match[1], req.headers['x-demo-role'], input); return json(result, result.ok ? 200 : 409); }
-        if (url.pathname === '/api/verify') return json(store.verify(input));
+        if (match) { const result = await store.command(match[1], role, input); return json(result, result.ok ? 200 : result.pending ? 202 : 409); }
+        if (url.pathname === '/api/cases') return json(await store.create(role,input),201);
+        if (url.pathname === '/api/reconcile' && store.reconcile) { const result=await store.reconcile(input.key);return json(result,result.pending?202:result.ok?200:409); }
+        if (url.pathname === '/api/verify') return json(await store.verify(input,role));
       }
       if (req.method !== 'GET' || url.pathname.startsWith('/api/')) return json({error:'Not found'},404);
       const path = resolve(root, '.' + (url.pathname === '/' ? '/index.html' : decodeURIComponent(url.pathname)));
@@ -31,12 +36,13 @@ export function buildServer(store) {
       const bytes = await readFile(path);
       const mime = {'.html':'text/html','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml'}[extname(path)] || 'application/octet-stream';
       res.writeHead(200,{'Content-Type':mime}); res.end(bytes);
-    } catch (e) { json({error:e.code || 'REQUEST_FAILED', message:e.code === 'ENOENT' ? 'Not found' : e.message}, e.code === 'ENOENT' || e.code === 'NOT_FOUND' ? 404 : 400); }
+    } catch (e) { json({error:e.code || 'REQUEST_FAILED', message:e.code === 'ENOENT' ? 'Not found' : e.message}, e.code === 'ENOENT' || e.code === 'NOT_FOUND' ? 404 : e.code==='GATEWAY_UNCERTAIN'?503:400); }
   });
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const store = new Store(resolve(process.env.CORRIDORPROOF_DATA || '.data')); store.seed();
+  const live=process.env.CORRIDORPROOF_LEDGER==='drunix';
+  const store = live ? new LiveStore(resolve(process.env.CORRIDORPROOF_DATA || '.data-live')) : new Store(resolve(process.env.CORRIDORPROOF_DATA || '.data')); if(!live)store.seed();
   const server = buildServer(store); const port = Number(process.env.PORT || 8787);
-  server.listen(port, '127.0.0.1', () => console.log(`CorridorProof http://127.0.0.1:${port} — LOCAL_SIGNED_DEMO · simulated payments`));
+  server.listen(port, '127.0.0.1', () => console.log(`CorridorProof http://127.0.0.1:${port} — ${live?'LIVE_DRUNIX_TEST_NETWORK':'LOCAL_SIGNED_DEMO'} · simulated payments`));
   process.on('SIGINT', () => server.close(() => { store.close(); process.exit(0); }));
 }

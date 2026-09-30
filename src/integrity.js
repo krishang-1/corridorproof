@@ -1,5 +1,5 @@
 import { createHash, createPublicKey, verify } from 'node:crypto';
-import { transition } from './policy.js';
+import { transition, createCase } from './policy.js';
 export function canonical(value) {
   if (value === null || typeof value !== 'object') return JSON.stringify(value);
   if (Array.isArray(value)) return '[' + value.map(canonical).join(',') + ']';
@@ -20,7 +20,7 @@ export function verifyExport(bundle, anchors = bundle.publicKeys) {
     previous = eventHash;
     try {
       if (body.type === 'QUOTE_ACCEPTED') {
-        if (body.role !== 'SYSTEM' || states.has(body.caseId) || !body.payload.initialState || body.payload.initialState.id !== body.caseId) throw new Error('Invalid genesis state');
+        if (!['SYSTEM','SENDER'].includes(body.role) || states.has(body.caseId) || !body.payload.initialState || body.payload.initialState.id !== body.caseId || canonical(body.payload.initialState)!==canonical(createCase(body.caseId,body.payload.initialState.scenario,body.payload.quote))) throw new Error('Invalid genesis state');
         states.set(body.caseId, structuredClone(body.payload.initialState));
       } else if (body.type !== 'COMMAND_REJECTED') {
         const current = states.get(body.caseId);

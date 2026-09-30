@@ -2,10 +2,17 @@ export const ROLES = ['SENDER', 'RECEIVER'];
 export class PolicyError extends Error { constructor(code, message) { super(message); this.code = code; } }
 const requireRule = (ok, code, message) => { if (!ok) throw new PolicyError(code, message); };
 const clone = value => structuredClone(value);
-export function createCase(id, scenario = 'timeout') {
+export function createCase(id, scenario = 'timeout', quoteInput) {
+  requireRule(typeof id === 'string' && /^[A-Za-z0-9_-]{1,100}$/.test(id), 'INVALID_CASE_ID', 'Use a case ID with letters, numbers, dash or underscore');
   requireRule(['timeout','shortfall','rejection'].includes(scenario), 'INVALID_SCENARIO', 'Unknown scenario');
+  const quote = quoteInput === undefined ? { sourceCurrency: 'SGD', sourceMinor: 10000, destinationCurrency: 'INR', recipientMinor: 620000, feeMinor: 300, quoteId: `Q-${id}`, synthetic: true } : clone(quoteInput);
+  requireRule(quote && quote.sourceCurrency === 'SGD' && quote.destinationCurrency === 'INR' && quote.synthetic === true,
+    'INVALID_QUOTE', 'This prototype accepts synthetic SGD to INR quotes only');
+  requireRule(['sourceMinor','recipientMinor','feeMinor'].every(k => Number.isSafeInteger(quote[k]) && quote[k] >= 0 && quote[k] <= 1000000000000)
+    && quote.sourceMinor > 0 && quote.recipientMinor > 0 && typeof quote.quoteId === 'string' && /^[A-Za-z0-9_-]{1,102}$/.test(quote.quoteId),
+    'INVALID_QUOTE', 'Supply positive principal and recipient amounts, a non-negative fee, and a valid quote reference');
   return { id, scenario, version: 0, status: 'PAYOUT_PENDING', payout: 'UNKNOWN', observedMinor: 0,
-    quote: { sourceCurrency: 'SGD', sourceMinor: 10000, destinationCurrency: 'INR', recipientMinor: 620000, feeMinor: 300, quoteId: `Q-${id}`, synthetic: true },
+    quote: { sourceCurrency:quote.sourceCurrency, sourceMinor:quote.sourceMinor, destinationCurrency:quote.destinationCurrency, recipientMinor:quote.recipientMinor, feeMinor:quote.feeMinor, quoteId:quote.quoteId, synthetic:true },
     beneficiary: 'Demo recipient •••• 2048', votes: [], closure: [], resolution: null, history: [] };
 }
 export function transition(current, role, action, payload = {}) {

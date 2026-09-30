@@ -1,0 +1,10 @@
+[
+ {"name":"valid synthetic quote","valid":true,"quote":{"sourceCurrency":"SGD","sourceMinor":25000,"destinationCurrency":"INR","recipientMinor":1550000,"feeMinor":0,"quoteId":"Q-CUSTOM","synthetic":true}},
+ {"name":"fractional principal","valid":false,"quote":{"sourceCurrency":"SGD","sourceMinor":1.5,"destinationCurrency":"INR","recipientMinor":620000,"feeMinor":300,"quoteId":"Q-BAD","synthetic":true}},
+ {"name":"wrong currency","valid":false,"quote":{"sourceCurrency":"USD","sourceMinor":10000,"destinationCurrency":"INR","recipientMinor":620000,"feeMinor":300,"quoteId":"Q-BAD","synthetic":true}},
+ {"name":"null fee","valid":false,"quote":{"sourceCurrency":"SGD","sourceMinor":10000,"destinationCurrency":"INR","recipientMinor":620000,"feeMinor":null,"quoteId":"Q-BAD","synthetic":true}},
+ {"name":"missing fee","valid":false,"quote":{"sourceCurrency":"SGD","sourceMinor":10000,"destinationCurrency":"INR","recipientMinor":620000,"quoteId":"Q-BAD","synthetic":true}},
+ {"name":"negative recipient","valid":false,"quote":{"sourceCurrency":"SGD","sourceMinor":10000,"destinationCurrency":"INR","recipientMinor":-1,"feeMinor":300,"quoteId":"Q-BAD","synthetic":true}},
+ {"name":"excessive amount","valid":false,"quote":{"sourceCurrency":"SGD","sourceMinor":1000000000001,"destinationCurrency":"INR","recipientMinor":620000,"feeMinor":300,"quoteId":"Q-BAD","synthetic":true}},
+ {"name":"real quote denied","valid":false,"quote":{"sourceCurrency":"SGD","sourceMinor":10000,"destinationCurrency":"INR","recipientMinor":620000,"feeMinor":300,"quoteId":"Q-BAD","synthetic":false}}
+]
