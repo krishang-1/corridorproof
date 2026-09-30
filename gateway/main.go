@@ -4,6 +4,7 @@ package main
 
 import (
 	"crypto/x509"
+	"encoding/json"
 	"fmt"
 	"github.com/hyperledger/fabric-gateway/pkg/client"
 	"github.com/hyperledger/fabric-gateway/pkg/hash"
@@ -76,7 +77,24 @@ func main() {
 	if os.Args[1] == "query" {
 		result, e = contract.EvaluateTransaction(os.Args[2], os.Args[3:]...)
 	} else {
-		result, e = contract.SubmitTransaction(os.Args[2], os.Args[3:]...)
+		var commit *client.Commit
+		result, commit, e = contract.SubmitAsync(os.Args[2], client.WithArguments(os.Args[3:]...))
+		if e == nil {
+			var status *client.Status
+			status, e = commit.Status()
+			if e == nil {
+				// Keep stdout as the chaincode result; stderr records the actual commit receipt.
+				_ = json.NewEncoder(os.Stderr).Encode(map[string]any{
+					"transactionId": status.TransactionID, "blockNumber": status.BlockNumber,
+					"validationCode": status.Code.String(), "successful": status.Successful,
+				})
+				if !status.Successful {
+					e = fmt.Errorf("transaction %s invalid: %s", status.TransactionID, status.Code)
+				}
+			} else {
+				fmt.Fprintln(os.Stderr, "Pending reconciliation transaction:", commit.TransactionID())
+			}
+		}
 	}
 	if e != nil {
 		fmt.Fprintln(os.Stderr, "Gateway failed; outcome may need transaction reconciliation. Do not infer rejection or retry money movement:", e)
