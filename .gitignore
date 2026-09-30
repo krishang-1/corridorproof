@@ -1,0 +1,14 @@
+node_modules/
+.data/
+.env
+*.log
+*.exe
+vendor/
+.cache/
+test-results/
+playwright-report/
+infra/drunix/
+**/organizations/peerOrganizations/
+**/organizations/ordererOrganizations/
+**/*_sk
+**/keystore/

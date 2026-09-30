@@ -1,0 +1,562 @@
+{
+  "schema": "corridorproof-evidence-v1",
+  "mode": "LOCAL_SIGNED_DEMO",
+  "exportedAt": "2026-09-30T03:02:39.659Z",
+  "publicKeys": {
+    "SYSTEM": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAnNNNlNCeGWbNkkqqg09zPQp7McIbnm3CCdflS62i0+M=\n-----END PUBLIC KEY-----\n",
+    "SENDER": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAH3rNNH+LusUfszJjGyGNuWvh7DDRxLnI0i6hU2FVz/g=\n-----END PUBLIC KEY-----\n",
+    "RECEIVER": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAZE4M168rEF5+HJgvMQ4XsOgOc4BSlBIAUeezZxGSAhI=\n-----END PUBLIC KEY-----\n"
+  },
+  "cases": [
+    {
+      "id": "CP-001",
+      "scenario": "timeout",
+      "version": 4,
+      "status": "CLOSED",
+      "payout": "CREDITED",
+      "observedMinor": 620000,
+      "quote": {
+        "sourceCurrency": "SGD",
+        "sourceMinor": 10000,
+        "destinationCurrency": "INR",
+        "recipientMinor": 620000,
+        "feeMinor": 300,
+        "quoteId": "Q-CP-001",
+        "synthetic": true
+      },
+      "beneficiary": "Demo recipient •••• 2048",
+      "votes": [],
+      "closure": [
+        "SENDER",
+        "RECEIVER"
+      ],
+      "resolution": null,
+      "history": []
+    },
+    {
+      "id": "CP-002",
+      "scenario": "shortfall",
+      "version": 6,
+      "status": "CLOSED",
+      "payout": "CREDITED",
+      "observedMinor": 620000,
+      "quote": {
+        "sourceCurrency": "SGD",
+        "sourceMinor": 10000,
+        "destinationCurrency": "INR",
+        "recipientMinor": 620000,
+        "feeMinor": 300,
+        "quoteId": "Q-CP-002",
+        "synthetic": true
+      },
+      "beneficiary": "Demo recipient •••• 2048",
+      "votes": [
+        "SENDER",
+        "RECEIVER"
+      ],
+      "closure": [
+        "SENDER",
+        "RECEIVER"
+      ],
+      "resolution": "CORRECTION",
+      "history": []
+    },
+    {
+      "id": "CP-003",
+      "scenario": "rejection",
+      "version": 6,
+      "status": "CLOSED",
+      "payout": "REJECTED",
+      "observedMinor": 0,
+      "quote": {
+        "sourceCurrency": "SGD",
+        "sourceMinor": 10000,
+        "destinationCurrency": "INR",
+        "recipientMinor": 620000,
+        "feeMinor": 300,
+        "quoteId": "Q-CP-003",
+        "synthetic": true
+      },
+      "beneficiary": "Demo recipient •••• 2048",
+      "votes": [
+        "SENDER",
+        "RECEIVER"
+      ],
+      "closure": [
+        "SENDER",
+        "RECEIVER"
+      ],
+      "resolution": "REFUND",
+      "history": []
+    }
+  ],
+  "events": [
+    {
+      "sequence": 1,
+      "previousHash": "GENESIS",
+      "caseId": "CP-001",
+      "role": "SYSTEM",
+      "type": "QUOTE_ACCEPTED",
+      "payload": {
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-CP-001",
+          "synthetic": true
+        },
+        "initialState": {
+          "id": "CP-001",
+          "scenario": "timeout",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-001",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        }
+      },
+      "requestId": "seed-CP-001",
+      "timestamp": "2026-09-30T03:02:39.623Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "7519ce131c14d9582bb551366a225b2ce39b4da95f43200568a4b27c0d7721b6",
+      "signature": "wc+WD1HIcDTdp47mllIOdye7Dm2kLz34S0YCFUSdlb8VQAVCAQx16cK9KNKEAxe5eHDj43miDpFlYGW2EN5fCg=="
+    },
+    {
+      "sequence": 2,
+      "previousHash": "7519ce131c14d9582bb551366a225b2ce39b4da95f43200568a4b27c0d7721b6",
+      "caseId": "CP-002",
+      "role": "SYSTEM",
+      "type": "QUOTE_ACCEPTED",
+      "payload": {
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-CP-002",
+          "synthetic": true
+        },
+        "initialState": {
+          "id": "CP-002",
+          "scenario": "shortfall",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-002",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        }
+      },
+      "requestId": "seed-CP-002",
+      "timestamp": "2026-09-30T03:02:39.627Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "5de519ca4926398dc54403a5e60744eae9fe4cdc60ef24816a5db6176e2a8a9c",
+      "signature": "mOsQobI+8ubCuKm5J9B9pfmQSvF9vRQIHsa4ObkeG/80LRs5AbGAE3LgSxaTz9Hl9WytE1mt2AQQR6INSxUMDQ=="
+    },
+    {
+      "sequence": 3,
+      "previousHash": "5de519ca4926398dc54403a5e60744eae9fe4cdc60ef24816a5db6176e2a8a9c",
+      "caseId": "CP-003",
+      "role": "SYSTEM",
+      "type": "QUOTE_ACCEPTED",
+      "payload": {
+        "quote": {
+          "sourceCurrency": "SGD",
+          "sourceMinor": 10000,
+          "destinationCurrency": "INR",
+          "recipientMinor": 620000,
+          "feeMinor": 300,
+          "quoteId": "Q-CP-003",
+          "synthetic": true
+        },
+        "initialState": {
+          "id": "CP-003",
+          "scenario": "rejection",
+          "version": 0,
+          "status": "PAYOUT_PENDING",
+          "payout": "UNKNOWN",
+          "observedMinor": 0,
+          "quote": {
+            "sourceCurrency": "SGD",
+            "sourceMinor": 10000,
+            "destinationCurrency": "INR",
+            "recipientMinor": 620000,
+            "feeMinor": 300,
+            "quoteId": "Q-CP-003",
+            "synthetic": true
+          },
+          "beneficiary": "Demo recipient •••• 2048",
+          "votes": [],
+          "closure": [],
+          "resolution": null,
+          "history": []
+        }
+      },
+      "requestId": "seed-CP-003",
+      "timestamp": "2026-09-30T03:02:39.628Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "325030581ee28f013b1175658b638b6eab80eddd14ff342498a2441c7fac99a9",
+      "signature": "tg3x9fq0g8k8VRyGpXVebjbENzze1AdNjrOzoL2YjY44zjpvM3tdnXCjER0tlUYU2v5hZv/VvwSG0z/BDcHcBw=="
+    },
+    {
+      "sequence": 4,
+      "previousHash": "325030581ee28f013b1175658b638b6eab80eddd14ff342498a2441c7fac99a9",
+      "caseId": "CP-001",
+      "role": "SENDER",
+      "type": "OBSERVE_TIMEOUT",
+      "payload": {
+        "beforeVersion": 0,
+        "afterVersion": 1,
+        "railEvidence": {
+          "synthetic": true,
+          "reference": "MOCK-demo-check-1",
+          "status": "UNKNOWN",
+          "currency": "INR",
+          "amountMinor": 0
+        }
+      },
+      "requestId": "demo-check-1",
+      "timestamp": "2026-09-30T03:02:39.632Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "f3fa8396d86a5586b613762549d20a29f7e7916052ca366960a3584cd33880b2",
+      "signature": "1ZP8sJOgWWD2MDGkK7TYRwQcebRHg47VIgKFClQXfGta3Qou9mlqUBtZuTDDY0GcFqEW+TbRmbgBvjazF18wBA=="
+    },
+    {
+      "sequence": 5,
+      "previousHash": "f3fa8396d86a5586b613762549d20a29f7e7916052ca366960a3584cd33880b2",
+      "caseId": "CP-001",
+      "role": "SENDER",
+      "type": "COMMAND_REJECTED",
+      "payload": {
+        "action": "APPROVE_REFUND",
+        "code": "UNKNOWN_OR_UNSAFE",
+        "reason": "Refund requires definitive rejection; timeout or compliance block is insufficient",
+        "expectedVersion": 1,
+        "currentVersion": 1
+      },
+      "requestId": "demo-check-2",
+      "timestamp": "2026-09-30T03:02:39.634Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "a7f0e2176012d06977b03d564b8cef82eb50a14e9a3e45c2cc5271fab5cff404",
+      "signature": "ple2hi5EF5mB7FJ9q0ShVoE49V3unB/j45MSDgWKC5ykANjs9Z/6veDeCzfK1NeUUHbZVrB/eW3+e1Q2c0hQCA=="
+    },
+    {
+      "sequence": 6,
+      "previousHash": "a7f0e2176012d06977b03d564b8cef82eb50a14e9a3e45c2cc5271fab5cff404",
+      "caseId": "CP-001",
+      "role": "RECEIVER",
+      "type": "OBSERVE_CREDIT",
+      "payload": {
+        "amountMinor": 620000,
+        "beforeVersion": 1,
+        "afterVersion": 2,
+        "railEvidence": {
+          "synthetic": true,
+          "reference": "MOCK-demo-check-3",
+          "status": "CREDITED",
+          "currency": "INR",
+          "amountMinor": 620000
+        }
+      },
+      "requestId": "demo-check-3",
+      "timestamp": "2026-09-30T03:02:39.635Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "547d7d9fe86d851a49e81abbcfa782c101ff00f9c80bf0bf056937b96e9d8725",
+      "signature": "kEuaTsa/80xOKA0NHrtg0UGgUvIUjRdKGNp8L12G+K7vsDvlAGb+MzirfnglEg2xT58zyPLHnxVBytH3JTgxDQ=="
+    },
+    {
+      "sequence": 7,
+      "previousHash": "547d7d9fe86d851a49e81abbcfa782c101ff00f9c80bf0bf056937b96e9d8725",
+      "caseId": "CP-002",
+      "role": "RECEIVER",
+      "type": "OBSERVE_CREDIT",
+      "payload": {
+        "amountMinor": 608000,
+        "beforeVersion": 0,
+        "afterVersion": 1,
+        "railEvidence": {
+          "synthetic": true,
+          "reference": "MOCK-demo-check-4",
+          "status": "CREDITED",
+          "currency": "INR",
+          "amountMinor": 608000
+        }
+      },
+      "requestId": "demo-check-4",
+      "timestamp": "2026-09-30T03:02:39.638Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "acf45f829b8945dbdf7fa58cff0dae52d3d54a6bfe5ac7a5e15f25239c664a8d",
+      "signature": "+xyBSpBxvtAuuDKQJCjCQ2al0h+gESXaLzrPbYOcu+FYMDMOkO8cLUgOx6aE5hCL9ud1jTbJWGJT7ZXavGrdBg=="
+    },
+    {
+      "sequence": 8,
+      "previousHash": "acf45f829b8945dbdf7fa58cff0dae52d3d54a6bfe5ac7a5e15f25239c664a8d",
+      "caseId": "CP-002",
+      "role": "SENDER",
+      "type": "APPROVE_CORRECTION",
+      "payload": {
+        "beforeVersion": 1,
+        "afterVersion": 2,
+        "railEvidence": null
+      },
+      "requestId": "demo-check-5",
+      "timestamp": "2026-09-30T03:02:39.640Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "c878942f09fb69a0b637d04d1a748c21933aa87f3942a593d717bb444da914e5",
+      "signature": "I0BkOHmKAxF5zhzP1179rmphX32PF+u+CmapdnRO5USibZoUc4epSDekn8mLhm4fVdIqGEFgEOhQ2IakmhZdAg=="
+    },
+    {
+      "sequence": 9,
+      "previousHash": "c878942f09fb69a0b637d04d1a748c21933aa87f3942a593d717bb444da914e5",
+      "caseId": "CP-002",
+      "role": "RECEIVER",
+      "type": "APPROVE_CORRECTION",
+      "payload": {
+        "beforeVersion": 2,
+        "afterVersion": 3,
+        "railEvidence": null
+      },
+      "requestId": "demo-check-6",
+      "timestamp": "2026-09-30T03:02:39.641Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "25b4955ba2a99527aa15bbea71e4662a1aabfe21e3502ae0adba2b0c58183884",
+      "signature": "n2Gz+W0aIjzLDRbKQAdDY9gPeRWcd5CUqbk1ZwzypG5y0AEROIBqOBvg/L+7OFK1FibGBk3UMK51zJKgzEfFDg=="
+    },
+    {
+      "sequence": 10,
+      "previousHash": "25b4955ba2a99527aa15bbea71e4662a1aabfe21e3502ae0adba2b0c58183884",
+      "caseId": "CP-002",
+      "role": "RECEIVER",
+      "type": "EXECUTE_CORRECTION",
+      "payload": {
+        "beforeVersion": 3,
+        "afterVersion": 4,
+        "railEvidence": {
+          "synthetic": true,
+          "reference": "MOCK-demo-check-7",
+          "currency": "INR",
+          "amountMinor": 12000,
+          "status": "CREDITED"
+        }
+      },
+      "requestId": "demo-check-7",
+      "timestamp": "2026-09-30T03:02:39.643Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "a638192d21e5b22ae2caeee648999d7532270f3695f9ea225f9c35fbc273a58e",
+      "signature": "0MqnxKrDNK+FCYkmaMqjRS1OchKTIkHU0Nl84bptCTEXDQdeqPrJE0i8TXC196Yv/co0vc7BMPosSF0jzxLYAQ=="
+    },
+    {
+      "sequence": 11,
+      "previousHash": "a638192d21e5b22ae2caeee648999d7532270f3695f9ea225f9c35fbc273a58e",
+      "caseId": "CP-003",
+      "role": "RECEIVER",
+      "type": "OBSERVE_REJECTION",
+      "payload": {
+        "beforeVersion": 0,
+        "afterVersion": 1,
+        "railEvidence": {
+          "synthetic": true,
+          "reference": "MOCK-demo-check-8",
+          "status": "REJECTED",
+          "currency": "INR",
+          "amountMinor": 0
+        }
+      },
+      "requestId": "demo-check-8",
+      "timestamp": "2026-09-30T03:02:39.644Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "1e487f16acdfea2b465d97634518100751b80d90403c6dbc5a46f42da2b0201c",
+      "signature": "+SeyB64uMW4tXAyPUo3vfHa1Nx0MT8womcsrPMwVccODYvfglLuOTSIiwcOByGs3tPziGQ9XjBs+dewFF1wvAA=="
+    },
+    {
+      "sequence": 12,
+      "previousHash": "1e487f16acdfea2b465d97634518100751b80d90403c6dbc5a46f42da2b0201c",
+      "caseId": "CP-003",
+      "role": "SENDER",
+      "type": "APPROVE_REFUND",
+      "payload": {
+        "beforeVersion": 1,
+        "afterVersion": 2,
+        "railEvidence": null
+      },
+      "requestId": "demo-check-9",
+      "timestamp": "2026-09-30T03:02:39.645Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "f232affd5b2c6c55328914bc032d1d610cef31a9e9ecff8fa97c0de57bccb6c0",
+      "signature": "z1tv/ZibToETZVfJOo9FTXrjRT5clhtFtOtXYLH7CMXHUUOro6K41S3BdBNhwn66QfvdHI6RW+hmbZ9/ltUQDA=="
+    },
+    {
+      "sequence": 13,
+      "previousHash": "f232affd5b2c6c55328914bc032d1d610cef31a9e9ecff8fa97c0de57bccb6c0",
+      "caseId": "CP-003",
+      "role": "RECEIVER",
+      "type": "APPROVE_REFUND",
+      "payload": {
+        "beforeVersion": 2,
+        "afterVersion": 3,
+        "railEvidence": null
+      },
+      "requestId": "demo-check-10",
+      "timestamp": "2026-09-30T03:02:39.647Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "691d780ff9db208803205c6e4722cffced5f9d0be69b3e0cb360fdfcbc2a2d7c",
+      "signature": "VYmK51kdGUNRyAHlqNJkgDUz1kHBoQ7CR7+Hnt+8s4FHUgEsDEoHHwLKjGeWZIrAtXPZG4BW3v7UFP69wxIyBw=="
+    },
+    {
+      "sequence": 14,
+      "previousHash": "691d780ff9db208803205c6e4722cffced5f9d0be69b3e0cb360fdfcbc2a2d7c",
+      "caseId": "CP-003",
+      "role": "SENDER",
+      "type": "EXECUTE_REFUND",
+      "payload": {
+        "beforeVersion": 3,
+        "afterVersion": 4,
+        "railEvidence": {
+          "synthetic": true,
+          "reference": "MOCK-demo-check-11",
+          "currency": "SGD",
+          "amountMinor": 10000,
+          "status": "REFUNDED",
+          "feeTreatment": "Principal only; source fee treatment requires partner policy"
+        }
+      },
+      "requestId": "demo-check-11",
+      "timestamp": "2026-09-30T03:02:39.649Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "3a2f531282f3add87828ae2f4bd0b93d718903f40190b9fb82093cb107e258c4",
+      "signature": "0SONPbpVjcEsHmiUZPdbmpMFSpxG2Ft7VkHIfnZVCCwdhm8zSRkaoyS7h4VvITGH/iXUpyv8oUwX4ZsWzAlHBw=="
+    },
+    {
+      "sequence": 15,
+      "previousHash": "3a2f531282f3add87828ae2f4bd0b93d718903f40190b9fb82093cb107e258c4",
+      "caseId": "CP-001",
+      "role": "SENDER",
+      "type": "ACK_CLOSE",
+      "payload": {
+        "beforeVersion": 2,
+        "afterVersion": 3,
+        "railEvidence": null
+      },
+      "requestId": "demo-check-12",
+      "timestamp": "2026-09-30T03:02:39.650Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "e9dd09a3317d04cd9d1202f7a712c6ea452225090f1dc31d42f854acf311561a",
+      "signature": "Rsq6Uql4nJoZkcgQC/sXZmRkg3ZozVNANlGQSaRzd3BTyhc4uuLDY3PuuTAhcy0mfQJhHTfRUbE104FiKPrgCw=="
+    },
+    {
+      "sequence": 16,
+      "previousHash": "e9dd09a3317d04cd9d1202f7a712c6ea452225090f1dc31d42f854acf311561a",
+      "caseId": "CP-001",
+      "role": "RECEIVER",
+      "type": "ACK_CLOSE",
+      "payload": {
+        "beforeVersion": 3,
+        "afterVersion": 4,
+        "railEvidence": null
+      },
+      "requestId": "demo-check-13",
+      "timestamp": "2026-09-30T03:02:39.651Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "22691c411d18239f2e0877b4bfb7f9a675b08297c1ef5af93ce62411b122b0ed",
+      "signature": "yyfNsSpuJlIxMcxA4sipsvODX62kNcSVJeYH9wsfhMizFsJKNl82Ts19kReW9SG+77sbw3FP6czpvxm6906oAQ=="
+    },
+    {
+      "sequence": 17,
+      "previousHash": "22691c411d18239f2e0877b4bfb7f9a675b08297c1ef5af93ce62411b122b0ed",
+      "caseId": "CP-002",
+      "role": "SENDER",
+      "type": "ACK_CLOSE",
+      "payload": {
+        "beforeVersion": 4,
+        "afterVersion": 5,
+        "railEvidence": null
+      },
+      "requestId": "demo-check-14",
+      "timestamp": "2026-09-30T03:02:39.653Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "d5b754e68ad09aee7413362abe2e724410e955a3ab69326336cbc289443842a9",
+      "signature": "5tNh8Ld4+D1z1I6b8hWTO9VNSmHHiwG7GhojgjCpQ0bW+GjfYahcclkohOQoxBIY5XyeZXYhvwJXFfw6XqVeCQ=="
+    },
+    {
+      "sequence": 18,
+      "previousHash": "d5b754e68ad09aee7413362abe2e724410e955a3ab69326336cbc289443842a9",
+      "caseId": "CP-002",
+      "role": "RECEIVER",
+      "type": "ACK_CLOSE",
+      "payload": {
+        "beforeVersion": 5,
+        "afterVersion": 6,
+        "railEvidence": null
+      },
+      "requestId": "demo-check-15",
+      "timestamp": "2026-09-30T03:02:39.654Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "cff768606b6127d6c4747a7343ae4475d9e697b299b3fb953aa8e18d415b6401",
+      "signature": "uqYyESIveQLih7ADnJuayJc5F8kcLDAdj/HFIysvkIvWtN5vf27te1VHMIKPcW/MScDu8u8FogaVP06WGj6+Bg=="
+    },
+    {
+      "sequence": 19,
+      "previousHash": "cff768606b6127d6c4747a7343ae4475d9e697b299b3fb953aa8e18d415b6401",
+      "caseId": "CP-003",
+      "role": "SENDER",
+      "type": "ACK_CLOSE",
+      "payload": {
+        "beforeVersion": 4,
+        "afterVersion": 5,
+        "railEvidence": null
+      },
+      "requestId": "demo-check-16",
+      "timestamp": "2026-09-30T03:02:39.655Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "e7ecae5beb494ab3c3df5604bf76fa9aa58f2caa26570cab9139ad16ca7ed400",
+      "signature": "7h9FPpQmKzarXdDRbw81IHzDsTVmdOLWYHdHDHwj9/Kt+IXB4jQvC6pANHXuwc1wDxZjbwu4u8fMidf9xKmnBA=="
+    },
+    {
+      "sequence": 20,
+      "previousHash": "e7ecae5beb494ab3c3df5604bf76fa9aa58f2caa26570cab9139ad16ca7ed400",
+      "caseId": "CP-003",
+      "role": "RECEIVER",
+      "type": "ACK_CLOSE",
+      "payload": {
+        "beforeVersion": 5,
+        "afterVersion": 6,
+        "railEvidence": null
+      },
+      "requestId": "demo-check-17",
+      "timestamp": "2026-09-30T03:02:39.657Z",
+      "mode": "LOCAL_SIGNED_DEMO",
+      "eventHash": "18ec651899d93ac3ba32a21c5ad6f170add9e57653bdfe0e4fbb4ac841fad174",
+      "signature": "a/+SgVfhkh11oEF+46Af+Zbq3QQHO9kpt83Ik4QA8HXEu2G8oGW258zrq5QDAI8wnhPl+0mEiceYuSLTV3FtBg=="
+    }
+  ],
+  "head": "18ec651899d93ac3ba32a21c5ad6f170add9e57653bdfe0e4fbb4ac841fad174",
+  "caveat": "Synthetic rail evidence. Local server holds all demo signing keys. Pin public keys and a previously witnessed chain head independently to establish provenance and completeness."
+}

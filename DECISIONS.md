@@ -1,0 +1,14 @@
+# Architecture decisions
+
+1. **Exception operations is the core product.** Choose missing status, recipient shortfall and rejection/refund as demo scenarios. Reject a new FX marketplace and atomic cross-rail settlement. Our audited source supports manual exception coordination, and we can demonstrate safe resolution.
+2. **Two organizations, one corridor.** Org1 represents sender operations and Org2 receiver operations. Avoid five production-role organizations tonight. Local keys simulate roles; real independence requires separate nodes/credentials.
+3. **Node.js 24 and browser-native UI.** Choose built-in SQLite, HTTP, crypto and tests to avoid native package installation and frontend build dependencies. Reject a microservice cluster/React toolchain for this small app. UI quality depends on layout and workflows, not a framework.
+4. **Go chaincode.** Choose the official sample's language and Fabric shim interfaces. Reject reliance on undocumented language paths. Share conformance fixtures with the local policy implementation to detect drift.
+5. **Explicit local fallback.** Docker/WSL service access is initially unavailable in this session. Keep a functional signed journal while preparing and testing chaincode. Never label local hashes as live Drunix or count two local keys as independent governance.
+6. **Unknown is a first-class status.** A timeout gives insufficient information to refund safely. Keep the case open and reconcile authoritative status. A late successful credit must not cause a second payout/refund.
+7. **Both organizations acknowledge financial resolution.** Require two approvals before correction/refund and final closure. Ordinary evidence submission does not require a counterparty to agree it was submitted. Escalation must remain available if a party refuses to cooperate.
+8. **Integer currency amounts.** Store minor units and compare INR to INR. Do not use floating-point balances or subtract SGD from INR. The FX quote is synthetic and immutable after acceptance.
+9. **Append-only evidence with signatures.** SQLite transactions persist records and state together. Ed25519/SHA-256 provide attributable integrity. A trusted database can implement this; Drunix is justified by jointly governed changes among independent operators.
+10. **No LLM in the money decision.** Rule-based exception routing is enough for P0. AI summaries may come later, but never generate evidence or approve financial actions.
+11. **Local-first demo, public source.** Keep runtime keys and data ignored. Prepare a clean-clone run, CI, adapter boundaries and explicit API documentation before publishing. No NPCI sandbox endpoint is invented.
+12. **Claims follow measured results.** Source evidence establishes a problem; mock tests establish bounded software behavior; a partner pilot establishes operational savings. Keep those claims distinct in the deck.
