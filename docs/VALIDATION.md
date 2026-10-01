@@ -4,7 +4,7 @@ Baseline 30 September 2026; overnight campaign added 1 October 2026 IST. All liv
 
 | Gate | Observed result |
 | --- | --- |
-| Node policy, journal, HTTP and live adapter | 28 tests passed, covering shared policy conformance, local integrity, role/origin contract, persisted uncertain requests and overnight input/storage/recovery regressions. |
+| Node policy, journal, HTTP and live adapter | 29 tests passed, covering shared policy conformance, local integrity, role/origin contract, persisted uncertain requests and overnight input/storage/recovery regressions. |
 | Go chaincode | Shared scenarios, mock-stub authorization, durable denials, idempotency and bounded pagination tests passed. |
 | Gateway | Windows and Linux builds passed; certificate-bound TLS submissions await VALID commit. |
 | Original live CLI | Five scenarios, replay and sequential stale-version checks: 46 VALID receipts. Both organizations read matching state. `submission/drunix-live-evidence.json`. |
@@ -86,3 +86,11 @@ Across the 72 refresh-endpoint requests at maximum concurrency twelve, p50 was 9
 `node scripts/live-read-diagnostics.js` samples four sequential read-only organization comparisons and records HTTP status, error classification, counts and digests before judging success. It omits raw gateway diagnostics/private runtime paths. Optional `CP_READ_OUTPUT` saves the inspected result. The existing live smoke also includes these comparison classifications in a failed assertion. These changes improve future failure evidence; they cannot reconstruct the discarded earlier response.
 
 The recorded four comparisons all returned HTTP 200 and matching digests at 137 events, with zero retries and no writes/restarts. Individual elapsed times were 8,861.83, 3,794.75, 1,604.41 and 1,433.05 ms. Four observations are insufficient to estimate a tail SLA or attribute the variability to caching, resource pressure or network behavior. See `submission/live-read-diagnostics-20261001.json`; the earlier transient failure remains unexplained.
+
+## Post-commit result-storage boundary, 1 October 2026
+
+The added storage regression injects a real temporary-file write obstruction **after** the command is recorded, rather than before preparation or by dropping a gateway acknowledgment. Twelve isolated variants cover local inbox, simulated live inbox and simulated live request-record persistence; each profile has accepted and stale-version-denied commands with short timing variation.
+
+Each first call fails while the persisted inbox retains the original version-zero PREPARED command. Another simulated actor advances the ledger case. After removing the obstruction and restarting the relevant adapters, replay retrieves the original accepted/denied result without changing that later case state or signed journal head. Repeating the report remains idempotent. All twelve variants and the full 29-test Node suite passed. The fixture did not restart live Drunix, touch live bookkeeping or introduce financial permission changes; no new defect was reproduced.
+
+This closes the modeled post-commit file-write interruption gap. It does not test an OS/power crash during rename, storage-device durability, missing-file restoration or distributed transactions. Remaining large-queue browser checks are still blocked by browser-control timeouts. Completed profiles should not be repeated merely to inflate campaign counts.

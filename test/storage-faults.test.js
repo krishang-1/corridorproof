@@ -46,3 +46,36 @@ test('legacy inbox versions remain compatible while changed command bindings fai
     assert.throws(()=>new StatusInbox(dir),e=>e.code==='ADAPTER_STATE_INVALID');assert.equal(readFileSync(inbox.file,'utf8'),text);
   }
 });
+
+test('post-commit result-write failures recover accepted and denied commands without duplicate events',async t=>{
+  for(const profile of ['LOCAL_INBOX','LIVE_INBOX','LIVE_REQUESTS'])for(let variant=0;variant<4;variant++){
+    let store;const dir=directory(t,()=>store?.close());store=new Store(dir);store.seed();
+    const adapterDir=join(dir,'adapter'),input={messageId:`result-fault-${profile}-${variant}`,caseId:'CP-001',quoteId:'Q-CP-001',statusCode:'ACCC',currency:'INR',amountMinor:620000,source:'SYNTHETIC_RECEIVER',synthetic:true};
+    const denied=variant%2===1,blocker=join(adapterDir,profile==='LIVE_REQUESTS'?'requests.json.tmp':'status-inbox.json.tmp');let inject=true;
+    const execute=async(id,role,command)=>{
+      await new Promise(r=>setTimeout(r,variant%3));
+      if(inject&&denied)store.command(id,'SENDER',{requestId:`intervening-timeout-${profile}-${variant}`,expectedVersion:0,action:'OBSERVE_TIMEOUT'});
+      const result=store.command(id,role,command);
+      if(inject&&profile==='LIVE_REQUESTS'){inject=false;mkdirSync(blocker);}
+      return result;
+    };
+    const runner=async request=>request.method==='query'?{ok:true,result:{cases:store.list(),events:[]}}:{ok:true,result:await execute(request.args[0],request.role,JSON.parse(request.args[1])),receipt:{successful:true,validationCode:'VALID',transactionId:`synthetic-result-${variant}`}};
+    let live=profile==='LOCAL_INBOX'?null:new LiveStore(adapterDir,runner);
+    let inbox=new StatusInbox(adapterDir);
+    const adapter={list:async()=>store.list(),command:async(...args)=>{
+      const result=live?await live.command(...args):await execute(...args);
+      if(inject){inject=false;mkdirSync(blocker);}return result;
+    }};
+    await assert.rejects(()=>inbox.apply(adapter,'RECEIVER',input));
+    const original=JSON.parse(readFileSync(inbox.file,'utf8'))[input.messageId];assert.equal(original.status,'PREPARED');assert.equal(original.command.expectedVersion,0);
+    const current=store.get('CP-001');assert.equal(current.version,1);assert.equal(current.payout,denied?'UNKNOWN':'CREDITED');
+    // Another actor advances the case after the result was lost locally.
+    assert.equal(store.command('CP-001',denied?'RECEIVER':'SENDER',{requestId:`later-command-${profile}-${variant}`,expectedVersion:1,action:denied?'OBSERVE_CREDIT':'ACK_CLOSE',payload:{amountMinor:620000}}).ok,true);
+    const before=store.export(),state=store.get('CP-001');rmSync(blocker,{recursive:true});
+    if(live)live=new LiveStore(adapterDir,runner);inbox=new StatusInbox(adapterDir);
+    const recovered=await inbox.apply(adapter,'RECEIVER',input);
+    assert.equal(recovered.ok,!denied);if(denied)assert.equal(recovered.code,'STALE_VERSION');assert.equal(recovered.replay,true);
+    assert.deepEqual(store.get('CP-001'),state);assert.equal(store.export().head,before.head);
+    const replay=await new StatusInbox(adapterDir).apply(adapter,'RECEIVER',input);assert.equal(replay.ok,!denied);assert.equal(store.export().head,before.head);assert.equal(store.verify(store.export()).valid,true);
+  }
+});
