@@ -1,0 +1,60 @@
+{
+  "schema": "corridorproof-browser-queue-check-v1",
+  "passed": true,
+  "checkedAt": "2026-10-01T05:44:26.957Z",
+  "mode": "ISOLATED_LOCAL_SIMULATION",
+  "cases": 120,
+  "open": 90,
+  "closed": 30,
+  "manualReview": 30,
+  "heldReports": 120,
+  "journalEvents": 270,
+  "longCaseIdLength": 100,
+  "before": {
+    "viewportWidth": 390,
+    "pageScrollWidth": 564,
+    "wideQueueClientWidth": 244,
+    "wideQueueScrollWidth": 660
+  },
+  "after": [
+    {
+      "viewportWidth": 320,
+      "pageScrollWidth": 305,
+      "queueClientWidth": 233,
+      "queueScrollWidth": 233,
+      "panelClientWidth": 263,
+      "panelScrollWidth": 263
+    },
+    {
+      "viewportWidth": 390,
+      "pageScrollWidth": 375,
+      "queueClientWidth": 288,
+      "queueScrollWidth": 288,
+      "panelClientWidth": 333,
+      "panelScrollWidth": 333
+    },
+    {
+      "viewportWidth": 1280,
+      "pageScrollWidth": 1265,
+      "queueClientWidth": 244,
+      "queueScrollWidth": 244,
+      "panelClientWidth": 665,
+      "panelScrollWidth": 665
+    }
+  ],
+  "checks": {
+    "longReferenceWrapping": true,
+    "filters": true,
+    "caseSelection": true,
+    "receiverRoleSwitch": true,
+    "selectionRetainedAfterRefresh": true,
+    "viewportOverrideReset": true,
+    "journalHeadUnchanged": true,
+    "exportVerified": true
+  },
+  "screenshots": [
+    "browser-queue-narrow-20261001.jpg",
+    "browser-queue-wide-20261001.jpg"
+  ],
+  "caveat": "Manual browser acceptance through the supported browser controller on an isolated synthetic fixture. No measured click-to-paint latency, automated browser CI regression, real payment integration or live Drunix load. Tables retain intentional internal horizontal scrolling."
+}

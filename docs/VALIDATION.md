@@ -94,3 +94,19 @@ The added storage regression injects a real temporary-file write obstruction **a
 Each first call fails while the persisted inbox retains the original version-zero PREPARED command. Another simulated actor advances the ledger case. After removing the obstruction and restarting the relevant adapters, replay retrieves the original accepted/denied result without changing that later case state or signed journal head. Repeating the report remains idempotent. All twelve variants and the full 29-test Node suite passed. The fixture did not restart live Drunix, touch live bookkeeping or introduce financial permission changes; no new defect was reproduced.
 
 This closes the modeled post-commit file-write interruption gap. It does not test an OS/power crash during rename, storage-device durability, missing-file restoration or distributed transactions. Remaining large-queue browser checks are still blocked by browser-control timeouts. Completed profiles should not be repeated merely to inflate campaign counts.
+
+## Browser queue acceptance and wrapping repair, 1 October 2026
+
+Browser control became available on the next scheduled check. The isolated browser fixture contains 120 cases, 90 open / 30 closed / 30 manual-review cases, 120 held reports and 270 signed events. One case uses the maximum valid 100-character reference, with its 102-character quote reference. This reproduced a real layout defect: the wide queue had 660 px of content in a 244 px container, and the 390 px viewport had 564 px of page width. Long identifiers in the case title and status-inbox heading failed to wrap; stacked queue cards also retained a horizontal margin.
+
+The CSS repair wraps case/reference text, permits the flex title to shrink while preserving its version label, and removes the extra margin on stacked cards. Visual inspection and DOM geometry checks passed after reload:
+
+| Viewport width | Page scroll width | Queue client / scroll width | Selected panel client / scroll width |
+| --- | --- | --- | --- |
+| 320 px | 305 px | 233 / 233 px | 263 / 263 px |
+| 390 px | 375 px | 288 / 288 px | 333 / 333 px |
+| 1280 px | 1265 px | 244 / 244 px | 665 / 665 px |
+
+The 15 px difference between viewport and page width is the vertical scrollbar. No page, queue or selected-panel horizontal overflow remained. Operations/evidence tables retain intentional internal scrolling. Manual/closed/open filters returned 30/30/90 cases, long-ID search returned one case, receiver role switching displayed the correct correction action, and refresh retained the selected shortfall case. The journal head was unchanged and the 270-event export verified. Temporary viewport overrides were reset and the agent-created test tab was closed; live Drunix state was untouched.
+
+See `submission/browser-queue-check-20261001.json` and the narrow/wide JPEG screenshots. This is manual browser acceptance, not browser CI, measured click-to-paint latency or proof at arbitrarily large queue sizes. `node scripts/browser-queue-fixture.js` recreates the isolated fixture on a random localhost port and prints its URL. Type `stop` into an interactive terminal to finish, or let its twelve-minute limit stop the server and clean up its generated temporary store. Previously blocked visual coverage is now complete for this bounded fixture.
