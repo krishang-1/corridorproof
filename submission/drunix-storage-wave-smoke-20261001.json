@@ -1,0 +1,34 @@
+{
+  "schema": "corridorproof-storage-wave-live-check-v1",
+  "passed": true,
+  "checkedAt": "2026-10-01T01:46:39.583Z",
+  "mode": "LIVE_DRUNIX_TEST_NETWORK",
+  "paymentRails": "SIMULATED",
+  "caseId": "CP-OPS-muovfy6u",
+  "records": 137,
+  "checks": {
+    "syntheticCreateAndPartialCreditValid": true,
+    "pendingHeld": true,
+    "exactReplay": true,
+    "changedMessageRejected": true,
+    "conflictingReportHeld": true,
+    "dossierRechecked": true,
+    "organizationReadsMatch": true
+  },
+  "comparison": {
+    "supported": true,
+    "matched": true,
+    "senderDigest": "6b7920852788e4b70683a2c3c0a23257d803b4bbf965592f8448749ccea6fae3",
+    "receiverDigest": "6b7920852788e4b70683a2c3c0a23257d803b4bbf965592f8448749ccea6fae3",
+    "senderRecords": 137,
+    "receiverRecords": 137,
+    "checkedAt": "2026-10-01T01:46:39.580Z",
+    "caveat": "Sequential authenticated reads can differ if a new commit occurs between them. Equal reads on one laptop do not prove independent institutional operation."
+  },
+  "initialSmoke": {
+    "completed": false,
+    "failedCheck": "Final organization comparison returned no matched property; initial response body was not retained. All preceding scenario assertions passed.",
+    "followup": "Two subsequent authenticated comparisons matched at 137 events; no replacement write was performed."
+  },
+  "caveat": "One transient live comparison failure remains unexplained. Follow-up matching reads do not establish uninterrupted availability. Storage faults were injected only in isolated local fixtures."
+}

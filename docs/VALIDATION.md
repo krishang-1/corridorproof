@@ -4,7 +4,7 @@ Baseline 30 September 2026; overnight campaign added 1 October 2026 IST. All liv
 
 | Gate | Observed result |
 | --- | --- |
-| Node policy, journal, HTTP and live adapter | 24 tests passed, covering shared policy conformance, local integrity, role/origin contract, persisted uncertain requests and overnight input/recovery regressions. |
+| Node policy, journal, HTTP and live adapter | 27 tests passed, covering shared policy conformance, local integrity, role/origin contract, persisted uncertain requests and overnight input/storage/recovery regressions. |
 | Go chaincode | Shared scenarios, mock-stub authorization, durable denials, idempotency and bounded pagination tests passed. |
 | Gateway | Windows and Linux builds passed; certificate-bound TLS submissions await VALID commit. |
 | Original live CLI | Five scenarios, replay and sequential stale-version checks: 46 VALID receipts. Both organizations read matching state. `submission/drunix-live-evidence.json`. |
@@ -52,3 +52,15 @@ Timings include client JSON parsing, server work and local contention. Both case
 A modest live status-adapter smoke checkpoint passed after the server restart, including pending holds, valid partial credit, exact replay, changed-ID-content rejection, conflicting evidence holds and matching organization views at 135 events. Earlier evidence files were preserved. See `submission/drunix-overnight-smoke-20261001-01.json`, `submission/simulation-campaign-20261001-01.json`, and `submission/simulation-campaign-20261001-02.json`.
 
 The bounded campaign is now included in CI with smaller HTTP fixtures. The continuation queue and controls are in [OVERNIGHT-CAMPAIGN.md](OVERNIGHT-CAMPAIGN.md). Browser rendering under larger queues, cross-process storage races, hardware/storage failure, independent infrastructure and real rail execution remain separate unperformed checks.
+
+## Storage-fault wave, 1 October 2026
+
+An injected failure of the inbox temporary-file write reproduced a real defect: the first call failed safely, but retrying the in-memory PREPARED record skipped the original-command save and could mutate payment state while storage remained unavailable. The fix saves the exact command before every submission/reconciliation attempt. A regression now checks three blocked attempts with no journal mutation, successful recovery once storage returns, and replay after restart.
+
+Existing adapter files now reject malformed roots, malformed records and inconsistent request/report bindings with `ADAPTER_STATE_INVALID`, preserving the original file. Tests cover sixteen malformed-file cases and four changed inbox bindings. A compatibility regression retains earlier inbox files that stored the version only inside the original command. Copies of the existing eleven live inbox records and seventy-seven live request records loaded successfully without touching their source files.
+
+All 27 Node tests passed. A fresh isolated profile (seeds 20,001–20,128, 100 steps each) passed 12,800 attempts: 5,537 accepted and 7,263 denied. Its 243-case HTTP fixture completed 600 requests at concurrency ten, including 120 expected malformed-input rejections, without timeouts or journal mutation. Measured p95 was 244.46 ms, p99 313.82 ms and maximum 381.30 ms. See `submission/simulation-campaign-20261001-03.json`. This adds coverage at a different seed range and sequence length; it is not a live-chain throughput measurement.
+
+File validation detects structural and binding inconsistencies, not an operator rewriting files and recomputing checksums. Missing files still initialize a fresh adapter; therefore backups and controlled storage directories remain essential. Atomic rename is not a claim of fsync-backed power-loss durability, multi-process coordination or production disaster recovery.
+
+Only the Node application was restarted to load these changes; existing live containers and volumes were preserved. The synthetic smoke passed create/partial-credit VALID receipts, pending hold, exact replay, changed-message rejection, conflict hold and dossier assertions. Its final comparison returned no `matched` property and failed the run; the initial response body was not retained, so the cause remains unconfirmed. Two subsequent authenticated comparisons matched at 137 events, and the same case dossier was rechecked without replacement writes. `submission/drunix-storage-wave-smoke-20261001.json` distinguishes that initial failure from the successful follow-up. This is not a clean uninterrupted availability result.

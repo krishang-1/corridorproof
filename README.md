@@ -268,7 +268,7 @@ Verification checks signatures, hash links, sequence, supplied head and reconstr
 
 ## Reproducible reliability simulations
 
-The first overnight campaign passed **81,920 seeded policy attempts** across two distinct seed ranges and **1,440 isolated localhost HTTP requests**, including controlled malformed inputs. All 24 Node regression tests pass, including 24 injected lost-acknowledgment recovery variants. A separate modest live Drunix smoke passed; the large simulation runs are not live-chain throughput measurements. The [validation record](docs/VALIDATION.md) reports realized accepted/denied counts, response distributions and limits; the [campaign guide](docs/OVERNIGHT-CAMPAIGN.md) documents reproducible commands and the next fault profiles.
+The overnight campaign passed **94,720 seeded policy attempts** across three distinct seed ranges and **2,040 isolated localhost HTTP requests**, including controlled malformed inputs. All 27 Node regression tests pass, including 24 injected lost-acknowledgment recovery variants and failed-storage retries. The storage wave repaired a retry that could bypass persistence of its original command and added fail-closed checks for corrupt adapter files. Separate modest live checks reached matching organization views at 137 events; the latest initial comparison failed transiently before two matching follow-up reads, as disclosed in the evidence. Large simulations are not live-chain throughput measurements. The [validation record](docs/VALIDATION.md) reports realized accepted/denied counts, response distributions and limits; the [campaign guide](docs/OVERNIGHT-CAMPAIGN.md) documents reproducible commands and the next fault profiles.
 
 ## Repository map
 

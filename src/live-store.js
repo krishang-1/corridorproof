@@ -1,8 +1,18 @@
 import { execFile } from 'node:child_process';
-import { mkdirSync, existsSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
+import { mkdirSync, writeFileSync, renameSync } from 'node:fs';
 import { join } from 'node:path';
 import { createCase, PolicyError, ROLES } from './policy.js';
 import { canonical, hash } from './integrity.js';
+import {loadAdapterRecords,isRecord} from './adapter-state.js';
+
+function validRequestRecord(key,r){
+  if(!ROLES.includes(r.role)||typeof r.caseId!=='string'||!/^[A-Za-z0-9_-]{1,100}$/.test(r.caseId)||typeof r.inputJSON!=='string'||!['SUBMITTING','UNCERTAIN','COMMITTED','INVALID'].includes(r.status))return false;
+  const input=JSON.parse(r.inputJSON);
+  if(!isRecord(input)||typeof input.requestId!=='string'||!/^[A-Za-z0-9_-]{8,100}$/.test(input.requestId)||key!==`${r.role}:${input.requestId}`||!Number.isSafeInteger(input.expectedVersion)||input.expectedVersion<0||typeof input.action!=='string'||r.fingerprint!==hash({id:r.caseId,role:r.role,inputJSON:r.inputJSON}))return false;
+  if(r.status==='COMMITTED')return isRecord(r.result)&&typeof r.result.ok==='boolean'&&r.receipt?.successful===true&&r.receipt.validationCode==='VALID';
+  if(r.status==='INVALID')return r.result?.ok===false&&r.receipt?.successful===false&&typeof r.receipt.validationCode==='string'&&r.receipt.validationCode!=='VALID';
+  return true;
+}
 
 export function gatewayRunner({infra=process.env.CP_INFRA_DIR || '/home/krish/corridorproof-infra', distribution=process.env.CP_WSL_DISTRO || 'Ubuntu'}={}) {
   if(process.env.CP_GATEWAY_BIN&&process.env.CP_CERT_ROOT)return nativeGatewayRunner(process.env.CP_GATEWAY_BIN,process.env.CP_CERT_ROOT);
@@ -33,7 +43,7 @@ export class LiveStore {
   constructor(directory, run=gatewayRunner()) {
     this.directory = directory;
     mkdirSync(directory,{recursive:true}); this.file=join(directory,'requests.json');this.run=run;
-    this.requests=existsSync(this.file)?JSON.parse(readFileSync(this.file,'utf8')):{};
+    this.requests=loadAdapterRecords(this.file,validRequestRecord);
     this.cache=null;this.loading=null;this.inFlight=new Set();
     for(const request of Object.values(this.requests)) if(request.status==='SUBMITTING') request.status='UNCERTAIN';
     this.save();

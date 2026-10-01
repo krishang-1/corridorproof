@@ -35,3 +35,9 @@ Push only verified changes to `https://github.com/krishang-1/corridorproof` with
 ## Published first-wave checkpoints
 
 Two seed ranges (1–512 and 10,001–10,512) passed 81,920 total policy attempts. The isolated HTTP profiles completed 1,440 requests, including 288 expected malformed-input rejections, with no timeouts or journal mutations. Four added regression tests bring the suite to 24 tests; one contains 24 injected lost-acknowledgment timing variants. A modest live smoke passed at 135 events after loading the fixes. See VALIDATION.md and the three dated evidence JSON files. Next prioritize a different fault or browser profile, not an identical replay of these passed runs.
+
+## Storage-fault continuation
+
+Confirmed and repaired the retry-after-failed-prepare gap. Existing corrupt adapter files fail closed with preserved contents; legacy version placement remains compatible. Three regressions bring the suite to 27 tests. Copies of live metadata passed compatibility checks. A third profile used seeds 20,001–20,128 with 100 steps and 600 HTTP requests at concurrency ten: all invariants passed. Results and limitations are in VALIDATION.md and `submission/simulation-campaign-20261001-03.json`.
+
+Do not rerun these exact passed profiles merely to increase counts. Next prioritize bounded browser queue rendering or a materially different concurrent/out-of-order sequence. Preserve the older live metadata format; absence of a duplicated top-level version is not evidence of corruption when the original command has its valid version.

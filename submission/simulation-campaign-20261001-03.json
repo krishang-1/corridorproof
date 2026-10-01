@@ -1,0 +1,55 @@
+{
+  "schema": "corridorproof-simulation-campaign-v1",
+  "passed": true,
+  "recordedAt": "2026-10-01T01:43:25.992Z",
+  "mode": "ISOLATED_LOCAL_SIMULATION",
+  "runtime": "v24.19.0",
+  "policy": {
+    "seeds": 128,
+    "firstSeed": 20001,
+    "stepsPerSeed": 100,
+    "attempts": 12800,
+    "accepted": 5537,
+    "rejected": 7263,
+    "cases": 1424,
+    "noiseAttempts": 7515,
+    "statuses": {
+      "MANUAL_REVIEW": 480,
+      "RECONCILING": 362,
+      "REFUND_REVIEW": 963,
+      "REFUND_APPROVED": 473,
+      "REFUNDED": 928,
+      "CLOSED": 874,
+      "CREDITED": 864,
+      "SHORTFALL": 399,
+      "CORRECTION_APPROVED": 194
+    },
+    "denials": {
+      "INVALID_ROLE": 2479,
+      "NOT_APPROVED": 282,
+      "INVALID_ACTION": 327,
+      "ROLE_DENIED": 831,
+      "INVALID_STATE": 688,
+      "CASE_CLOSED": 1724,
+      "UNKNOWN_OR_UNSAFE": 309,
+      "INVALID_AMOUNT": 35,
+      "UNRESOLVED": 265,
+      "CONFLICTING_EVIDENCE": 268,
+      "DUPLICATE_VOTE": 55
+    },
+    "durationMs": 891
+  },
+  "http": {
+    "cases": 243,
+    "requests": 600,
+    "malformedRequests": 120,
+    "concurrency": 10,
+    "p50Ms": 134.06,
+    "p95Ms": 244.46,
+    "p99Ms": 313.82,
+    "maxMs": 381.3,
+    "timeoutMs": 10000
+  },
+  "totalMs": 10432,
+  "caveat": "Deterministic synthetic policy and isolated localhost load; not a live Drunix throughput benchmark, browser rendering measurement, production availability test or commercial impact study. HTTP timings include client JSON parsing and local contention. Noise chooses adversarial inputs; some are valid actions in the selected state."
+}

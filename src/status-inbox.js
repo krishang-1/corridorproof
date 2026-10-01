@@ -1,10 +1,24 @@
-import {mkdirSync,existsSync,readFileSync,writeFileSync,renameSync} from 'node:fs';
+import {mkdirSync,writeFileSync,renameSync} from 'node:fs';
 import {join} from 'node:path';
 import {PolicyError} from './policy.js';
 import {normalizeStatusReport} from './operations.js';
+import {hash} from './integrity.js';
+import {loadAdapterRecords,isRecord} from './adapter-state.js';
+
+function validInboxRecord(id,r){
+  if(!/^[A-Za-z0-9_-]{8,90}$/.test(id)||!isRecord(r.report)||r.report.messageId!==id||r.digest!==hash(r.report))return false;
+  // Earlier inbox files kept the version only inside the original command.
+  if(r.expectedVersion!==undefined&&(!Number.isSafeInteger(r.expectedVersion)||r.expectedVersion<0))return false;
+  if(!['PREPARED','HELD','UNCERTAIN','RECORDED','DENIED'].includes(r.status))return false;
+  if(r.status==='HELD')return !r.command&&['HOLD','CONFLICT'].includes(r.disposition)&&r.action===null;
+  if(!isRecord(r.command)||r.command.requestId!==`report-${id}`||!Number.isSafeInteger(r.command.expectedVersion)||r.command.expectedVersion<0||(r.expectedVersion!==undefined&&r.command.expectedVersion!==r.expectedVersion)||r.command.action!==r.action||!isRecord(r.command.payload)||r.command.payload.statusReportDigest!==r.digest||hash(r.command.payload.statusReport)!==r.digest)return false;
+  if(r.status==='RECORDED')return isRecord(r.result)&&r.result.ok===true;
+  if(r.status==='DENIED')return isRecord(r.result)&&r.result.ok===false&&!r.result.pending;
+  return true;
+}
 
 export class StatusInbox {
-  constructor(directory){mkdirSync(directory,{recursive:true});this.file=join(directory,'status-inbox.json');this.records=Object.assign(Object.create(null),existsSync(this.file)?JSON.parse(readFileSync(this.file,'utf8')):{});this.inFlight=new Set();}
+  constructor(directory){mkdirSync(directory,{recursive:true});this.file=join(directory,'status-inbox.json');this.records=loadAdapterRecords(this.file,validInboxRecord);this.inFlight=new Set();}
   save(){writeFileSync(this.file+'.tmp',JSON.stringify(this.records,null,2),{mode:0o600});renameSync(this.file+'.tmp',this.file);}
   list(){return Object.values(this.records).map(({command,...r})=>r);}
   async preview(store,role,input){
@@ -26,8 +40,11 @@ export class StatusInbox {
       record={...preview,status:'PREPARED',receivedAt:new Date().toISOString()};delete record.prior;
       if(preview.disposition!=='READY'){record.status='HELD';this.records[id]=record;this.save();return {ok:false,code:'REPORT_HELD',message:preview.reason,held:true};}
       record.command={requestId:`report-${id}`,expectedVersion:preview.expectedVersion,action:preview.action,payload:preview.payload};
-      this.records[id]=record;this.save();
+      this.records[id]=record;
     }
+    // A previous prepare may exist only in memory after a failed save. Every
+    // submission/reconciliation attempt must first persist its exact command.
+    this.save();
     this.inFlight.add(id);
     try {const result=await store.command(input.caseId,role,record.command);record.result=result;record.status=result.pending?'UNCERTAIN':result.ok?'RECORDED':'DENIED';this.save();return {...result,statusReportDigest:record.digest};}
     finally {this.inFlight.delete(id);}

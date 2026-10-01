@@ -45,3 +45,7 @@ The Go financial contract is unchanged by this expansion. The existing role, ver
 ## Operational limitations
 
 Inbox dispositions are local mutable bookkeeping, not independently witnessed evidence. Holds do not automatically reopen or freeze a previously resolved ledger case. A conflict flag is advisory and never overrides contract permissions. There is no arbitration, notification dispatch, production login, independent credential custody or real payment connector. The review threshold is a fixed fifteen-minute prototype policy, not a Nexus SLA. Commitment totals are not balances, exposure valuation or money held.
+
+## Adapter storage failures
+
+A failed prepare write blocks submission, including repeated attempts against an in-memory record. Retry only after storage is restored; reuse the original report/message identity. An existing malformed or inconsistent `requests.json` or `status-inbox.json` stops startup with `ADAPTER_STATE_INVALID` and leaves that file intact. Preserve it and backups, reconcile original requests against the ledger, and restore a known-good copy under operator control. Do not delete bookkeeping to bypass the error: loss of original request identities can prevent safe replay. This prototype does not provide automatic recovery from missing files, power-loss fsync guarantees or multi-worker file coordination.
