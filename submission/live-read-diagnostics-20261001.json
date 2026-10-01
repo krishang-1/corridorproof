@@ -1,0 +1,56 @@
+{
+  "schema": "corridorproof-live-read-diagnostics-v1",
+  "passed": true,
+  "checkedAt": "2026-10-01T03:53:20.767Z",
+  "mode": "LIVE_DRUNIX_TEST_NETWORK",
+  "paymentRails": "SIMULATED",
+  "requests": 4,
+  "retries": 0,
+  "samples": [
+    {
+      "index": 0,
+      "httpStatus": 200,
+      "elapsedMs": 8861.83,
+      "matched": true,
+      "errorCode": null,
+      "senderRecords": 137,
+      "receiverRecords": 137,
+      "senderDigest": "6b7920852788e4b70683a2c3c0a23257d803b4bbf965592f8448749ccea6fae3",
+      "receiverDigest": "6b7920852788e4b70683a2c3c0a23257d803b4bbf965592f8448749ccea6fae3"
+    },
+    {
+      "index": 1,
+      "httpStatus": 200,
+      "elapsedMs": 3794.75,
+      "matched": true,
+      "errorCode": null,
+      "senderRecords": 137,
+      "receiverRecords": 137,
+      "senderDigest": "6b7920852788e4b70683a2c3c0a23257d803b4bbf965592f8448749ccea6fae3",
+      "receiverDigest": "6b7920852788e4b70683a2c3c0a23257d803b4bbf965592f8448749ccea6fae3"
+    },
+    {
+      "index": 2,
+      "httpStatus": 200,
+      "elapsedMs": 1604.41,
+      "matched": true,
+      "errorCode": null,
+      "senderRecords": 137,
+      "receiverRecords": 137,
+      "senderDigest": "6b7920852788e4b70683a2c3c0a23257d803b4bbf965592f8448749ccea6fae3",
+      "receiverDigest": "6b7920852788e4b70683a2c3c0a23257d803b4bbf965592f8448749ccea6fae3"
+    },
+    {
+      "index": 3,
+      "httpStatus": 200,
+      "elapsedMs": 1433.05,
+      "matched": true,
+      "errorCode": null,
+      "senderRecords": 137,
+      "receiverRecords": 137,
+      "senderDigest": "6b7920852788e4b70683a2c3c0a23257d803b4bbf965592f8448749ccea6fae3",
+      "receiverDigest": "6b7920852788e4b70683a2c3c0a23257d803b4bbf965592f8448749ccea6fae3"
+    }
+  ],
+  "caveat": "Four sequential read-only comparisons on the existing laptop network. No writes or restarts. Failure classification is retained before judging success. Passing samples do not explain the earlier transient failure or establish continuous availability, independent institutions or production throughput."
+}

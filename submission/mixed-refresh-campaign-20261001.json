@@ -1,0 +1,20 @@
+{
+  "schema": "corridorproof-mixed-refresh-campaign-v1",
+  "passed": true,
+  "recordedAt": "2026-10-01T03:52:05.679Z",
+  "mode": "ISOLATED_LOCAL_SIMULATION",
+  "cases": 120,
+  "closed": 40,
+  "open": 80,
+  "heldInboxReports": 120,
+  "journalEvents": 360,
+  "refreshes": 12,
+  "refreshRequests": 72,
+  "dossierRequests": 12,
+  "maxRefreshConcurrency": 12,
+  "p50Ms": 90.83,
+  "p95Ms": 445.72,
+  "maximumMs": 447.96,
+  "timeoutMs": 10000,
+  "caveat": "API fan-out and current selected-case dossiers only. Browser control timed out, so visual rendering, viewport layout and browser interaction latency were not measured. Local timings include client parsing and machine contention; they are not live Drunix throughput or production capacity."
+}

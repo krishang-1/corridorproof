@@ -19,7 +19,8 @@ const ops=(await api('/api/operations')).data;assert.equal(ops.cases.find(c=>c.c
 assert.equal(ops.cases.find(c=>c.caseId===id).lane,'EVIDENCE_CONFLICT');
 const dossier=(await api(`/api/cases/${id}/packet`)).data;assert.equal(dossier.state.id,id);assert.equal(dossier.events.length,2);assert.ok(dossier.fullWorkspace.events.length>=initialRecords+2);
 assert.equal(dossier.events[1].payload.command.payload.statusReportDigest,applied.data.statusReportDigest);assert.equal(dossier.adapterReports.length,3);
-const consistency=(await api('/api/consistency')).data;assert.equal(consistency.matched,true);
+const comparisonResponse=await api('/api/consistency'),consistency=comparisonResponse.data;
+assert.equal(consistency.matched,true,JSON.stringify({stage:'organization comparison',httpStatus:comparisonResponse.status,errorCode:consistency.error??null,matched:consistency.matched??null,senderRecords:consistency.senderRecords??null,receiverRecords:consistency.receiverRecords??null}));
 const evidence={passed:true,checkedAt:new Date().toISOString(),mode:health.ledger,paymentRails:'SIMULATED',caseId:id,create:create.data,credit:applied.data,
   checks:{pendingHeld:true,noPendingMutation:true,partialCreditNormalized:true,exactReplay:true,alteredMessageRejected:true,conflictingReportHeld:true,exactShortfall:12000,caseDossier:true,organizationReadsMatch:true},consistency,
   caveat:'Inbox metadata is local to the adapter. Only accepted observations are Drunix contract events. Status reports are synthetic JSON, not authenticated bank messages or ISO 20022 XML.'};
