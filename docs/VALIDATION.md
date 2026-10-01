@@ -4,7 +4,7 @@ Baseline 30 September 2026; overnight campaign added 1 October 2026 IST. All liv
 
 | Gate | Observed result |
 | --- | --- |
-| Node policy, journal, HTTP and live adapter | 27 tests passed, covering shared policy conformance, local integrity, role/origin contract, persisted uncertain requests and overnight input/storage/recovery regressions. |
+| Node policy, journal, HTTP and live adapter | 28 tests passed, covering shared policy conformance, local integrity, role/origin contract, persisted uncertain requests and overnight input/storage/recovery regressions. |
 | Go chaincode | Shared scenarios, mock-stub authorization, durable denials, idempotency and bounded pagination tests passed. |
 | Gateway | Windows and Linux builds passed; certificate-bound TLS submissions await VALID commit. |
 | Original live CLI | Five scenarios, replay and sequential stale-version checks: 46 VALID receipts. Both organizations read matching state. `submission/drunix-live-evidence.json`. |
@@ -64,3 +64,13 @@ All 27 Node tests passed. A fresh isolated profile (seeds 20,001–20,128, 100 s
 File validation detects structural and binding inconsistencies, not an operator rewriting files and recomputing checksums. Missing files still initialize a fresh adapter; therefore backups and controlled storage directories remain essential. Atomic rename is not a claim of fsync-backed power-loss durability, multi-process coordination or production disaster recovery.
 
 Only the Node application was restarted to load these changes; existing live containers and volumes were preserved. The synthetic smoke passed create/partial-credit VALID receipts, pending hold, exact replay, changed-message rejection, conflict hold and dossier assertions. Its final comparison returned no `matched` property and failed the run; the initial response body was not retained, so the cause remains unconfirmed. Two subsequent authenticated comparisons matched at 137 events, and the same case dossier was rechecked without replacement writes. `submission/drunix-storage-wave-smoke-20261001.json` distinguishes that initial failure from the successful follow-up. This is not a clean uninterrupted availability result.
+
+## Report-order and advanced-recovery wave, 1 October 2026
+
+`npm run test:report-order` exhausts all 120 permutations of PDNG, ACWP, ACCC, RJCT and BLCK in four profiles: serial/burst, full/partial credit. The isolated fixture uses 480 cases and varies quoted INR amounts across 2, 620,000 and 1,000,000,000,000 minor units. Burst delivery includes duplicate messages and deterministic 0–3 ms command delays; all previews see version zero. Each profile restarts the inbox and retries every original report.
+
+All 6,000 ordinary report attempts passed the declared checks. Initial results were 480 accepted observations, 1,920 held responses, 720 in-flight duplicate responses and 480 durable stale-version denials. Restart retries included 960 original-result replays, with no additional journal events. Separate probes rejected 480 changed-credit contents and 480 wrong-quote references; 320 attempted refund approvals in credited/blocked cases were denied without changing case version. The final 1,760-event journal verified against fixture keys. Attempt counts exclude the separate probes and are not independent payment counts. See `submission/report-order-campaign-20261001.json`.
+
+The full Node suite passed 28 tests. The added recovery test contains twelve timing variants: an acknowledgment is lost after credit commits, another simulated actor adds one or both closure acknowledgments, then both adapters restart. Reconciliation returns the original version-one result without changing the later case state or adding another event; a subsequent replay needs no gateway call. Returned replay state is the historical command result, so operators must refresh the case for its current state.
+
+No application defect was reproduced in this wave and no financial permissions were changed. Coverage confirms the documented boundary: the first accepted definitive observation wins, later contradictions are held or denied, and local conflict flags do not adjudicate evidence truth or freeze ledger permissions. Real authenticated ingress, governed disputes and multi-process concurrency remain unperformed architecture work. Live containers and runtime records were untouched. The exhaustive order campaign is included in CI.

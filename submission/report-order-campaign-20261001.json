@@ -1,0 +1,30 @@
+{
+  "schema": "corridorproof-report-order-campaign-v1",
+  "passed": true,
+  "recordedAt": "2026-10-01T02:38:35.891Z",
+  "mode": "ISOLATED_LOCAL_SIMULATION",
+  "permutations": 120,
+  "profiles": [
+    "SERIAL_FULL",
+    "SERIAL_PARTIAL",
+    "BURST_FULL",
+    "BURST_PARTIAL"
+  ],
+  "cases": 480,
+  "reportAttempts": 6000,
+  "initialAccepted": 480,
+  "initialHeld": 1920,
+  "initialPending": 720,
+  "initialDenied": 480,
+  "restartedReplays": 960,
+  "changedContentRejected": 480,
+  "unsafeRefundDenied": 320,
+  "outcomes": {
+    "CREDITED": 80,
+    "SHORTFALL": 80,
+    "REFUND_REVIEW": 160,
+    "MANUAL_REVIEW": 160
+  },
+  "journalEvents": 1760,
+  "caveat": "Exhaustive orderings of five modeled synthetic codes, not arbitrary bank messages. Deterministic short delays exercise in-process stale previews and duplicate suppression; they do not simulate independent institutions, Drunix load or multi-process storage. First accepted definitive evidence wins; later contradictions are held or denied, not automatically adjudicated."
+}

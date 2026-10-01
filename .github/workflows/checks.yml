@@ -11,6 +11,7 @@ jobs:
         with:
           node-version: 24
       - run: npm test
+      - run: npm run test:report-order
       - run: npm run test:campaign
         env:
           CP_SIM_CASES: 60

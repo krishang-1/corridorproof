@@ -41,3 +41,9 @@ Two seed ranges (1–512 and 10,001–10,512) passed 81,920 total policy attempt
 Confirmed and repaired the retry-after-failed-prepare gap. Existing corrupt adapter files fail closed with preserved contents; legacy version placement remains compatible. Three regressions bring the suite to 27 tests. Copies of live metadata passed compatibility checks. A third profile used seeds 20,001–20,128 with 100 steps and 600 HTTP requests at concurrency ten: all invariants passed. Results and limitations are in VALIDATION.md and `submission/simulation-campaign-20261001-03.json`.
 
 Do not rerun these exact passed profiles merely to increase counts. Next prioritize bounded browser queue rendering or a materially different concurrent/out-of-order sequence. Preserve the older live metadata format; absence of a duplicated top-level version is not evidence of corruption when the original command has its valid version.
+
+## Report-order continuation
+
+All 120 orderings of the five modeled report codes passed serial/burst and full/partial-credit profiles: 480 isolated cases, 6,000 initial/retry report attempts, exact restart replay and separate content/reference/refund probes. Run with `npm run test:report-order`; optional `CP_ORDER_OUTPUT` saves the inspected report. Twelve added lost-ack variants cover case advancement or closure before reconciliation; the suite now has 28 tests. No new application defect was found. See VALIDATION.md and `submission/report-order-campaign-20261001.json`.
+
+Next useful remaining profile is browser rendering/usability with a bounded large queue. Do not repeat seed/order coverage or live writes simply to fill scheduled time. The prior transient live comparison failure remains unexplained; any future live smoke must retain the HTTP status and diagnostic body on failure before attempting follow-up reads.

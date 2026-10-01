@@ -9,6 +9,7 @@
     "start": "node src/server.js",
     "test": "node --test test/*.test.js",
     "test:campaign": "node scripts/simulation-campaign.js",
+    "test:report-order": "node scripts/report-order-campaign.js",
     "verify": "node scripts/verify-export.js",
     "demo:check": "node scripts/demo-check.js",
     "demo": "node src/server.js"
